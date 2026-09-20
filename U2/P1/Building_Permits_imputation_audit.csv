@@ -1,0 +1,75 @@
+﻿tipo,regla,columna,cantidad,faltantes_antes,faltantes_despues,imputados
+regla,lookup por Street Number + Street Name,Zipcode,1005.0,,,
+regla,lookup por Street Number + Street Name,Supervisor District,1005.0,,,
+regla,lookup por Street Number + Street Name,Neighborhoods - Analysis Boundaries,1001.0,,,
+regla,lookup por Street Number + Street Name,Location,1005.0,,,
+regla,Existing Use -> Proposed Use por inercia,Proposed Use,3056.0,,,
+regla,Proposed Use -> Existing Use por inercia,Existing Use,944.0,,,
+regla,Existing Units -> Proposed Units por inercia,Proposed Units,2003.0,,,
+regla,Proposed Units -> Existing Units por inercia,Existing Units,1702.0,,,
+regla,Number of Existing Stories -> Number of Proposed Stories por inercia,Number of Proposed Stories,2922.0,,,
+regla,Number of Proposed Stories -> Number of Existing Stories por inercia,Number of Existing Stories,2006.0,,,
+regla,Existing Construction Type -> Proposed Construction Type por inercia,Proposed Construction Type,2960.0,,,
+regla,Proposed Construction Type -> Existing Construction Type por inercia,Existing Construction Type,2321.0,,,
+regla,regresión lineal Number of Existing Stories -> Number of Proposed Stories por Permit Type,Number of Proposed Stories,572.0,,,
+regla,regresión lineal Number of Proposed Stories -> Number of Existing Stories por Permit Type,Number of Existing Stories,1404.0,,,
+regla,regresión lineal Estimated Cost -> Revised Cost por Permit Type,Revised Cost,5461.0,,,
+regla,regresión lineal Revised Cost -> Estimated Cost por Permit Type,Estimated Cost,37461.0,,,
+regla,regresión lineal Existing Units -> Proposed Units por Permit Type,Proposed Units,385.0,,,
+regla,regresión lineal Proposed Units -> Existing Units por Permit Type,Existing Units,1313.0,,,
+regla,regresión lineal Existing Construction Type -> Proposed Construction Type por Permit Type,Proposed Construction Type,579.0,,,
+regla,regresión lineal Proposed Construction Type -> Existing Construction Type por Permit Type,Existing Construction Type,1422.0,,,
+regla,mediana Filed -> Issued por Permit Type,Issued Date,161.0,,,
+regla,mediana Issued -> First Construction por Permit Type,First Construction Document Date,31.0,,,
+regla,mediana Issued -> Completed por Permit Type,Completed Date,596.0,,,
+regla,mediana Filed -> Completed por Permit Type,Completed Date,9036.0,,,
+regla,mediana Issued -> Expiration por Permit Type,Permit Expiration Date,37120.0,,,
+regla,mediana First Construction -> Expiration por Permit Type,Permit Expiration Date,7.0,,,
+regla,mediana Filed -> Expiration por Permit Type,Permit Expiration Date,12463.0,,,
+regla,Description -> Fire Only Permit = Y,Fire Only Permit,4445.0,,,
+regla,Description -> Voluntary Soft-Story Retrofit = Y,Voluntary Soft-Story Retrofit,6441.0,,,
+filtro,eliminar tuplas con nulos en columnas con menos de 50% de nulos,"Permit Number, Permit Type, Permit Type Definition, Permit Creation Date, Block, Lot, Street Number, Street Name, Street Suffix, Description, Current Status, Current Status Date, Filed Date, Issued Date, Completed Date, First Construction Document Date, Number of Existing Stories, Number of Proposed Stories, Permit Expiration Date, Estimated Cost, Revised Cost, Existing Use, Existing Units, Proposed Use, Proposed Units, Plansets, Existing Construction Type, Existing Construction Type Description, Proposed Construction Type, Proposed Construction Type Description, Supervisor District, Neighborhoods - Analysis Boundaries, Zipcode, Location, Record ID",107793.0,,,
+filtro,eliminar columnas con al menos 60% de nulos,"Street Number Suffix, Unit, Unit Suffix, Structural Notification, Voluntary Soft-Story Retrofit, Fire Only Permit, TIDF Compliance, Site Permit",8.0,,,
+resumen,faltantes antes/después de imputar (antes del filtro),Permit Number,,0.0,0.0,0.0
+resumen,faltantes antes/después de imputar (antes del filtro),Permit Type,,0.0,0.0,0.0
+resumen,faltantes antes/después de imputar (antes del filtro),Permit Type Definition,,0.0,0.0,0.0
+resumen,faltantes antes/después de imputar (antes del filtro),Permit Creation Date,,0.0,0.0,0.0
+resumen,faltantes antes/después de imputar (antes del filtro),Block,,0.0,0.0,0.0
+resumen,faltantes antes/después de imputar (antes del filtro),Lot,,0.0,0.0,0.0
+resumen,faltantes antes/después de imputar (antes del filtro),Street Number,,0.0,0.0,0.0
+resumen,faltantes antes/después de imputar (antes del filtro),Street Number Suffix,,196684.0,196684.0,0.0
+resumen,faltantes antes/después de imputar (antes del filtro),Street Name,,0.0,0.0,0.0
+resumen,faltantes antes/después de imputar (antes del filtro),Street Suffix,,2768.0,2768.0,0.0
+resumen,faltantes antes/después de imputar (antes del filtro),Unit,,169421.0,169421.0,0.0
+resumen,faltantes antes/después de imputar (antes del filtro),Unit Suffix,,196939.0,196939.0,0.0
+resumen,faltantes antes/después de imputar (antes del filtro),Description,,290.0,290.0,0.0
+resumen,faltantes antes/después de imputar (antes del filtro),Current Status,,0.0,0.0,0.0
+resumen,faltantes antes/después de imputar (antes del filtro),Current Status Date,,0.0,0.0,0.0
+resumen,faltantes antes/después de imputar (antes del filtro),Filed Date,,0.0,0.0,0.0
+resumen,faltantes antes/después de imputar (antes del filtro),Issued Date,,14940.0,14779.0,161.0
+resumen,faltantes antes/después de imputar (antes del filtro),Completed Date,,101709.0,92077.0,9632.0
+resumen,faltantes antes/después de imputar (antes del filtro),First Construction Document Date,,14946.0,14915.0,31.0
+resumen,faltantes antes/después de imputar (antes del filtro),Structural Notification,,191978.0,191978.0,0.0
+resumen,faltantes antes/después de imputar (antes del filtro),Number of Existing Stories,,42784.0,39374.0,3410.0
+resumen,faltantes antes/después de imputar (antes del filtro),Number of Proposed Stories,,42868.0,39374.0,3494.0
+resumen,faltantes antes/después de imputar (antes del filtro),Voluntary Soft-Story Retrofit,,198865.0,192424.0,6441.0
+resumen,faltantes antes/después de imputar (antes del filtro),Fire Only Permit,,180073.0,175628.0,4445.0
+resumen,faltantes antes/después de imputar (antes del filtro),Permit Expiration Date,,51880.0,2290.0,49590.0
+resumen,faltantes antes/después de imputar (antes del filtro),Estimated Cost,,38066.0,605.0,37461.0
+resumen,faltantes antes/después de imputar (antes del filtro),Revised Cost,,6066.0,605.0,5461.0
+resumen,faltantes antes/después de imputar (antes del filtro),Existing Use,,41114.0,40170.0,944.0
+resumen,faltantes antes/después de imputar (antes del filtro),Existing Units,,51538.0,48523.0,3015.0
+resumen,faltantes antes/después de imputar (antes del filtro),Proposed Use,,42439.0,39383.0,3056.0
+resumen,faltantes antes/después de imputar (antes del filtro),Proposed Units,,50911.0,48523.0,2388.0
+resumen,faltantes antes/después de imputar (antes del filtro),Plansets,,37309.0,37309.0,0.0
+resumen,faltantes antes/después de imputar (antes del filtro),TIDF Compliance,,198898.0,198898.0,0.0
+resumen,faltantes antes/después de imputar (antes del filtro),Existing Construction Type,,43366.0,39623.0,3743.0
+resumen,faltantes antes/después de imputar (antes del filtro),Existing Construction Type Description,,43366.0,43366.0,0.0
+resumen,faltantes antes/después de imputar (antes del filtro),Proposed Construction Type,,43162.0,39623.0,3539.0
+resumen,faltantes antes/después de imputar (antes del filtro),Proposed Construction Type Description,,43162.0,43162.0,0.0
+resumen,faltantes antes/después de imputar (antes del filtro),Site Permit,,193541.0,193541.0,0.0
+resumen,faltantes antes/después de imputar (antes del filtro),Supervisor District,,1717.0,712.0,1005.0
+resumen,faltantes antes/después de imputar (antes del filtro),Neighborhoods - Analysis Boundaries,,1725.0,724.0,1001.0
+resumen,faltantes antes/después de imputar (antes del filtro),Zipcode,,1716.0,711.0,1005.0
+resumen,faltantes antes/después de imputar (antes del filtro),Location,,1700.0,695.0,1005.0
+resumen,faltantes antes/después de imputar (antes del filtro),Record ID,,0.0,0.0,0.0
