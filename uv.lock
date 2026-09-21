@@ -115,7 +115,7 @@ name = "ciencia-de-datos"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
-    { name = "kagglehub" },
+    { name = "kagglehub", extra = ["pandas-datasets"] },
     { name = "matplotlib" },
     { name = "pandas" },
     { name = "pandas-stubs" },
@@ -125,7 +125,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "kagglehub", specifier = ">=1.0.2" },
+    { name = "kagglehub", extras = ["pandas-datasets"], specifier = ">=1.0.2" },
     { name = "matplotlib", specifier = ">=3.11.1" },
     { name = "pandas", specifier = ">=3.0.5" },
     { name = "pandas-stubs", specifier = "~=3.0.5" },
@@ -241,6 +241,11 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/b5/b9/e1bdafdcdb98e8e5354b30959ed48f4a08ca2c2dc72c968c5b38c4baa1b5/kagglehub-1.0.2.tar.gz", hash = "sha256:08abae0c1e249904003ce6f23c189166e3032220478426a552c77c2edb08b93a", size = 117457, upload-time = "2026-06-09T17:14:05.313Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/61/1a/6b1293d0b091905e367f86771a7122e5f7f2729ab9f0f36a1617f7ad6c05/kagglehub-1.0.2-py3-none-any.whl", hash = "sha256:ffad2d79cfda9b06848e98cb0a4a48e286285cfba4aeadadc0b8dbd9bcadd372", size = 70645, upload-time = "2026-06-09T17:14:04.04Z" },
+]
+
+[package.optional-dependencies]
+pandas-datasets = [
+    { name = "pandas" },
 ]
 
 [[package]]
