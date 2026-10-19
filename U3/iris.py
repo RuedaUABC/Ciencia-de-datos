@@ -9,9 +9,14 @@ from __future__ import annotations
 from collections.abc import Iterable
 from pathlib import Path
 
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from scipy import ndimage
+from scipy.cluster.hierarchy import dendrogram, linkage
+from sklearn.decomposition import PCA
 from sklearn.cluster import AgglomerativeClustering, DBSCAN, KMeans
 from sklearn.metrics import (
     calinski_harabasz_score,
@@ -24,6 +29,7 @@ from sklearn.preprocessing import KBinsDiscretizer, StandardScaler
 
 
 DATASET_PATH = Path(__file__).parent / "Datasets" / "iris.csv"
+FIGURES_DIR = Path(__file__).parent / "figuras"
 FEATURE_COLUMNS = ["sepal_length", "sepal_width", "petal_length", "petal_width"]
 TARGET_COLUMN = "species"
 RANDOM_STATE = 42
@@ -158,12 +164,11 @@ def evaluate_kmeans_k_values(
     return pd.DataFrame(rows)
 
 
-def run_algorithms(
+def fit_algorithm_labels(
     x_scaled: np.ndarray,
-    y_true: pd.Series,
-) -> pd.DataFrame:
-    """Ejecuta una técnica de cada familia y devuelve sus evaluaciones."""
-    algorithms: list[tuple[str, str, str, np.ndarray]] = [
+) -> list[tuple[str, str, str, np.ndarray]]:
+    """Ajusta las cuatro técnicas y devuelve sus etiquetas de agrupación."""
+    return [
         (
             "K-Means",
             "Partición",
@@ -200,8 +205,14 @@ def run_algorithms(
         ),
     ]
 
+
+def run_algorithms(
+    x_scaled: np.ndarray,
+    y_true: pd.Series,
+) -> pd.DataFrame:
+    """Ejecuta una técnica de cada familia y devuelve sus evaluaciones."""
     rows: list[dict[str, str | float | int]] = []
-    for name, family, parameters, labels in algorithms:
+    for name, family, parameters, labels in fit_algorithm_labels(x_scaled):
         rows.append(
             {
                 "algorithm": name,
@@ -213,12 +224,111 @@ def run_algorithms(
     return pd.DataFrame(rows)
 
 
+def save_cluster_figure(
+    path: Path,
+    title: str,
+    projection: np.ndarray,
+    labels: np.ndarray,
+) -> None:
+    """Guarda una vista 2D de las etiquetas obtenidas por una técnica."""
+    figure, axis = plt.subplots(figsize=(8, 6))
+    color_map = plt.get_cmap("tab10")
+    unique_labels = sorted(np.unique(labels).tolist())
+
+    for color_index, label in enumerate(unique_labels):
+        selected = labels == label
+        is_noise = label == -1
+        axis.scatter(
+            projection[selected, 0],
+            projection[selected, 1],
+            s=48,
+            alpha=0.85,
+            color="black" if is_noise else color_map(color_index % 10),
+            marker="x" if is_noise else "o",
+            label="Ruido (-1)" if is_noise else f"Grupo {label + 1}",
+        )
+
+    axis.set_title(title)
+    axis.set_xlabel("Componente principal 1")
+    axis.set_ylabel("Componente principal 2")
+    axis.legend(title="Asignación", loc="best")
+    axis.grid(alpha=0.2)
+    figure.tight_layout()
+    figure.savefig(path, dpi=180, bbox_inches="tight")
+    plt.close(figure)
+
+
+def save_diagnostic_figures(
+    x_scaled: np.ndarray,
+    algorithms: list[tuple[str, str, str, np.ndarray]],
+    kmeans_sweep: pd.DataFrame,
+) -> None:
+    """Genera las imágenes que documentan los métodos utilizados."""
+    FIGURES_DIR.mkdir(parents=True, exist_ok=True)
+    projection = PCA(n_components=2).fit_transform(x_scaled)
+
+    figure_names = {
+        "K-Means": "kmeans.png",
+        "DBSCAN": "dbscan.png",
+        "Agglomerative Ward": "agglomerative-ward.png",
+        "CLIQUE": "clique.png",
+    }
+    for name, _, parameters, labels in algorithms:
+        save_cluster_figure(
+            FIGURES_DIR / figure_names[name],
+            f"{name} — {parameters}\nProyección PCA para visualización",
+            projection,
+            labels,
+        )
+
+    figure, axes = plt.subplots(1, 3, figsize=(15, 4.5))
+    metrics = [
+        ("silhouette", "Silhouette", True),
+        ("davies_bouldin", "Davies-Bouldin", False),
+        ("calinski_harabasz", "Calinski-Harabasz", True),
+    ]
+    for axis, (column, title, higher_is_better) in zip(axes, metrics):
+        axis.plot(kmeans_sweep["k"], kmeans_sweep[column], marker="o")
+        best_index = (
+            kmeans_sweep[column].idxmax()
+            if higher_is_better
+            else kmeans_sweep[column].idxmin()
+        )
+        best_row = kmeans_sweep.loc[best_index]
+        axis.scatter(best_row["k"], best_row[column], color="crimson", zorder=3)
+        axis.set_title(title)
+        axis.set_xlabel("k")
+        axis.grid(alpha=0.2)
+    figure.suptitle("Exploración de k para K-Means")
+    figure.tight_layout()
+    figure.savefig(FIGURES_DIR / "kmeans-exploracion-k.png", dpi=180, bbox_inches="tight")
+    plt.close(figure)
+
+    figure, axis = plt.subplots(figsize=(12, 6))
+    dendrogram(
+        linkage(x_scaled, method="ward"),
+        truncate_mode="lastp",
+        p=30,
+        leaf_rotation=90,
+        leaf_font_size=8,
+        ax=axis,
+    )
+    axis.set_title("Dendrograma del agrupamiento Agglomerative Ward")
+    axis.set_xlabel("Observaciones o grupos contraídos")
+    axis.set_ylabel("Distancia Ward")
+    figure.tight_layout()
+    figure.savefig(FIGURES_DIR / "agglomerative-ward-dendrograma.png", dpi=180, bbox_inches="tight")
+    plt.close(figure)
+
+
 def main() -> None:
     """Ejecuta e imprime la comparación de las cuatro técnicas."""
     data, x, y_true = load_data()
     x_scaled = StandardScaler().fit_transform(x)
     results = run_algorithms(x_scaled, y_true)
     kmeans_sweep = evaluate_kmeans_k_values(x_scaled)
+    algorithms = fit_algorithm_labels(x_scaled)
+    save_diagnostic_figures(x_scaled, algorithms, kmeans_sweep)
 
     print(f"Registros: {len(data)} | Variables de entrada: {', '.join(FEATURE_COLUMNS)}")
     print(f"Ground truth excluido del ajuste: {TARGET_COLUMN}")
@@ -257,6 +367,7 @@ def main() -> None:
             },
         )
     )
+    print(f"\nFiguras guardadas en: {FIGURES_DIR}")
 
 
 if __name__ == "__main__":
