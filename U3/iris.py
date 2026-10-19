@@ -37,6 +37,7 @@ RANDOM_STATE = 42
 # Estos valores son parámetros experimentales, no etiquetas entregadas al modelo.
 # Se fija k=3 para comparar las cuatro familias con el mismo número de grupos.
 N_CLUSTERS = 3
+KMEANS_COMPARISON_KS = (N_CLUSTERS - 1, N_CLUSTERS, N_CLUSTERS + 1)
 DBSCAN_EPS = 0.5
 DBSCAN_MIN_SAMPLES = 5
 CLIQUE_BINS = 3
@@ -164,6 +165,23 @@ def evaluate_kmeans_k_values(
     return pd.DataFrame(rows)
 
 
+def evaluate_kmeans_comparison(
+    x_scaled: np.ndarray,
+    y_true: pd.Series,
+    k_values: Iterable[int] = KMEANS_COMPARISON_KS,
+) -> pd.DataFrame:
+    """Evalúa K-Means con k central y sus vecinos k-1 y k+1."""
+    rows = []
+    for k in k_values:
+        labels = KMeans(
+            n_clusters=k,
+            n_init=20,
+            random_state=RANDOM_STATE,
+        ).fit_predict(x_scaled)
+        rows.append({"k": k, **clustering_metrics(x_scaled, y_true, labels)})
+    return pd.DataFrame(rows)
+
+
 def fit_algorithm_labels(
     x_scaled: np.ndarray,
 ) -> list[tuple[str, str, str, np.ndarray]]:
@@ -258,6 +276,43 @@ def save_cluster_figure(
     plt.close(figure)
 
 
+def save_kmeans_comparison_figure(
+    x_scaled: np.ndarray,
+    k_values: Iterable[int],
+    path: Path,
+) -> None:
+    """Compara en una figura las asignaciones de k-1, k y k+1."""
+    projection = PCA(n_components=2).fit_transform(x_scaled)
+    k_values = list(k_values)
+    figure, axes = plt.subplots(1, len(k_values), figsize=(6 * len(k_values), 5.5), sharex=True, sharey=True)
+    color_map = plt.get_cmap("tab10")
+    for axis, k in zip(axes, k_values):
+        labels = KMeans(
+            n_clusters=k,
+            n_init=20,
+            random_state=RANDOM_STATE,
+        ).fit_predict(x_scaled)
+        for label in sorted(np.unique(labels)):
+            selected = labels == label
+            axis.scatter(
+                projection[selected, 0],
+                projection[selected, 1],
+                s=35,
+                alpha=0.8,
+                color=color_map(int(label) % 10),
+                label=f"Grupo {label + 1}",
+            )
+        axis.set_title(f"K-Means (k={k})")
+        axis.set_xlabel("Componente principal 1")
+        axis.grid(alpha=0.2)
+    axes[0].set_ylabel("Componente principal 2")
+    axes[-1].legend(title="Asignación", loc="best", fontsize="small")
+    figure.suptitle("Comparación de K-Means para k-1, k y k+1")
+    figure.tight_layout()
+    figure.savefig(path, dpi=180, bbox_inches="tight")
+    plt.close(figure)
+
+
 def save_diagnostic_figures(
     x_scaled: np.ndarray,
     algorithms: list[tuple[str, str, str, np.ndarray]],
@@ -320,6 +375,12 @@ def save_diagnostic_figures(
     figure.savefig(FIGURES_DIR / "agglomerative-ward-dendrograma.png", dpi=180, bbox_inches="tight")
     plt.close(figure)
 
+    save_kmeans_comparison_figure(
+        x_scaled,
+        KMEANS_COMPARISON_KS,
+        FIGURES_DIR / "kmeans-comparacion-k.png",
+    )
+
 
 def main() -> None:
     """Ejecuta e imprime la comparación de las cuatro técnicas."""
@@ -327,6 +388,7 @@ def main() -> None:
     x_scaled = StandardScaler().fit_transform(x)
     results = run_algorithms(x_scaled, y_true)
     kmeans_sweep = evaluate_kmeans_k_values(x_scaled)
+    kmeans_comparison = evaluate_kmeans_comparison(x_scaled, y_true)
     algorithms = fit_algorithm_labels(x_scaled)
     save_diagnostic_figures(x_scaled, algorithms, kmeans_sweep)
 
@@ -364,6 +426,19 @@ def main() -> None:
                 "silhouette": "{:.4f}".format,
                 "davies_bouldin": "{:.4f}".format,
                 "calinski_harabasz": "{:.2f}".format,
+            },
+        )
+    )
+    print("\nComparación de K-Means con k-1, k y k+1:")
+    print(
+        kmeans_comparison.to_string(
+            index=False,
+            formatters={
+                "silhouette": "{:.4f}".format,
+                "davies_bouldin": "{:.4f}".format,
+                "calinski_harabasz": "{:.2f}".format,
+                "rand_index": "{:.4f}".format,
+                "fowlkes_mallows": "{:.4f}".format,
             },
         )
     )
