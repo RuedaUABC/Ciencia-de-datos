@@ -33,6 +33,7 @@ FIGURES_DIR = Path(__file__).parent / "figuras"
 FEATURE_COLUMNS = ["sepal_length", "sepal_width", "petal_length", "petal_width"]
 TARGET_COLUMN = "species"
 RANDOM_STATE = 42
+ELBOW_K_VALUES = range(1, 11)
 
 # Estos valores son parámetros experimentales, no etiquetas entregadas al modelo.
 # Se fija k=3 para comparar las cuatro familias con el mismo número de grupos.
@@ -313,6 +314,33 @@ def save_kmeans_comparison_figure(
     plt.close(figure)
 
 
+def save_kmeans_elbow_figure(
+    x_scaled: np.ndarray,
+    path: Path,
+    dataset_name: str,
+) -> None:
+    """Guarda la curva de inercia de K-Means para inspección del codo."""
+    k_values = list(ELBOW_K_VALUES)
+    inertias = [
+        KMeans(
+            n_clusters=k,
+            n_init=20,
+            random_state=RANDOM_STATE,
+        ).fit(x_scaled).inertia_
+        for k in k_values
+    ]
+    figure, axis = plt.subplots(figsize=(8, 5))
+    axis.plot(k_values, inertias, marker="o")
+    axis.set_xticks(k_values)
+    axis.set_xlabel("Número de grupos (k)")
+    axis.set_ylabel("Inercia")
+    axis.set_title(f"Método Elbow para K-Means — {dataset_name}")
+    axis.grid(alpha=0.2)
+    figure.tight_layout()
+    figure.savefig(path, dpi=180, bbox_inches="tight")
+    plt.close(figure)
+
+
 def save_diagnostic_figures(
     x_scaled: np.ndarray,
     algorithms: list[tuple[str, str, str, np.ndarray]],
@@ -358,6 +386,12 @@ def save_diagnostic_figures(
     figure.tight_layout()
     figure.savefig(FIGURES_DIR / "kmeans-exploracion-k.png", dpi=180, bbox_inches="tight")
     plt.close(figure)
+
+    save_kmeans_elbow_figure(
+        x_scaled,
+        FIGURES_DIR / "kmeans-elbow.png",
+        "Iris",
+    )
 
     figure, axis = plt.subplots(figsize=(12, 6))
     dendrogram(

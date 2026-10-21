@@ -28,7 +28,6 @@ BASE_DIR = Path(__file__).parent
 DATASET_PATH = BASE_DIR / "Datasets" / "imdb.csv"
 FIGURES_DIR = BASE_DIR / "figuras"
 FEATURE_COLUMNS = [
-    "Released_Year",
     "Runtime",
     "IMDB_Rating",
     "Meta_score",
@@ -38,7 +37,8 @@ FEATURE_COLUMNS = [
 LOG_COLUMNS = ["No_of_Votes", "Gross"]
 TARGET_COLUMN = "Genre"
 RANDOM_STATE = 42
-KMEANS_K_VALUES = range(2, 9)
+KMEANS_K_VALUES = (2, 7)
+ELBOW_K_VALUES = range(1,11)
 DBSCAN_MIN_SAMPLES = 10
 DBSCAN_EPS_VALUES = (0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5, 3.0)
 CLIQUE_BINS = 2
@@ -51,7 +51,6 @@ def load_data(
     """Carga, convierte y completa las variables usadas en la agrupación."""
     data = pd.read_csv(path)
     numeric = pd.DataFrame(index=data.index)
-    numeric["Released_Year"] = pd.to_numeric(data["Released_Year"], errors="coerce")
     numeric["Runtime"] = pd.to_numeric(
         data["Runtime"].astype(str).str.replace(" min", "", regex=False),
         errors="coerce",
@@ -162,7 +161,7 @@ def evaluate_kmeans_comparison(
     y_true: pd.Series,
     k_values: Iterable[int],
 ) -> pd.DataFrame:
-    """Evalúa K-Means con el k elegido y sus vecinos k-1 y k+1."""
+    """Evalúa K-Means para cada valor de k solicitado."""
     rows = []
     for k in k_values:
         labels = KMeans(
@@ -201,14 +200,14 @@ def select_clique(
     x_scaled: np.ndarray,
 ) -> tuple[np.ndarray, dict[str, float | int], str]:
     # CLIQUE busca subespacios; se prueban subconjuntos descriptivos para evitar
-    # que la cuadrícula completa de seis dimensiones quede demasiado dispersa.
+    # que la cuadrícula completa de cinco dimensiones quede demasiado dispersa.
     subspaces = [
-        ("IMDB_Rating, Meta_score", [2, 3]),
-        ("Runtime, log(No_of_Votes)", [1, 4]),
-        ("Runtime, IMDB_Rating, Meta_score", [1, 2, 3]),
-        ("Runtime, IMDB_Rating, Meta_score, log(No_of_Votes)", [1, 2, 3, 4]),
-        ("Released_Year, Runtime, IMDB_Rating, Meta_score", [0, 1, 2, 3]),
-        ("IMDB_Rating, Meta_score, log(No_of_Votes), log(Gross)", [2, 3, 4, 5]),
+        ("IMDB_Rating, Meta_score", [1, 2]),
+        ("Runtime, log(No_of_Votes)", [0, 3]),
+        ("Runtime, IMDB_Rating, Meta_score", [0, 1, 2]),
+        ("Runtime, IMDB_Rating, Meta_score, log(No_of_Votes)", [0, 1, 2, 3]),
+        ("Runtime, IMDB_Rating, Meta_score, log(Gross)", [0, 1, 2, 4]),
+        ("IMDB_Rating, Meta_score, log(No_of_Votes), log(Gross)", [1, 2, 3, 4]),
     ]
     candidates = []
     diagnostics = []
@@ -292,7 +291,7 @@ def save_kmeans_comparison_figure(
     k_values: Iterable[int],
     path: Path,
 ) -> None:
-    """Compara en una figura las asignaciones de k-1, k y k+1."""
+    """Compara en una figura las asignaciones para los valores de k indicados."""
     projection = PCA(n_components=2).fit_transform(x_scaled)
     k_values = list(k_values)
     figure, axes = plt.subplots(1, len(k_values), figsize=(6 * len(k_values), 5.5), sharex=True, sharey=True)
@@ -318,7 +317,34 @@ def save_kmeans_comparison_figure(
         axis.grid(alpha=0.2)
     axes[0].set_ylabel("Componente principal 2")
     axes[-1].legend(title="Asignación", loc="best", fontsize="small")
-    figure.suptitle("Comparación de K-Means para k-1, k y k+1 — IMDb")
+    figure.suptitle("Comparación de K-Means para distintos valores de k — IMDb")
+    figure.tight_layout()
+    figure.savefig(path, dpi=180, bbox_inches="tight")
+    plt.close(figure)
+
+
+def save_kmeans_elbow_figure(
+    x_scaled: np.ndarray,
+    path: Path,
+    dataset_name: str,
+) -> None:
+    """Guarda la curva de inercia de K-Means para inspección del codo."""
+    k_values = list(ELBOW_K_VALUES)
+    inertias = [
+        KMeans(
+            n_clusters=k,
+            n_init=20,
+            random_state=RANDOM_STATE,
+        ).fit(x_scaled).inertia_
+        for k in k_values
+    ]
+    figure, axis = plt.subplots(figsize=(8, 5))
+    axis.plot(k_values, inertias, marker="o")
+    axis.set_xticks(k_values)
+    axis.set_xlabel("Número de grupos (k)")
+    axis.set_ylabel("Inercia")
+    axis.set_title(f"Método Elbow para K-Means — {dataset_name}")
+    axis.grid(alpha=0.2)
     figure.tight_layout()
     figure.savefig(path, dpi=180, bbox_inches="tight")
     plt.close(figure)
@@ -330,7 +356,7 @@ def main() -> None:
     kmeans_sweep = evaluate_kmeans_k_values(x_scaled)
     # K-Means y Agglomerative usan el k que maximiza Silhouette en la exploración.
     selected_k = int(kmeans_sweep.loc[kmeans_sweep["silhouette"].idxmax(), "k"])
-    kmeans_comparison_ks = (selected_k - 1, selected_k, selected_k + 1)
+    kmeans_comparison_ks = KMEANS_K_VALUES
     kmeans_comparison = evaluate_kmeans_comparison(
         x_scaled,
         y_true,
@@ -404,25 +430,34 @@ def main() -> None:
     )
 
     figure, axes = plt.subplots(1, 3, figsize=(15, 4.5))
-    for axis, (column, title, maximize) in zip(
+    for axis, (column, title) in zip(
         axes,
         [
-            ("silhouette", "Silhouette", True),
-            ("davies_bouldin", "Davies-Bouldin", False),
-            ("calinski_harabasz", "Calinski-Harabasz", True),
+            ("silhouette", "Silhouette"),
+            ("davies_bouldin", "Davies-Bouldin"),
+            ("calinski_harabasz", "Calinski-Harabasz"),
         ],
     ):
-        axis.plot(kmeans_sweep["k"], kmeans_sweep[column], marker="o")
-        best_idx = kmeans_sweep[column].idxmax() if maximize else kmeans_sweep[column].idxmin()
-        best_row = kmeans_sweep.loc[best_idx]
-        axis.scatter(best_row["k"], best_row[column], color="crimson", zorder=3)
+        axis.plot(
+            kmeans_sweep["k"],
+            kmeans_sweep[column],
+            marker="o",
+            color="tab:blue",
+        )
         axis.set_title(title)
         axis.set_xlabel("k")
+        axis.set_xticks(kmeans_sweep["k"])
         axis.grid(alpha=0.2)
     figure.suptitle("Exploración de k para K-Means — IMDb")
     figure.tight_layout()
     figure.savefig(FIGURES_DIR / "imdb-kmeans-exploracion-k.png", dpi=180, bbox_inches="tight")
     plt.close(figure)
+
+    save_kmeans_elbow_figure(
+        x_scaled,
+        FIGURES_DIR / "imdb-kmeans-elbow.png",
+        "IMDb",
+    )
 
     figure, axis = plt.subplots(figsize=(12, 6))
     dendrogram(
@@ -461,7 +496,7 @@ def main() -> None:
             },
         )
     )
-    print("\nComparación de K-Means con k-1, k y k+1:")
+    print("\nComparación de K-Means para los valores evaluados:")
     print(
         kmeans_comparison.to_string(
             index=False,
