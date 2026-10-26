@@ -27,9 +27,15 @@ from sklearn.metrics import (
 )
 from sklearn.preprocessing import KBinsDiscretizer, StandardScaler
 
+if __package__:
+    from .clustering_animation import save_clustering_animations
+else:
+    from clustering_animation import save_clustering_animations
+
 
 DATASET_PATH = Path(__file__).parent / "Datasets" / "iris.csv"
 FIGURES_DIR = Path(__file__).parent / "figuras"
+ANIMATIONS_DIR = Path(__file__).parent / "animaciones"
 FEATURE_COLUMNS = ["sepal_length", "sepal_width", "petal_length", "petal_width"]
 TARGET_COLUMN = "species"
 RANDOM_STATE = 42
@@ -350,6 +356,21 @@ def save_diagnostic_figures(
     FIGURES_DIR.mkdir(parents=True, exist_ok=True)
     projection = PCA(n_components=2).fit_transform(x_scaled)
 
+    save_clustering_animations(
+        projection,
+        ANIMATIONS_DIR,
+        file_prefix="iris",
+        n_clusters=N_CLUSTERS,
+        dbscan_eps=DBSCAN_EPS,
+        dbscan_min_samples=DBSCAN_MIN_SAMPLES,
+        clique_bins=CLIQUE_BINS,
+        clique_min_unit_points=CLIQUE_MIN_UNIT_POINTS,
+        max_points=None,
+        random_state=RANDOM_STATE,
+        fps=2,
+        dpi=120,
+    )
+
     figure_names = {
         "K-Means": "kmeans.png",
         "DBSCAN": "dbscan.png",
@@ -477,6 +498,7 @@ def main() -> None:
         )
     )
     print(f"\nFiguras guardadas en: {FIGURES_DIR}")
+    print(f"Animaciones guardadas en: {ANIMATIONS_DIR}")
 
 
 if __name__ == "__main__":

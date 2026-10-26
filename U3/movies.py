@@ -8,8 +8,8 @@ El script aplica cuatro familias de agrupación:
 * CLIQUE (cuadrícula).
 
 ``genre`` se conserva únicamente como ground truth para las métricas
-extrínsecas. El script guarda las figuras en ``U3/figuras`` y genera el
-reporte ``U3/movies.md``.
+extrínsecas. El script guarda las figuras en ``U3/figuras``, las animaciones
+educativas en ``U3/animaciones`` y genera el reporte ``U3/movies.md``.
 """
 
 from __future__ import annotations
@@ -27,6 +27,7 @@ from scipy import ndimage
 from scipy.cluster.hierarchy import dendrogram, linkage
 from sklearn.cluster import AgglomerativeClustering, DBSCAN, KMeans
 from sklearn.decomposition import PCA
+from sklearn.manifold import TSNE
 from sklearn.metrics import (
     calinski_harabasz_score,
     davies_bouldin_score,
@@ -35,11 +36,18 @@ from sklearn.metrics import (
     silhouette_score,
 )
 from sklearn.preprocessing import KBinsDiscretizer, StandardScaler
+from umap import UMAP
+
+if __package__:
+    from .clustering_animation import save_clustering_animations
+else:
+    from clustering_animation import save_clustering_animations
 
 
 BASE_DIR = Path(__file__).resolve().parent
 DATASET_PATH = BASE_DIR / "Datasets" / "movies.csv"
 FIGURES_DIR = BASE_DIR / "figuras"
+ANIMATIONS_DIR = BASE_DIR / "animaciones"
 REPORT_PATH = BASE_DIR / "movies.md"
 
 # ``year`` se deja fuera para que la época de estreno no domine la distancia.
@@ -65,6 +73,10 @@ CLIQUE_SUBSPACES = (
 )
 METRIC_SAMPLE_SIZE = 3000
 DENDROGRAM_SAMPLE_SIZE = 1200
+TSNE_PERPLEXITY = 30
+TSNE_MAX_ITER = 1000
+UMAP_N_NEIGHBORS = 15
+UMAP_MIN_DIST = 0.1
 
 
 def load_data(
@@ -337,7 +349,11 @@ def fit_algorithms(
     x_scaled: np.ndarray,
     y_true: pd.Series,
     selected_k: int,
-) -> tuple[list[tuple[str, str, str, np.ndarray]], pd.DataFrame]:
+) -> tuple[
+    list[tuple[str, str, str, np.ndarray]],
+    pd.DataFrame,
+    dict[str, float],
+]:
     """Ajusta los cuatro algoritmos y crea la tabla final de resultados."""
 
     kmeans_labels = KMeans(
@@ -384,36 +400,69 @@ def fit_algorithms(
                 **clustering_metrics(x_scaled, y_true, labels),
             }
         )
-    return algorithms, pd.DataFrame(result_rows)
+    return algorithms, pd.DataFrame(result_rows), {"dbscan_eps": dbscan_eps}
+
+
+def compute_projections(x_scaled: np.ndarray) -> dict[str, np.ndarray]:
+    """Calcula PCA, t-SNE y UMAP únicamente para visualización 2D."""
+
+    return {
+        "PCA": PCA(n_components=2).fit_transform(x_scaled),
+        "t-SNE": TSNE(
+            n_components=2,
+            perplexity=TSNE_PERPLEXITY,
+            max_iter=TSNE_MAX_ITER,
+            init="pca",
+            learning_rate="auto",
+            random_state=RANDOM_STATE,
+        ).fit_transform(x_scaled),
+        "UMAP": UMAP(
+            n_components=2,
+            n_neighbors=UMAP_N_NEIGHBORS,
+            min_dist=UMAP_MIN_DIST,
+            metric="euclidean",
+            random_state=RANDOM_STATE,
+        ).fit_transform(x_scaled),
+    }
 
 
 def save_cluster_figure(
     path: Path,
     title: str,
-    projection: np.ndarray,
+    projections: dict[str, np.ndarray],
     labels: np.ndarray,
 ) -> None:
-    """Guarda las asignaciones en una proyección PCA de dos dimensiones."""
+    """Guarda las asignaciones en PCA, t-SNE y UMAP."""
 
-    figure, axis = plt.subplots(figsize=(8, 6))
+    figure, axes = plt.subplots(
+        1,
+        len(projections),
+        figsize=(7 * len(projections), 5.5),
+        sharex=False,
+        sharey=False,
+    )
+    axes = np.atleast_1d(axes)
     color_map = plt.get_cmap("tab10")
-    for color_index, label in enumerate(sorted(np.unique(labels).tolist())):
-        selected = labels == label
-        is_noise = label == -1
-        axis.scatter(
-            projection[selected, 0],
-            projection[selected, 1],
-            s=18,
-            alpha=0.65,
-            color="black" if is_noise else color_map(color_index % 10),
-            marker="x" if is_noise else "o",
-            label="Ruido (-1)" if is_noise else f"Grupo {label + 1}",
-        )
-    axis.set_title(title)
-    axis.set_xlabel("Componente principal 1")
-    axis.set_ylabel("Componente principal 2")
-    axis.legend(title="Asignación", loc="best", fontsize="small")
-    axis.grid(alpha=0.2)
+    for axis, (projection_name, projection) in zip(axes, projections.items()):
+        for color_index, label in enumerate(sorted(np.unique(labels).tolist())):
+            selected = labels == label
+            is_noise = label == -1
+            axis.scatter(
+                projection[selected, 0],
+                projection[selected, 1],
+                s=16,
+                alpha=0.62,
+                color="black" if is_noise else color_map(color_index % 10),
+                marker="x" if is_noise else "o",
+                label="Ruido (-1)" if is_noise else f"Grupo {label + 1}",
+            )
+        axis.set_title(projection_name)
+        axis.set_xlabel(f"{projection_name} 1")
+        axis.set_ylabel(f"{projection_name} 2")
+        axis.grid(alpha=0.2)
+        axis.legend(title="Asignación", loc="best", fontsize="x-small")
+
+    figure.suptitle(title)
     figure.tight_layout()
     figure.savefig(path, dpi=180, bbox_inches="tight")
     plt.close(figure)
@@ -542,11 +591,13 @@ def save_figures(
     algorithms: list[tuple[str, str, str, np.ndarray]],
     sweep: pd.DataFrame,
     comparison_k: Iterable[int],
+    selected_k: int,
+    dbscan_eps: float,
 ) -> None:
-    """Genera todas las figuras referenciadas por el reporte."""
+    """Genera las figuras y los GIF educativos referenciados por el reporte."""
 
     FIGURES_DIR.mkdir(parents=True, exist_ok=True)
-    projection = PCA(n_components=2).fit_transform(x_scaled)
+    projections = compute_projections(x_scaled)
     names = {
         "K-Means": "movies-kmeans.png",
         "DBSCAN": "movies-dbscan.png",
@@ -556,8 +607,8 @@ def save_figures(
     for name, _, parameters, labels in algorithms:
         save_cluster_figure(
             FIGURES_DIR / names[name],
-            f"{name} — {parameters}\nProyección PCA para visualización",
-            projection,
+            f"{name} — {parameters}",
+            projections,
             labels,
         )
     save_kmeans_exploration(sweep, FIGURES_DIR / "movies-kmeans-exploracion-k.png")
@@ -570,6 +621,20 @@ def save_figures(
     save_dendrogram(
         x_scaled,
         FIGURES_DIR / "movies-agglomerative-ward-dendrograma.png",
+    )
+    save_clustering_animations(
+        projections["PCA"],
+        ANIMATIONS_DIR,
+        file_prefix="movies",
+        n_clusters=selected_k,
+        dbscan_eps=dbscan_eps,
+        dbscan_min_samples=DBSCAN_MIN_SAMPLES,
+        clique_bins=8,
+        clique_min_unit_points=5,
+        max_points=120,
+        random_state=RANDOM_STATE,
+        fps=2,
+        dpi=120,
     )
 
 
@@ -704,7 +769,8 @@ def render_report(
 
 Aplicar cuatro técnicas de agrupación al dataset `movies.csv`, comparar la
 calidad de sus grupos con métricas intrínsecas y contrastar las asignaciones
-contra `genre` como `ground truth` mediante métricas extrínsecas.
+contra `genre` como `ground truth` mediante métricas extrínsecas. Además, se
+comparan PCA, t-SNE y UMAP como proyecciones 2D para visualizar los grupos.
 
 El reporte fue generado automáticamente por [`movies.py`](movies.py). No se
 utiliza `genre` durante el entrenamiento de ningún algoritmo.
@@ -735,6 +801,38 @@ externa, no como variable de entrenamiento.
 
 {distribution_table}
 
+## Proyecciones para visualización
+
+Las técnicas de agrupación se ajustan en las cuatro variables estandarizadas;
+las proyecciones no participan en el entrenamiento ni en las métricas. Se
+generan tres representaciones bidimensionales:
+
+* **PCA:** proyección lineal que conserva la mayor varianza global posible.
+* **t-SNE:** preserva principalmente vecindades locales; se usó
+  `perplexity={TSNE_PERPLEXITY}`, `max_iter={TSNE_MAX_ITER}` e inicialización
+  PCA.
+* **UMAP:** conserva estructura local y parte de la estructura global; se usó
+  `n_neighbors={UMAP_N_NEIGHBORS}`, `min_dist={UMAP_MIN_DIST}` y distancia
+  euclidiana.
+
+Las figuras de cada algoritmo contienen tres paneles, uno por proyección. Las
+formas de las nubes pueden cambiar entre métodos porque t-SNE y UMAP son
+proyecciones no lineales y estocásticas; por ello no sustituyen las métricas
+calculadas en el espacio original estandarizado.
+
+## Animaciones del proceso
+
+Se generan GIF reutilizables para presentaciones a partir de una muestra
+reproducible de hasta 120 películas en la proyección PCA. Los algoritmos y las
+métricas del análisis siguen trabajando con las cuatro variables estandarizadas.
+La simulación 2D explica el procedimiento visualmente y no sustituye las
+asignaciones finales calculadas en el espacio original.
+
+* [K-Means: reasignación y movimiento de centroides](animaciones/movies-kmeans.gif)
+* [DBSCAN: expansión por densidad y ruido](animaciones/movies-dbscan.gif)
+* [Agglomerative Ward: fusiones bottom-up](animaciones/movies-agglomerative-ward.gif)
+* [CLIQUE: grilla, celdas densas y uniones](animaciones/movies-clique.gif)
+
 ## Técnicas utilizadas
 
 ### K-Means
@@ -763,6 +861,11 @@ La comparación detallada de los valores seleccionados quedó así:
 
 *Figura 3. Proyección PCA común para comparar las asignaciones de K-Means.*
 
+![Agrupación de Movies con K-Means en PCA, t-SNE y UMAP](figuras/movies-kmeans.png)
+
+*Figura 4. Asignaciones finales de K-Means observadas en las tres
+proyecciones.*
+
 ### DBSCAN
 
 DBSCAN identifica regiones densas a partir de un radio `eps` y un mínimo de
@@ -773,9 +876,10 @@ superara la mitad del dataset.
 
 Parámetros seleccionados: **{algorithm_parameters['DBSCAN']}**.
 
-![Agrupación de Movies con DBSCAN](figuras/movies-dbscan.png)
+![Agrupación de Movies con DBSCAN en PCA, t-SNE y UMAP](figuras/movies-dbscan.png)
 
-*Figura 4. Resultado de DBSCAN; las cruces negras representan el ruido.*
+*Figura 5. Resultado de DBSCAN en las tres proyecciones; las cruces negras
+representan el ruido.*
 
 ### Agglomerative Ward
 
@@ -787,13 +891,13 @@ K-Means. El dendrograma se generó con una muestra reproducible de hasta
 
 Parámetros: **{algorithm_parameters['Agglomerative Ward']}**.
 
-![Agrupación de Movies con Agglomerative Ward](figuras/movies-agglomerative-ward.png)
+![Agrupación de Movies con Agglomerative Ward en PCA, t-SNE y UMAP](figuras/movies-agglomerative-ward.png)
 
-*Figura 5. Resultado de Agglomerative Ward en la proyección PCA.*
+*Figura 6. Resultado de Agglomerative Ward en las tres proyecciones.*
 
 ![Dendrograma de Agglomerative Ward](figuras/movies-agglomerative-ward-dendrograma.png)
 
-*Figura 6. Dendrograma truncado sobre una muestra reproducible.*
+*Figura 7. Dendrograma truncado sobre una muestra reproducible.*
 
 ### CLIQUE
 
@@ -805,9 +909,9 @@ con mayor Silhouette.
 
 Parámetros seleccionados: **{algorithm_parameters['CLIQUE']}**.
 
-![Agrupación de Movies con CLIQUE](figuras/movies-clique.png)
+![Agrupación de Movies con CLIQUE en PCA, t-SNE y UMAP](figuras/movies-clique.png)
 
-*Figura 7. Resultado de CLIQUE en el subespacio elegido; las cruces negras
+*Figura 8. Resultado de CLIQUE en las tres proyecciones; las cruces negras
 representan el ruido.*
 
 ## Métricas
@@ -868,8 +972,19 @@ def main() -> None:
     selected_k = int(sweep.loc[sweep["silhouette"].idxmax(), "k"])
     comparison_k = sorted({max(2, selected_k - 1), selected_k, selected_k + 1})
     comparison = evaluate_kmeans_comparison(x_scaled, y_true, comparison_k)
-    algorithms, results = fit_algorithms(x_scaled, y_true, selected_k)
-    save_figures(x_scaled, algorithms, sweep, comparison_k)
+    algorithms, results, animation_parameters = fit_algorithms(
+        x_scaled,
+        y_true,
+        selected_k,
+    )
+    save_figures(
+        x_scaled,
+        algorithms,
+        sweep,
+        comparison_k,
+        selected_k,
+        animation_parameters["dbscan_eps"],
+    )
 
     report = render_report(
         data,
@@ -903,6 +1018,7 @@ def main() -> None:
     )
     print(f"\nReporte guardado en: {REPORT_PATH}")
     print(f"Figuras guardadas en: {FIGURES_DIR}")
+    print(f"Animaciones guardadas en: {ANIMATIONS_DIR}")
 
 
 if __name__ == "__main__":

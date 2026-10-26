@@ -4,7 +4,8 @@
 
 Aplicar cuatro técnicas de agrupación al dataset `movies.csv`, comparar la
 calidad de sus grupos con métricas intrínsecas y contrastar las asignaciones
-contra `genre` como `ground truth` mediante métricas extrínsecas.
+contra `genre` como `ground truth` mediante métricas extrínsecas. Además, se
+comparan PCA, t-SNE y UMAP como proyecciones 2D para visualizar los grupos.
 
 El reporte fue generado automáticamente por [`movies.py`](movies.py). No se
 utiliza `genre` durante el entrenamiento de ningún algoritmo.
@@ -69,6 +70,38 @@ externa, no como variable de entrenamiento.
 | Sport | 1 |
 | Musical | 1 |
 
+## Proyecciones para visualización
+
+Las técnicas de agrupación se ajustan en las cuatro variables estandarizadas;
+las proyecciones no participan en el entrenamiento ni en las métricas. Se
+generan tres representaciones bidimensionales:
+
+* **PCA:** proyección lineal que conserva la mayor varianza global posible.
+* **t-SNE:** preserva principalmente vecindades locales; se usó
+  `perplexity=30`, `max_iter=1000` e inicialización
+  PCA.
+* **UMAP:** conserva estructura local y parte de la estructura global; se usó
+  `n_neighbors=15`, `min_dist=0.1` y distancia
+  euclidiana.
+
+Las figuras de cada algoritmo contienen tres paneles, uno por proyección. Las
+formas de las nubes pueden cambiar entre métodos porque t-SNE y UMAP son
+proyecciones no lineales y estocásticas; por ello no sustituyen las métricas
+calculadas en el espacio original estandarizado.
+
+## Animaciones del proceso
+
+Se generan GIF reutilizables para presentaciones a partir de una muestra
+reproducible de hasta 120 películas en la proyección PCA. Los algoritmos y las
+métricas del análisis siguen trabajando con las cuatro variables estandarizadas.
+La simulación 2D explica el procedimiento visualmente y no sustituye las
+asignaciones finales calculadas en el espacio original.
+
+* [K-Means: reasignación y movimiento de centroides](animaciones/movies-kmeans.gif)
+* [DBSCAN: expansión por densidad y ruido](animaciones/movies-dbscan.gif)
+* [Agglomerative Ward: fusiones bottom-up](animaciones/movies-agglomerative-ward.gif)
+* [CLIQUE: grilla, celdas densas y uniones](animaciones/movies-clique.gif)
+
 ## Técnicas utilizadas
 
 ### K-Means
@@ -108,6 +141,11 @@ La comparación detallada de los valores seleccionados quedó así:
 
 *Figura 3. Proyección PCA común para comparar las asignaciones de K-Means.*
 
+![Agrupación de Movies con K-Means en PCA, t-SNE y UMAP](figuras/movies-kmeans.png)
+
+*Figura 4. Asignaciones finales de K-Means observadas en las tres
+proyecciones.*
+
 ### DBSCAN
 
 DBSCAN identifica regiones densas a partir de un radio `eps` y un mínimo de
@@ -118,9 +156,10 @@ superara la mitad del dataset.
 
 Parámetros seleccionados: **eps=0.8, min_samples=10**.
 
-![Agrupación de Movies con DBSCAN](figuras/movies-dbscan.png)
+![Agrupación de Movies con DBSCAN en PCA, t-SNE y UMAP](figuras/movies-dbscan.png)
 
-*Figura 4. Resultado de DBSCAN; las cruces negras representan el ruido.*
+*Figura 5. Resultado de DBSCAN en las tres proyecciones; las cruces negras
+representan el ruido.*
 
 ### Agglomerative Ward
 
@@ -132,13 +171,13 @@ K-Means. El dendrograma se generó con una muestra reproducible de hasta
 
 Parámetros: **n_clusters=2, linkage=ward**.
 
-![Agrupación de Movies con Agglomerative Ward](figuras/movies-agglomerative-ward.png)
+![Agrupación de Movies con Agglomerative Ward en PCA, t-SNE y UMAP](figuras/movies-agglomerative-ward.png)
 
-*Figura 5. Resultado de Agglomerative Ward en la proyección PCA.*
+*Figura 6. Resultado de Agglomerative Ward en las tres proyecciones.*
 
 ![Dendrograma de Agglomerative Ward](figuras/movies-agglomerative-ward-dendrograma.png)
 
-*Figura 6. Dendrograma truncado sobre una muestra reproducible.*
+*Figura 7. Dendrograma truncado sobre una muestra reproducible.*
 
 ### CLIQUE
 
@@ -150,9 +189,9 @@ con mayor Silhouette.
 
 Parámetros seleccionados: **subespacio=score, log(votes), log(gross), runtime, n_bins=12, min_unit_points=5**.
 
-![Agrupación de Movies con CLIQUE](figuras/movies-clique.png)
+![Agrupación de Movies con CLIQUE en PCA, t-SNE y UMAP](figuras/movies-clique.png)
 
-*Figura 7. Resultado de CLIQUE en el subespacio elegido; las cruces negras
+*Figura 8. Resultado de CLIQUE en las tres proyecciones; las cruces negras
 representan el ruido.*
 
 ## Métricas
