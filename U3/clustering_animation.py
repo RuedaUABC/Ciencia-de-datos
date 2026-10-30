@@ -15,7 +15,7 @@ from __future__ import annotations
 
 import os
 from collections import deque
-from collections.abc import Callable
+from collections.abc import Callable, Sequence
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterator
@@ -30,6 +30,31 @@ import numpy as np
 from matplotlib.animation import FuncAnimation, PillowWriter
 from matplotlib.patches import Circle, Rectangle
 from scipy.cluster.hierarchy import linkage
+
+try:
+    from .cluster_palette import (
+        apply_dark_theme,
+        BACKGROUND_COLOR,
+        CLUSTER_COLORS,
+        NOISE_COLOR,
+        PRESENTATION_BLUE,
+        PRESENTATION_LIGHT_GRAY,
+        PRESENTATION_TEXT,
+        PRESENTATION_TURQUOISE,
+        color_for_label,
+    )
+except ImportError:
+    from cluster_palette import (
+        apply_dark_theme,
+        BACKGROUND_COLOR,
+        CLUSTER_COLORS,
+        NOISE_COLOR,
+        PRESENTATION_BLUE,
+        PRESENTATION_LIGHT_GRAY,
+        PRESENTATION_TEXT,
+        PRESENTATION_TURQUOISE,
+        color_for_label,
+    )
 
 
 __all__ = [
@@ -126,26 +151,43 @@ def _sample_points(
     return points[indices].copy(), indices
 
 
-def _point_colors(labels: np.ndarray, cmap_name: str = "tab20") -> np.ndarray:
-    """Convierte etiquetas en colores: gris no visitado y negro para ruido."""
+def _point_colors(
+    labels: np.ndarray,
+    cluster_colors: Sequence[str] | None = None,
+    noise_color: str = NOISE_COLOR,
+) -> np.ndarray:
+    """Convierte etiquetas en colores estables para grupos, ruido y no visitados."""
 
     labels = np.asarray(labels)
-    colors = np.tile(mcolors.to_rgba("lightgray"), (len(labels), 1))
-    color_map = plt.get_cmap(cmap_name)
+    colors = np.tile(mcolors.to_rgba(PRESENTATION_LIGHT_GRAY), (len(labels), 1))
     assigned = labels >= 0
     if np.any(assigned):
-        colors[assigned] = [
-            color_map(int(label) % color_map.N) for label in labels[assigned]
-        ]
-    colors[labels == -1] = mcolors.to_rgba("black")
+        if cluster_colors is None:
+            colors[assigned] = [
+                mcolors.to_rgba(color_for_label(int(label), CLUSTER_COLORS))
+                for label in labels[assigned]
+            ]
+        else:
+            colors[assigned] = [
+                mcolors.to_rgba(color_for_label(int(label), cluster_colors))
+                for label in labels[assigned]
+            ]
+    colors[labels == -1] = mcolors.to_rgba(noise_color)
     return colors
 
 
-def _cluster_colors(count: int, cmap_name: str = "tab20") -> list:
+def _cluster_colors(
+    count: int,
+    cluster_colors: Sequence[str] | None = None,
+) -> list:
     """Genera una paleta estable para los grupos de una animación."""
 
-    color_map = plt.get_cmap(cmap_name)
-    return [color_map(index % color_map.N) for index in range(count)]
+    if cluster_colors is None:
+        cluster_colors = CLUSTER_COLORS
+    return [
+        mcolors.to_rgba(color_for_label(index, cluster_colors))
+        for index in range(count)
+    ]
 
 
 def _axis_limits(points: np.ndarray) -> tuple[tuple[float, float], tuple[float, float]]:
@@ -171,7 +213,7 @@ def _configure_axis(axis: plt.Axes, points: np.ndarray, title: str) -> None:
     axis.set_xlabel("Componente 1")
     axis.set_ylabel("Componente 2")
     axis.set_title(title)
-    axis.grid(alpha=0.2)
+    axis.grid(color=PRESENTATION_TEXT, alpha=0.18)
 
 
 def _save_animation(
@@ -188,6 +230,7 @@ def _save_animation(
         plt.close(figure)
         raise ValueError("No se puede guardar una animación sin frames.")
     output_path.parent.mkdir(parents=True, exist_ok=True)
+    apply_dark_theme(figure, figure.axes)
     animation = FuncAnimation(
         figure,
         update,
@@ -196,7 +239,12 @@ def _save_animation(
         repeat=False,
         blit=False,
     )
-    animation.save(output_path, writer=PillowWriter(fps=fps), dpi=dpi)
+    animation.save(
+        output_path,
+        writer=PillowWriter(fps=fps),
+        dpi=dpi,
+        savefig_kwargs={"facecolor": BACKGROUND_COLOR},
+    )
     plt.close(figure)
     return output_path
 
@@ -549,6 +597,9 @@ def animate_kmeans(
     random_state: int = 42,
     fps: int = 2,
     dpi: int = 120,
+    cluster_colors: Sequence[str] | None = None,
+    noise_color: str = NOISE_COLOR,
+    dataset_name: str = "K-Means",
 ) -> Path:
     """Guarda la animación de asignaciones y movimiento de centroides."""
 
@@ -562,7 +613,7 @@ def animate_kmeans(
         )
     )
     figure, axis = plt.subplots(figsize=(7, 5.5))
-    _configure_axis(axis, values, "K-Means")
+    _configure_axis(axis, values, dataset_name)
     point_artist = axis.scatter(
         values[:, 0], values[:, 1], s=28, alpha=0.75, edgecolors="none"
     )
@@ -571,8 +622,8 @@ def animate_kmeans(
         snapshots[0].centers[:, 1],
         marker="X",
         s=160,
-        c=_cluster_colors(n_clusters),
-        edgecolors="black",
+        c=_cluster_colors(n_clusters, cluster_colors),
+        edgecolors=PRESENTATION_TEXT,
         linewidths=0.8,
     )
     status = axis.text(
@@ -581,14 +632,20 @@ def animate_kmeans(
         "",
         transform=axis.transAxes,
         va="top",
-        bbox={"facecolor": "white", "alpha": 0.8, "edgecolor": "none"},
+        bbox={
+            "facecolor": BACKGROUND_COLOR,
+            "alpha": 0.9,
+            "edgecolor": PRESENTATION_TEXT,
+        },
     )
     arrow_artist = None
 
     def update(frame: int) -> tuple:
         nonlocal arrow_artist
         snapshot = snapshots[frame]
-        point_artist.set_facecolors(_point_colors(snapshot.labels))
+        point_artist.set_facecolors(
+            _point_colors(snapshot.labels, cluster_colors, noise_color)
+        )
         center_artist.set_offsets(snapshot.centers)
         status.set_text(f"Iteración {snapshot.iteration}: {snapshot.phase}")
         if arrow_artist is not None:
@@ -604,7 +661,7 @@ def animate_kmeans(
                 angles="xy",
                 scale_units="xy",
                 scale=1,
-                color="black",
+                color=PRESENTATION_TEXT,
                 width=0.004,
             )
         return (point_artist, center_artist, status)
@@ -626,13 +683,16 @@ def animate_agglomerative(
     *,
     fps: int = 2,
     dpi: int = 120,
+    cluster_colors: Sequence[str] | None = None,
+    noise_color: str = NOISE_COLOR,
+    dataset_name: str = "Agglomerative Ward",
 ) -> Path:
     """Guarda la animación de fusiones Ward y sus límites de grupo."""
 
     values = _validate_points(points)
     snapshots = list(agglomerative_snapshots(values, n_clusters))
     figure, axis = plt.subplots(figsize=(7, 5.5))
-    _configure_axis(axis, values, "Agglomerative Ward")
+    _configure_axis(axis, values, dataset_name)
     point_artist = axis.scatter(
         values[:, 0], values[:, 1], s=28, alpha=0.75, edgecolors="none"
     )
@@ -642,17 +702,23 @@ def animate_agglomerative(
         "",
         transform=axis.transAxes,
         va="top",
-        bbox={"facecolor": "white", "alpha": 0.8, "edgecolor": "none"},
+        bbox={
+            "facecolor": BACKGROUND_COLOR,
+            "alpha": 0.9,
+            "edgecolor": PRESENTATION_TEXT,
+        },
     )
     rectangles: list[Rectangle] = []
 
     def update(frame: int) -> tuple:
         snapshot = snapshots[frame]
-        point_artist.set_facecolors(_point_colors(snapshot.labels))
+        point_artist.set_facecolors(
+            _point_colors(snapshot.labels, cluster_colors, noise_color)
+        )
         for rectangle in rectangles:
             rectangle.remove()
         rectangles.clear()
-        colors = _cluster_colors(snapshot.n_clusters)
+        colors = _cluster_colors(snapshot.n_clusters, cluster_colors)
         for index, (x, y, width, height) in enumerate(snapshot.bounds):
             rectangle = Rectangle(
                 (x, y),
@@ -693,13 +759,16 @@ def animate_dbscan(
     *,
     fps: int = 2,
     dpi: int = 120,
+    cluster_colors: Sequence[str] | None = None,
+    noise_color: str = NOISE_COLOR,
+    dataset_name: str = "DBSCAN",
 ) -> Path:
     """Guarda la animación de expansión, vecindades y ruido de DBSCAN."""
 
     values = _validate_points(points)
     snapshots = list(dbscan_snapshots(values, eps, min_samples))
     figure, axis = plt.subplots(figsize=(7, 5.5))
-    _configure_axis(axis, values, "DBSCAN")
+    _configure_axis(axis, values, dataset_name)
     point_artist = axis.scatter(
         values[:, 0], values[:, 1], s=28, alpha=0.75, edgecolors="none"
     )
@@ -708,7 +777,7 @@ def animate_dbscan(
         values[snapshots[0].core_mask, 1],
         s=110,
         facecolors="none",
-        edgecolors="dimgray",
+        edgecolors=PRESENTATION_BLUE,
         linewidths=1,
         marker="o",
         label="Punto núcleo",
@@ -718,7 +787,7 @@ def animate_dbscan(
         np.empty((0, 2)),
         s=75,
         facecolors="none",
-        edgecolors="crimson",
+        edgecolors=PRESENTATION_TURQUOISE,
         linewidths=1.5,
         marker="o",
         label="Vecindad ε",
@@ -727,8 +796,8 @@ def animate_dbscan(
         np.empty((0, 2)),
         np.empty((0, 2)),
         s=180,
-        color="gold",
-        edgecolors="black",
+        color=PRESENTATION_TEXT,
+        edgecolors=PRESENTATION_LIGHT_GRAY,
         marker="*",
         zorder=4,
         label="Punto actual",
@@ -740,14 +809,20 @@ def animate_dbscan(
         "",
         transform=axis.transAxes,
         va="top",
-        bbox={"facecolor": "white", "alpha": 0.8, "edgecolor": "none"},
+        bbox={
+            "facecolor": BACKGROUND_COLOR,
+            "alpha": 0.9,
+            "edgecolor": PRESENTATION_TEXT,
+        },
     )
     circle: Circle | None = None
 
     def update(frame: int) -> tuple:
         nonlocal circle
         snapshot = snapshots[frame]
-        point_artist.set_facecolors(_point_colors(snapshot.labels))
+        point_artist.set_facecolors(
+            _point_colors(snapshot.labels, cluster_colors, noise_color)
+        )
         if snapshot.current_point is None:
             neighbor_artist.set_offsets(np.empty((0, 2)))
             current_artist.set_offsets(np.empty((0, 2)))
@@ -764,7 +839,7 @@ def animate_dbscan(
                 values[current],
                 eps,
                 fill=False,
-                color="crimson",
+                color=PRESENTATION_TURQUOISE,
                 linewidth=1.2,
                 alpha=0.8,
             )
@@ -794,13 +869,16 @@ def animate_clique(
     *,
     fps: int = 2,
     dpi: int = 120,
+    cluster_colors: Sequence[str] | None = None,
+    noise_color: str = NOISE_COLOR,
+    dataset_name: str = "CLIQUE",
 ) -> Path:
     """Guarda la animación de grilla, densidad y unión de CLIQUE."""
 
     values = _validate_points(points)
     snapshots = list(clique_snapshots(values, n_bins, min_unit_points))
     figure, axis = plt.subplots(figsize=(7, 5.5))
-    _configure_axis(axis, values, "CLIQUE")
+    _configure_axis(axis, values, dataset_name)
     point_artist = axis.scatter(
         values[:, 0], values[:, 1], s=28, alpha=0.78, edgecolors="none"
     )
@@ -810,14 +888,20 @@ def animate_clique(
         "",
         transform=axis.transAxes,
         va="top",
-        bbox={"facecolor": "white", "alpha": 0.8, "edgecolor": "none"},
+        bbox={
+            "facecolor": BACKGROUND_COLOR,
+            "alpha": 0.9,
+            "edgecolor": PRESENTATION_TEXT,
+        },
     )
     rectangles: list[Rectangle] = []
     annotations = []
 
     def update(frame: int) -> tuple:
         snapshot = snapshots[frame]
-        point_artist.set_facecolors(_point_colors(snapshot.labels))
+        point_artist.set_facecolors(
+            _point_colors(snapshot.labels, cluster_colors, noise_color)
+        )
         for rectangle in rectangles:
             rectangle.remove()
         rectangles.clear()
@@ -825,7 +909,10 @@ def animate_clique(
             annotation.remove()
         annotations.clear()
 
-        cluster_colors = _cluster_colors(max(int(snapshot.labels.max()) + 1, 1))
+        palette = _cluster_colors(
+            max(int(snapshot.labels.max()) + 1, 1),
+            cluster_colors,
+        )
         for cell_x in range(len(snapshot.x_edges) - 1):
             for cell_y in range(len(snapshot.y_edges) - 1):
                 cell = (cell_x, cell_y)
@@ -837,10 +924,10 @@ def animate_clique(
                     cell_labels = snapshot.labels[in_cell]
                     assigned_labels = cell_labels[cell_labels >= 0]
                     cluster = int(assigned_labels[0]) if len(assigned_labels) else 0
-                    face_color = cluster_colors[cluster % len(cluster_colors)]
+                    face_color = palette[cluster % len(palette)]
                     alpha = 0.22
                 elif cell in snapshot.dense_cells:
-                    face_color = "gold"
+                    face_color = PRESENTATION_TURQUOISE
                     alpha = 0.25
                 else:
                     face_color = "none"
@@ -851,7 +938,7 @@ def animate_clique(
                     snapshot.y_edges[cell_y + 1] - snapshot.y_edges[cell_y],
                     facecolor=face_color,
                     alpha=alpha,
-                    edgecolor="gray",
+                    edgecolor=PRESENTATION_LIGHT_GRAY,
                     linewidth=0.5,
                 )
                 axis.add_patch(rectangle)
@@ -866,7 +953,7 @@ def animate_clique(
                         ha="center",
                         va="center",
                         fontsize=7,
-                        color="dimgray",
+                        color=PRESENTATION_TEXT,
                     )
                     annotations.append(annotation)
 
@@ -896,10 +983,14 @@ def save_clustering_animations(
     *,
     file_prefix: str = "movies",
     n_clusters: int,
+    kmeans_n_clusters: int | None = None,
     dbscan_eps: float = 0.8,
     dbscan_min_samples: int = 10,
     clique_bins: int = 8,
     clique_min_unit_points: int = 5,
+    cluster_colors: Sequence[str] | None = None,
+    noise_color: str = NOISE_COLOR,
+    dataset_name: str | None = None,
     max_points: int | None = 120,
     random_state: int = 42,
     fps: int = 2,
@@ -920,14 +1011,19 @@ def save_clustering_animations(
     values = _validate_points(points)
     sampled, _ = _sample_points(values, max_points, random_state)
     destination = Path(output_dir)
+    title = dataset_name or Path(file_prefix).stem.title()
+    kmeans_clusters = kmeans_n_clusters or n_clusters
     return {
         "K-Means": animate_kmeans(
             sampled,
             destination / f"{file_prefix}-kmeans.gif",
-            n_clusters,
+            kmeans_clusters,
             random_state=random_state,
             fps=fps,
             dpi=dpi,
+            cluster_colors=cluster_colors,
+            noise_color=noise_color,
+            dataset_name=title,
         ),
         "DBSCAN": animate_dbscan(
             sampled,
@@ -936,6 +1032,9 @@ def save_clustering_animations(
             dbscan_min_samples,
             fps=fps,
             dpi=dpi,
+            cluster_colors=cluster_colors,
+            noise_color=noise_color,
+            dataset_name=title,
         ),
         "Agglomerative Ward": animate_agglomerative(
             sampled,
@@ -943,6 +1042,9 @@ def save_clustering_animations(
             n_clusters,
             fps=fps,
             dpi=dpi,
+            cluster_colors=cluster_colors,
+            noise_color=noise_color,
+            dataset_name=title,
         ),
         "CLIQUE": animate_clique(
             sampled,
@@ -951,5 +1053,8 @@ def save_clustering_animations(
             clique_min_unit_points,
             fps=fps,
             dpi=dpi,
+            cluster_colors=cluster_colors,
+            noise_color=noise_color,
+            dataset_name=title,
         ),
     }

@@ -109,7 +109,7 @@ asignaciones finales calculadas en el espacio original.
 K-Means asigna cada observación al centroide más cercano y actualiza los
 centroides hasta estabilizar la solución. Se exploraron los valores de
 `k=2` a `k=8` usando `n_init=20`; se
-seleccionó `k=2` por obtener el mayor Silhouette en la exploración.
+fijó `k=4` para la ejecución solicitada.
 
 | k | Silhouette | Davies-Bouldin | Calinski-Harabasz |
 | --- | --- | --- | --- |
@@ -123,7 +123,7 @@ seleccionó `k=2` por obtener el mayor Silhouette en la exploración.
 
 ![Exploración de k para K-Means](figuras/movies-kmeans-exploracion-k.png)
 
-*Figura 1. Métricas intrínsecas al variar `k`; el punto rojo marca el mejor
+*Figura 1. Métricas intrínsecas al variar `k`; el punto turquesa marca el mejor
 valor de cada métrica.*
 
 ![Método Elbow para Movies](figuras/movies-kmeans-elbow.png)
@@ -134,8 +134,9 @@ La comparación detallada de los valores seleccionados quedó así:
 
 | k | Silhouette | Davies-Bouldin | Calinski-Harabasz | Rand Index | Fowlkes-Mallows |
 | --- | --- | --- | --- | --- | --- |
-| 2 | 0.2940 | 1.2648 | 1514.7600 | 0.5090 | 0.3230 |
 | 3 | 0.2407 | 1.3126 | 1290.3975 | 0.6048 | 0.2847 |
+| 4 | 0.2369 | 1.3079 | 1186.8031 | 0.6496 | 0.2576 |
+| 5 | 0.2258 | 1.2653 | 1087.0713 | 0.6877 | 0.2290 |
 
 ![Comparación de K-Means](figuras/movies-kmeans-comparacion-k.png)
 
@@ -158,15 +159,16 @@ Parámetros seleccionados: **eps=0.8, min_samples=10**.
 
 ![Agrupación de Movies con DBSCAN en PCA, t-SNE y UMAP](figuras/movies-dbscan.png)
 
-*Figura 5. Resultado de DBSCAN en las tres proyecciones; las cruces negras
+*Figura 5. Resultado de DBSCAN en las tres proyecciones; las cruces de color
+gris oscuro
 representan el ruido.*
 
 ### Agglomerative Ward
 
 El método jerárquico comienza con una observación por grupo y va uniendo los
 grupos que producen el menor aumento de variación interna. Se utilizó Ward
-con distancia euclidiana y el mismo `k=2` seleccionado para
-K-Means. El dendrograma se generó con una muestra reproducible de hasta
+con distancia euclidiana y `n_clusters=2`. El dendrograma se generó
+con una muestra reproducible de hasta
 1200 películas para mantener la figura legible.
 
 Parámetros: **n_clusters=2, linkage=ward**.
@@ -191,7 +193,8 @@ Parámetros seleccionados: **subespacio=score, log(votes), log(gross), runtime, 
 
 ![Agrupación de Movies con CLIQUE en PCA, t-SNE y UMAP](figuras/movies-clique.png)
 
-*Figura 8. Resultado de CLIQUE en las tres proyecciones; las cruces negras
+*Figura 8. Resultado de CLIQUE en las tres proyecciones; las cruces de color
+gris oscuro
 representan el ruido.*
 
 ## Métricas
@@ -220,7 +223,7 @@ Se utilizó `random_state=42` cuando el algoritmo lo permite.
 
 | algoritmo | familia | grupos | ruido | puntos evaluados | Silhouette | Davies-Bouldin | Calinski-Harabasz | Rand Index | Fowlkes-Mallows |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| K-Means | Partición | 2 | 0 | 7412 | 0.2940 | 1.2648 | 1514.7600 | 0.5090 | 0.3230 |
+| K-Means | Partición | 4 | 0 | 7412 | 0.2369 | 1.3079 | 1186.8031 | 0.6496 | 0.2576 |
 | DBSCAN | Densidad | 2 | 126 | 7286 | 0.4608 | 0.5070 | 26.8423 | 0.2146 | 0.4284 |
 | Agglomerative Ward | Jerárquica | 2 | 0 | 7412 | 0.2359 | 1.4796 | 1101.4165 | 0.5120 | 0.3288 |
 | CLIQUE | Cuadrícula | 2 | 1303 | 6109 | 0.5588 | 0.3959 | 27.6647 | 0.3767 | 0.3757 |
@@ -233,9 +236,9 @@ Se utilizó `random_state=42` cuando el algoritmo lo permite.
 * **Mejor Davies-Bouldin:** CLIQUE con
   `0.3959`; un valor menor es mejor.
 * **Mejor Calinski-Harabasz:** K-Means con
-  `1514.76`.
-* **Mejor Rand Index:** Agglomerative Ward con
-  `0.5120`.
+  `1186.80`.
+* **Mejor Rand Index:** K-Means con
+  `0.6496`.
 * **Mejor Fowlkes-Mallows:** DBSCAN con
   `0.4284`.
 

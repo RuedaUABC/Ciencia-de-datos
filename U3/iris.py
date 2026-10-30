@@ -6,7 +6,7 @@ solo las cuatro variables numéricas del dataset.
 
 from __future__ import annotations
 
-from collections.abc import Iterable
+from collections.abc import Iterable, Sequence
 from pathlib import Path
 
 import matplotlib
@@ -29,13 +29,38 @@ from sklearn.preprocessing import KBinsDiscretizer, StandardScaler
 
 if __package__:
     from .clustering_animation import save_clustering_animations
+    from .cluster_palette import (
+        apply_dark_theme,
+        CLUSTER_COLORS,
+        IRIS_CLUSTER_COLORS,
+        METRIC_COLORS,
+        NOISE_COLOR,
+        PRESENTATION_BLUE,
+        PRESENTATION_LIGHT_GRAY,
+        PRESENTATION_TEXT,
+        PRESENTATION_TURQUOISE,
+        color_for_label,
+    )
 else:
     from clustering_animation import save_clustering_animations
+    from cluster_palette import (
+        apply_dark_theme,
+        CLUSTER_COLORS,
+        IRIS_CLUSTER_COLORS,
+        METRIC_COLORS,
+        NOISE_COLOR,
+        PRESENTATION_BLUE,
+        PRESENTATION_LIGHT_GRAY,
+        PRESENTATION_TEXT,
+        PRESENTATION_TURQUOISE,
+        color_for_label,
+    )
 
 
 DATASET_PATH = Path(__file__).parent / "Datasets" / "iris.csv"
 FIGURES_DIR = Path(__file__).parent / "figuras"
 ANIMATIONS_DIR = Path(__file__).parent / "animaciones"
+DATASET_NAME = "Iris"
 FEATURE_COLUMNS = ["sepal_length", "sepal_width", "petal_length", "petal_width"]
 TARGET_COLUMN = "species"
 RANDOM_STATE = 42
@@ -254,13 +279,13 @@ def save_cluster_figure(
     title: str,
     projection: np.ndarray,
     labels: np.ndarray,
+    cluster_colors: Sequence[str],
 ) -> None:
     """Guarda una vista 2D de las etiquetas obtenidas por una técnica."""
     figure, axis = plt.subplots(figsize=(8, 6))
-    color_map = plt.get_cmap("tab10")
     unique_labels = sorted(np.unique(labels).tolist())
 
-    for color_index, label in enumerate(unique_labels):
+    for label in unique_labels:
         selected = labels == label
         is_noise = label == -1
         axis.scatter(
@@ -268,16 +293,21 @@ def save_cluster_figure(
             projection[selected, 1],
             s=48,
             alpha=0.85,
-            color="black" if is_noise else color_map(color_index % 10),
+            color=(
+                NOISE_COLOR
+                if is_noise
+                else color_for_label(int(label), cluster_colors)
+            ),
             marker="x" if is_noise else "o",
             label="Ruido (-1)" if is_noise else f"Grupo {label + 1}",
         )
 
     axis.set_title(title)
-    axis.set_xlabel("Componente principal 1")
-    axis.set_ylabel("Componente principal 2")
+    axis.set_xlabel("Componente 1")
+    axis.set_ylabel("Componente 2")
     axis.legend(title="Asignación", loc="best")
-    axis.grid(alpha=0.2)
+    axis.grid(color=PRESENTATION_TEXT, alpha=0.18)
+    apply_dark_theme(figure, axis)
     figure.tight_layout()
     figure.savefig(path, dpi=180, bbox_inches="tight")
     plt.close(figure)
@@ -287,12 +317,13 @@ def save_kmeans_comparison_figure(
     x_scaled: np.ndarray,
     k_values: Iterable[int],
     path: Path,
+    cluster_colors: Sequence[str],
+    dataset_name: str = DATASET_NAME,
 ) -> None:
     """Compara en una figura las asignaciones de k-1, k y k+1."""
     projection = PCA(n_components=2).fit_transform(x_scaled)
     k_values = list(k_values)
     figure, axes = plt.subplots(1, len(k_values), figsize=(6 * len(k_values), 5.5), sharex=True, sharey=True)
-    color_map = plt.get_cmap("tab10")
     for axis, k in zip(axes, k_values):
         labels = KMeans(
             n_clusters=k,
@@ -306,15 +337,16 @@ def save_kmeans_comparison_figure(
                 projection[selected, 1],
                 s=35,
                 alpha=0.8,
-                color=color_map(int(label) % 10),
+                color=color_for_label(int(label), cluster_colors),
                 label=f"Grupo {label + 1}",
             )
-        axis.set_title(f"K-Means (k={k})")
-        axis.set_xlabel("Componente principal 1")
-        axis.grid(alpha=0.2)
-    axes[0].set_ylabel("Componente principal 2")
+        axis.set_title(f"k={k}")
+        axis.set_xlabel("Componente 1")
+        axis.grid(color=PRESENTATION_TEXT, alpha=0.18)
+    axes[0].set_ylabel("Componente 2")
     axes[-1].legend(title="Asignación", loc="best", fontsize="small")
-    figure.suptitle("Comparación de K-Means para k-1, k y k+1")
+    figure.suptitle(dataset_name)
+    apply_dark_theme(figure, axes)
     figure.tight_layout()
     figure.savefig(path, dpi=180, bbox_inches="tight")
     plt.close(figure)
@@ -336,12 +368,20 @@ def save_kmeans_elbow_figure(
         for k in k_values
     ]
     figure, axis = plt.subplots(figsize=(8, 5))
-    axis.plot(k_values, inertias, marker="o")
+    axis.plot(
+        k_values,
+        inertias,
+        marker="o",
+        color=PRESENTATION_BLUE,
+        markerfacecolor=PRESENTATION_TURQUOISE,
+        markeredgecolor=PRESENTATION_TEXT,
+    )
     axis.set_xticks(k_values)
     axis.set_xlabel("Número de grupos (k)")
     axis.set_ylabel("Inercia")
-    axis.set_title(f"Método Elbow para K-Means — {dataset_name}")
-    axis.grid(alpha=0.2)
+    axis.set_title(dataset_name)
+    axis.grid(color=PRESENTATION_TEXT, alpha=0.18)
+    apply_dark_theme(figure, axis)
     figure.tight_layout()
     figure.savefig(path, dpi=180, bbox_inches="tight")
     plt.close(figure)
@@ -365,6 +405,9 @@ def save_diagnostic_figures(
         dbscan_min_samples=DBSCAN_MIN_SAMPLES,
         clique_bins=CLIQUE_BINS,
         clique_min_unit_points=CLIQUE_MIN_UNIT_POINTS,
+        cluster_colors=IRIS_CLUSTER_COLORS,
+        noise_color=NOISE_COLOR,
+        dataset_name=DATASET_NAME,
         max_points=None,
         random_state=RANDOM_STATE,
         fps=2,
@@ -380,9 +423,10 @@ def save_diagnostic_figures(
     for name, _, parameters, labels in algorithms:
         save_cluster_figure(
             FIGURES_DIR / figure_names[name],
-            f"{name} — {parameters}\nProyección PCA para visualización",
+            DATASET_NAME,
             projection,
             labels,
+            IRIS_CLUSTER_COLORS,
         )
 
     figure, axes = plt.subplots(1, 3, figsize=(15, 4.5))
@@ -391,19 +435,35 @@ def save_diagnostic_figures(
         ("davies_bouldin", "Davies-Bouldin", False),
         ("calinski_harabasz", "Calinski-Harabasz", True),
     ]
-    for axis, (column, title, higher_is_better) in zip(axes, metrics):
-        axis.plot(kmeans_sweep["k"], kmeans_sweep[column], marker="o")
+    for metric_index, (axis, (column, title, higher_is_better)) in enumerate(
+        zip(axes, metrics)
+    ):
+        axis.plot(
+            kmeans_sweep["k"],
+            kmeans_sweep[column],
+            marker="o",
+            color=METRIC_COLORS[metric_index],
+            markerfacecolor=PRESENTATION_LIGHT_GRAY,
+            markeredgecolor=PRESENTATION_TEXT,
+        )
         best_index = (
             kmeans_sweep[column].idxmax()
             if higher_is_better
             else kmeans_sweep[column].idxmin()
         )
         best_row = kmeans_sweep.loc[best_index]
-        axis.scatter(best_row["k"], best_row[column], color="crimson", zorder=3)
+        axis.scatter(
+            best_row["k"],
+            best_row[column],
+            color=PRESENTATION_TURQUOISE,
+            edgecolor=PRESENTATION_TEXT,
+            zorder=3,
+        )
         axis.set_title(title)
         axis.set_xlabel("k")
-        axis.grid(alpha=0.2)
-    figure.suptitle("Exploración de k para K-Means")
+        axis.grid(color=PRESENTATION_TEXT, alpha=0.18)
+    figure.suptitle(DATASET_NAME)
+    apply_dark_theme(figure, axes)
     figure.tight_layout()
     figure.savefig(FIGURES_DIR / "kmeans-exploracion-k.png", dpi=180, bbox_inches="tight")
     plt.close(figure)
@@ -421,11 +481,14 @@ def save_diagnostic_figures(
         p=30,
         leaf_rotation=90,
         leaf_font_size=8,
+        color_threshold=0,
+        above_threshold_color=PRESENTATION_BLUE,
         ax=axis,
     )
-    axis.set_title("Dendrograma del agrupamiento Agglomerative Ward")
+    axis.set_title(DATASET_NAME)
     axis.set_xlabel("Observaciones o grupos contraídos")
     axis.set_ylabel("Distancia Ward")
+    apply_dark_theme(figure, axis)
     figure.tight_layout()
     figure.savefig(FIGURES_DIR / "agglomerative-ward-dendrograma.png", dpi=180, bbox_inches="tight")
     plt.close(figure)
@@ -434,6 +497,8 @@ def save_diagnostic_figures(
         x_scaled,
         KMEANS_COMPARISON_KS,
         FIGURES_DIR / "kmeans-comparacion-k.png",
+        CLUSTER_COLORS,
+        DATASET_NAME,
     )
 
 

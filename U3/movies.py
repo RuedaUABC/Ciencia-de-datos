@@ -14,7 +14,7 @@ educativas en ``U3/animaciones`` y genera el reporte ``U3/movies.md``.
 
 from __future__ import annotations
 
-from collections.abc import Iterable
+from collections.abc import Iterable, Sequence
 from pathlib import Path
 
 import matplotlib
@@ -40,8 +40,32 @@ from umap import UMAP
 
 if __package__:
     from .clustering_animation import save_clustering_animations
+    from .cluster_palette import (
+        apply_dark_theme,
+        CLUSTER_COLORS,
+        METRIC_COLORS,
+        MOVIES_CLUSTER_COLORS,
+        NOISE_COLOR,
+        PRESENTATION_BLUE,
+        PRESENTATION_LIGHT_GRAY,
+        PRESENTATION_TEXT,
+        PRESENTATION_TURQUOISE,
+        color_for_label,
+    )
 else:
     from clustering_animation import save_clustering_animations
+    from cluster_palette import (
+        apply_dark_theme,
+        CLUSTER_COLORS,
+        METRIC_COLORS,
+        MOVIES_CLUSTER_COLORS,
+        NOISE_COLOR,
+        PRESENTATION_BLUE,
+        PRESENTATION_LIGHT_GRAY,
+        PRESENTATION_TEXT,
+        PRESENTATION_TURQUOISE,
+        color_for_label,
+    )
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -49,6 +73,7 @@ DATASET_PATH = BASE_DIR / "Datasets" / "movies.csv"
 FIGURES_DIR = BASE_DIR / "figuras"
 ANIMATIONS_DIR = BASE_DIR / "animaciones"
 REPORT_PATH = BASE_DIR / "movies.md"
+DATASET_NAME = "Movies"
 
 # ``year`` se deja fuera para que la época de estreno no domine la distancia.
 FEATURE_COLUMNS = ["score", "votes", "gross", "runtime"]
@@ -56,6 +81,7 @@ LOG_COLUMNS = ["votes", "gross"]
 TARGET_COLUMN = "genre"
 RANDOM_STATE = 42
 KMEANS_N_INIT = 20
+KMEANS_CLUSTERS = 4
 K_VALUES = tuple(range(2, 9))
 DBSCAN_MIN_SAMPLES = 10
 DBSCAN_EPS_VALUES = (0.35, 0.5, 0.65, 0.8, 1.0, 1.25, 1.5, 1.75, 2.0, 2.5)
@@ -349,6 +375,7 @@ def fit_algorithms(
     x_scaled: np.ndarray,
     y_true: pd.Series,
     selected_k: int,
+    kmeans_k: int = KMEANS_CLUSTERS,
 ) -> tuple[
     list[tuple[str, str, str, np.ndarray]],
     pd.DataFrame,
@@ -357,7 +384,7 @@ def fit_algorithms(
     """Ajusta los cuatro algoritmos y crea la tabla final de resultados."""
 
     kmeans_labels = KMeans(
-        n_clusters=selected_k,
+        n_clusters=kmeans_k,
         n_init=KMEANS_N_INIT,
         random_state=RANDOM_STATE,
     ).fit_predict(x_scaled)
@@ -372,7 +399,7 @@ def fit_algorithms(
         (
             "K-Means",
             "Partición",
-            f"k={selected_k}, n_init={KMEANS_N_INIT}",
+            f"k={kmeans_k}, n_init={KMEANS_N_INIT}",
             kmeans_labels,
         ),
         (
@@ -431,6 +458,7 @@ def save_cluster_figure(
     title: str,
     projections: dict[str, np.ndarray],
     labels: np.ndarray,
+    cluster_colors: Sequence[str],
 ) -> None:
     """Guarda las asignaciones en PCA, t-SNE y UMAP."""
 
@@ -442,9 +470,8 @@ def save_cluster_figure(
         sharey=False,
     )
     axes = np.atleast_1d(axes)
-    color_map = plt.get_cmap("tab10")
     for axis, (projection_name, projection) in zip(axes, projections.items()):
-        for color_index, label in enumerate(sorted(np.unique(labels).tolist())):
+        for label in sorted(np.unique(labels).tolist()):
             selected = labels == label
             is_noise = label == -1
             axis.scatter(
@@ -452,23 +479,32 @@ def save_cluster_figure(
                 projection[selected, 1],
                 s=16,
                 alpha=0.62,
-                color="black" if is_noise else color_map(color_index % 10),
+                color=(
+                    NOISE_COLOR
+                    if is_noise
+                    else color_for_label(int(label), cluster_colors)
+                ),
                 marker="x" if is_noise else "o",
                 label="Ruido (-1)" if is_noise else f"Grupo {label + 1}",
             )
         axis.set_title(projection_name)
         axis.set_xlabel(f"{projection_name} 1")
         axis.set_ylabel(f"{projection_name} 2")
-        axis.grid(alpha=0.2)
+        axis.grid(color=PRESENTATION_TEXT, alpha=0.18)
         axis.legend(title="Asignación", loc="best", fontsize="x-small")
 
     figure.suptitle(title)
+    apply_dark_theme(figure, axes)
     figure.tight_layout()
     figure.savefig(path, dpi=180, bbox_inches="tight")
     plt.close(figure)
 
 
-def save_kmeans_exploration(sweep: pd.DataFrame, path: Path) -> None:
+def save_kmeans_exploration(
+    sweep: pd.DataFrame,
+    path: Path,
+    dataset_name: str = DATASET_NAME,
+) -> None:
     """Grafica las tres métricas internas exploradas para K-Means."""
 
     figure, axes = plt.subplots(1, 3, figsize=(15, 4.5))
@@ -477,22 +513,42 @@ def save_kmeans_exploration(sweep: pd.DataFrame, path: Path) -> None:
         ("davies_bouldin", "Davies-Bouldin", False),
         ("calinski_harabasz", "Calinski-Harabasz", True),
     ]
-    for axis, (column, title, maximize) in zip(axes, metrics):
-        axis.plot(sweep["k"], sweep[column], marker="o")
+    for metric_index, (axis, (column, title, maximize)) in enumerate(
+        zip(axes, metrics)
+    ):
+        axis.plot(
+            sweep["k"],
+            sweep[column],
+            marker="o",
+            color=METRIC_COLORS[metric_index],
+            markerfacecolor=PRESENTATION_LIGHT_GRAY,
+            markeredgecolor=PRESENTATION_TEXT,
+        )
         best_index = sweep[column].idxmax() if maximize else sweep[column].idxmin()
         best_row = sweep.loc[best_index]
-        axis.scatter(best_row["k"], best_row[column], color="crimson", zorder=3)
+        axis.scatter(
+            best_row["k"],
+            best_row[column],
+            color=PRESENTATION_TURQUOISE,
+            edgecolor=PRESENTATION_TEXT,
+            zorder=3,
+        )
         axis.set_title(title)
         axis.set_xlabel("k")
         axis.set_xticks(sweep["k"])
-        axis.grid(alpha=0.2)
-    figure.suptitle("Exploración de k para K-Means — Movies")
+        axis.grid(color=PRESENTATION_TEXT, alpha=0.18)
+    figure.suptitle(dataset_name)
+    apply_dark_theme(figure, axes)
     figure.tight_layout()
     figure.savefig(path, dpi=180, bbox_inches="tight")
     plt.close(figure)
 
 
-def save_kmeans_elbow(x_scaled: np.ndarray, path: Path) -> None:
+def save_kmeans_elbow(
+    x_scaled: np.ndarray,
+    path: Path,
+    dataset_name: str = DATASET_NAME,
+) -> None:
     """Guarda la curva de inercia para los valores explorados de k."""
 
     inertias = [
@@ -504,12 +560,20 @@ def save_kmeans_elbow(x_scaled: np.ndarray, path: Path) -> None:
         for k in K_VALUES
     ]
     figure, axis = plt.subplots(figsize=(8, 5))
-    axis.plot(K_VALUES, inertias, marker="o")
+    axis.plot(
+        K_VALUES,
+        inertias,
+        marker="o",
+        color=PRESENTATION_BLUE,
+        markerfacecolor=PRESENTATION_TURQUOISE,
+        markeredgecolor=PRESENTATION_TEXT,
+    )
     axis.set_xticks(K_VALUES)
     axis.set_xlabel("Número de grupos (k)")
     axis.set_ylabel("Inercia")
-    axis.set_title("Método Elbow para K-Means — Movies")
-    axis.grid(alpha=0.2)
+    axis.set_title(dataset_name)
+    axis.grid(color=PRESENTATION_TEXT, alpha=0.18)
+    apply_dark_theme(figure, axis)
     figure.tight_layout()
     figure.savefig(path, dpi=180, bbox_inches="tight")
     plt.close(figure)
@@ -519,6 +583,8 @@ def save_kmeans_comparison(
     x_scaled: np.ndarray,
     k_values: Iterable[int],
     path: Path,
+    cluster_colors: Sequence[str],
+    dataset_name: str = DATASET_NAME,
 ) -> None:
     """Compara las asignaciones de K-Means para varios valores de k."""
 
@@ -532,7 +598,6 @@ def save_kmeans_comparison(
         sharey=True,
     )
     axes = np.atleast_1d(axes)
-    color_map = plt.get_cmap("tab10")
     for axis, k in zip(axes, k_values):
         labels = KMeans(
             n_clusters=k,
@@ -546,21 +611,26 @@ def save_kmeans_comparison(
                 projection[selected, 1],
                 s=14,
                 alpha=0.6,
-                color=color_map(int(label) % 10),
+                color=color_for_label(int(label), cluster_colors),
                 label=f"Grupo {label + 1}",
             )
-        axis.set_title(f"K-Means (k={k})")
-        axis.set_xlabel("Componente principal 1")
-        axis.grid(alpha=0.2)
-    axes[0].set_ylabel("Componente principal 2")
+        axis.set_title(f"k={k}")
+        axis.set_xlabel("Componente 1")
+        axis.grid(color=PRESENTATION_TEXT, alpha=0.18)
+    axes[0].set_ylabel("Componente 2")
     axes[-1].legend(title="Asignación", loc="best", fontsize="small")
-    figure.suptitle("Comparación de K-Means para distintos valores de k — Movies")
+    figure.suptitle(dataset_name)
+    apply_dark_theme(figure, axes)
     figure.tight_layout()
     figure.savefig(path, dpi=180, bbox_inches="tight")
     plt.close(figure)
 
 
-def save_dendrogram(x_scaled: np.ndarray, path: Path) -> None:
+def save_dendrogram(
+    x_scaled: np.ndarray,
+    path: Path,
+    dataset_name: str = DATASET_NAME,
+) -> None:
     """Guarda un dendrograma sobre una muestra para mantenerlo legible."""
 
     sample_size = min(DENDROGRAM_SAMPLE_SIZE, len(x_scaled))
@@ -574,13 +644,14 @@ def save_dendrogram(x_scaled: np.ndarray, path: Path) -> None:
         p=30,
         leaf_rotation=90,
         leaf_font_size=8,
+        color_threshold=0,
+        above_threshold_color=PRESENTATION_BLUE,
         ax=axis,
     )
-    axis.set_title(
-        f"Dendrograma Agglomerative Ward — muestra de {sample_size} películas"
-    )
+    axis.set_title(dataset_name)
     axis.set_xlabel("Observaciones o grupos contraídos")
     axis.set_ylabel("Distancia Ward")
+    apply_dark_theme(figure, axis)
     figure.tight_layout()
     figure.savefig(path, dpi=180, bbox_inches="tight")
     plt.close(figure)
@@ -593,6 +664,7 @@ def save_figures(
     comparison_k: Iterable[int],
     selected_k: int,
     dbscan_eps: float,
+    kmeans_k: int,
 ) -> None:
     """Genera las figuras y los GIF educativos referenciados por el reporte."""
 
@@ -607,20 +679,32 @@ def save_figures(
     for name, _, parameters, labels in algorithms:
         save_cluster_figure(
             FIGURES_DIR / names[name],
-            f"{name} — {parameters}",
+            DATASET_NAME,
             projections,
             labels,
+            MOVIES_CLUSTER_COLORS,
         )
-    save_kmeans_exploration(sweep, FIGURES_DIR / "movies-kmeans-exploracion-k.png")
-    save_kmeans_elbow(x_scaled, FIGURES_DIR / "movies-kmeans-elbow.png")
+    save_kmeans_exploration(
+        sweep,
+        FIGURES_DIR / "movies-kmeans-exploracion-k.png",
+        DATASET_NAME,
+    )
+    save_kmeans_elbow(
+        x_scaled,
+        FIGURES_DIR / "movies-kmeans-elbow.png",
+        DATASET_NAME,
+    )
     save_kmeans_comparison(
         x_scaled,
         comparison_k,
         FIGURES_DIR / "movies-kmeans-comparacion-k.png",
+        CLUSTER_COLORS,
+        DATASET_NAME,
     )
     save_dendrogram(
         x_scaled,
         FIGURES_DIR / "movies-agglomerative-ward-dendrograma.png",
+        DATASET_NAME,
     )
     save_clustering_animations(
         projections["PCA"],
@@ -631,6 +715,10 @@ def save_figures(
         dbscan_min_samples=DBSCAN_MIN_SAMPLES,
         clique_bins=8,
         clique_min_unit_points=5,
+        cluster_colors=MOVIES_CLUSTER_COLORS,
+        noise_color=NOISE_COLOR,
+        dataset_name=DATASET_NAME,
+        kmeans_n_clusters=kmeans_k,
         max_points=120,
         random_state=RANDOM_STATE,
         fps=2,
@@ -683,6 +771,7 @@ def render_report(
     missing_counts: pd.Series,
     rows_removed: int,
     selected_k: int,
+    kmeans_k: int,
     sweep: pd.DataFrame,
     comparison: pd.DataFrame,
     results: pd.DataFrame,
@@ -840,13 +929,13 @@ asignaciones finales calculadas en el espacio original.
 K-Means asigna cada observación al centroide más cercano y actualiza los
 centroides hasta estabilizar la solución. Se exploraron los valores de
 `k={min(K_VALUES)}` a `k={max(K_VALUES)}` usando `n_init={KMEANS_N_INIT}`; se
-seleccionó `k={selected_k}` por obtener el mayor Silhouette en la exploración.
+fijó `k={kmeans_k}` para la ejecución solicitada.
 
 {sweep_table}
 
 ![Exploración de k para K-Means](figuras/movies-kmeans-exploracion-k.png)
 
-*Figura 1. Métricas intrínsecas al variar `k`; el punto rojo marca el mejor
+*Figura 1. Métricas intrínsecas al variar `k`; el punto turquesa marca el mejor
 valor de cada métrica.*
 
 ![Método Elbow para Movies](figuras/movies-kmeans-elbow.png)
@@ -878,15 +967,16 @@ Parámetros seleccionados: **{algorithm_parameters['DBSCAN']}**.
 
 ![Agrupación de Movies con DBSCAN en PCA, t-SNE y UMAP](figuras/movies-dbscan.png)
 
-*Figura 5. Resultado de DBSCAN en las tres proyecciones; las cruces negras
+*Figura 5. Resultado de DBSCAN en las tres proyecciones; las cruces de color
+gris oscuro
 representan el ruido.*
 
 ### Agglomerative Ward
 
 El método jerárquico comienza con una observación por grupo y va uniendo los
 grupos que producen el menor aumento de variación interna. Se utilizó Ward
-con distancia euclidiana y el mismo `k={selected_k}` seleccionado para
-K-Means. El dendrograma se generó con una muestra reproducible de hasta
+con distancia euclidiana y `n_clusters={selected_k}`. El dendrograma se generó
+con una muestra reproducible de hasta
 {DENDROGRAM_SAMPLE_SIZE} películas para mantener la figura legible.
 
 Parámetros: **{algorithm_parameters['Agglomerative Ward']}**.
@@ -911,7 +1001,8 @@ Parámetros seleccionados: **{algorithm_parameters['CLIQUE']}**.
 
 ![Agrupación de Movies con CLIQUE en PCA, t-SNE y UMAP](figuras/movies-clique.png)
 
-*Figura 8. Resultado de CLIQUE en las tres proyecciones; las cruces negras
+*Figura 8. Resultado de CLIQUE en las tres proyecciones; las cruces de color
+gris oscuro
 representan el ruido.*
 
 ## Métricas
@@ -970,12 +1061,14 @@ def main() -> None:
     x_scaled = scale_features(features)
     sweep = evaluate_kmeans_k_values(x_scaled)
     selected_k = int(sweep.loc[sweep["silhouette"].idxmax(), "k"])
-    comparison_k = sorted({max(2, selected_k - 1), selected_k, selected_k + 1})
+    kmeans_k = KMEANS_CLUSTERS
+    comparison_k = sorted({max(2, kmeans_k - 1), kmeans_k, kmeans_k + 1})
     comparison = evaluate_kmeans_comparison(x_scaled, y_true, comparison_k)
     algorithms, results, animation_parameters = fit_algorithms(
         x_scaled,
         y_true,
         selected_k,
+        kmeans_k,
     )
     save_figures(
         x_scaled,
@@ -984,6 +1077,7 @@ def main() -> None:
         comparison_k,
         selected_k,
         animation_parameters["dbscan_eps"],
+        kmeans_k,
     )
 
     report = render_report(
@@ -993,6 +1087,7 @@ def main() -> None:
         missing_counts,
         rows_removed,
         selected_k,
+        kmeans_k,
         sweep,
         comparison,
         results,
@@ -1002,7 +1097,8 @@ def main() -> None:
 
     print(f"Registros analizados: {len(data)}")
     print(f"Variables de entrada: {', '.join(FEATURE_COLUMNS)}")
-    print(f"K seleccionado: {selected_k}")
+    print(f"K-Means seleccionado: {kmeans_k}")
+    print(f"K de Ward seleccionado por Silhouette: {selected_k}")
     print("\nResultados:")
     print(
         results.to_string(
