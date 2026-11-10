@@ -1,0 +1,13 @@
+dataset,protocol,train,test,folds_or_repetitions,seed
+iris,Hold-Out 60/40,90,60,1,42
+iris,Entrenamiento/Prueba 75/75,75,75,1,43
+iris,Random Subsampling 60/40,90,60,30,42
+iris,K-Fold 10,135,15,10,42
+iris,Stratified Cross-Validation 10,135,15,10,42
+iris,Leave-One-Out,149,1,150,N/A
+mobile_price,Hold-Out 60/40,1200,800,1,42
+mobile_price,Entrenamiento/Prueba 100/100,100,100,1,44
+mobile_price,Random Subsampling 60/40,1200,800,30,42
+mobile_price,K-Fold 10,1800,200,10,42
+mobile_price,Stratified Cross-Validation 10,1800,200,10,42
+mobile_price,Leave-One-Out,1999,1,2000,N/A

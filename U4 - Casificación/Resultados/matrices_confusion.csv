@@ -1,0 +1,1201 @@
+dataset,validacion,clasificador,seleccion_caracteristicas,clase_real,clase_predicha,conteo
+iris,Hold-Out 60/40,Regresión logística,Sin selección,no versicolor,no versicolor,30
+iris,Hold-Out 60/40,Regresión logística,Sin selección,no versicolor,versicolor,10
+iris,Hold-Out 60/40,Regresión logística,Sin selección,versicolor,no versicolor,11
+iris,Hold-Out 60/40,Regresión logística,Sin selección,versicolor,versicolor,9
+iris,Entrenamiento/Prueba,Regresión logística,Sin selección,no versicolor,no versicolor,45
+iris,Entrenamiento/Prueba,Regresión logística,Sin selección,no versicolor,versicolor,5
+iris,Entrenamiento/Prueba,Regresión logística,Sin selección,versicolor,no versicolor,14
+iris,Entrenamiento/Prueba,Regresión logística,Sin selección,versicolor,versicolor,11
+iris,Random Subsampling (N=30),Regresión logística,Sin selección,no versicolor,no versicolor,1033
+iris,Random Subsampling (N=30),Regresión logística,Sin selección,no versicolor,versicolor,167
+iris,Random Subsampling (N=30),Regresión logística,Sin selección,versicolor,no versicolor,335
+iris,Random Subsampling (N=30),Regresión logística,Sin selección,versicolor,versicolor,265
+iris,K-Fold (K=10),Regresión logística,Sin selección,no versicolor,no versicolor,87
+iris,K-Fold (K=10),Regresión logística,Sin selección,no versicolor,versicolor,13
+iris,K-Fold (K=10),Regresión logística,Sin selección,versicolor,no versicolor,27
+iris,K-Fold (K=10),Regresión logística,Sin selección,versicolor,versicolor,23
+iris,Leave-One-Out (LOO),Regresión logística,Sin selección,no versicolor,no versicolor,86
+iris,Leave-One-Out (LOO),Regresión logística,Sin selección,no versicolor,versicolor,14
+iris,Leave-One-Out (LOO),Regresión logística,Sin selección,versicolor,no versicolor,28
+iris,Leave-One-Out (LOO),Regresión logística,Sin selección,versicolor,versicolor,22
+iris,Stratified Cross-Validation (K=10),Regresión logística,Sin selección,no versicolor,no versicolor,85
+iris,Stratified Cross-Validation (K=10),Regresión logística,Sin selección,no versicolor,versicolor,15
+iris,Stratified Cross-Validation (K=10),Regresión logística,Sin selección,versicolor,no versicolor,27
+iris,Stratified Cross-Validation (K=10),Regresión logística,Sin selección,versicolor,versicolor,23
+iris,Hold-Out 60/40,Regresión logística,ANOVA F-test,no versicolor,no versicolor,29
+iris,Hold-Out 60/40,Regresión logística,ANOVA F-test,no versicolor,versicolor,11
+iris,Hold-Out 60/40,Regresión logística,ANOVA F-test,versicolor,no versicolor,12
+iris,Hold-Out 60/40,Regresión logística,ANOVA F-test,versicolor,versicolor,8
+iris,Entrenamiento/Prueba,Regresión logística,ANOVA F-test,no versicolor,no versicolor,44
+iris,Entrenamiento/Prueba,Regresión logística,ANOVA F-test,no versicolor,versicolor,6
+iris,Entrenamiento/Prueba,Regresión logística,ANOVA F-test,versicolor,no versicolor,14
+iris,Entrenamiento/Prueba,Regresión logística,ANOVA F-test,versicolor,versicolor,11
+iris,Random Subsampling (N=30),Regresión logística,ANOVA F-test,no versicolor,no versicolor,1033
+iris,Random Subsampling (N=30),Regresión logística,ANOVA F-test,no versicolor,versicolor,167
+iris,Random Subsampling (N=30),Regresión logística,ANOVA F-test,versicolor,no versicolor,361
+iris,Random Subsampling (N=30),Regresión logística,ANOVA F-test,versicolor,versicolor,239
+iris,K-Fold (K=10),Regresión logística,ANOVA F-test,no versicolor,no versicolor,84
+iris,K-Fold (K=10),Regresión logística,ANOVA F-test,no versicolor,versicolor,16
+iris,K-Fold (K=10),Regresión logística,ANOVA F-test,versicolor,no versicolor,29
+iris,K-Fold (K=10),Regresión logística,ANOVA F-test,versicolor,versicolor,21
+iris,Leave-One-Out (LOO),Regresión logística,ANOVA F-test,no versicolor,no versicolor,87
+iris,Leave-One-Out (LOO),Regresión logística,ANOVA F-test,no versicolor,versicolor,13
+iris,Leave-One-Out (LOO),Regresión logística,ANOVA F-test,versicolor,no versicolor,29
+iris,Leave-One-Out (LOO),Regresión logística,ANOVA F-test,versicolor,versicolor,21
+iris,Stratified Cross-Validation (K=10),Regresión logística,ANOVA F-test,no versicolor,no versicolor,87
+iris,Stratified Cross-Validation (K=10),Regresión logística,ANOVA F-test,no versicolor,versicolor,13
+iris,Stratified Cross-Validation (K=10),Regresión logística,ANOVA F-test,versicolor,no versicolor,29
+iris,Stratified Cross-Validation (K=10),Regresión logística,ANOVA F-test,versicolor,versicolor,21
+iris,Hold-Out 60/40,Red neuronal (MLP),Sin selección,no versicolor,no versicolor,39
+iris,Hold-Out 60/40,Red neuronal (MLP),Sin selección,no versicolor,versicolor,1
+iris,Hold-Out 60/40,Red neuronal (MLP),Sin selección,versicolor,no versicolor,19
+iris,Hold-Out 60/40,Red neuronal (MLP),Sin selección,versicolor,versicolor,1
+iris,Entrenamiento/Prueba,Red neuronal (MLP),Sin selección,no versicolor,no versicolor,44
+iris,Entrenamiento/Prueba,Red neuronal (MLP),Sin selección,no versicolor,versicolor,6
+iris,Entrenamiento/Prueba,Red neuronal (MLP),Sin selección,versicolor,no versicolor,22
+iris,Entrenamiento/Prueba,Red neuronal (MLP),Sin selección,versicolor,versicolor,3
+iris,Random Subsampling (N=30),Red neuronal (MLP),Sin selección,no versicolor,no versicolor,1115
+iris,Random Subsampling (N=30),Red neuronal (MLP),Sin selección,no versicolor,versicolor,85
+iris,Random Subsampling (N=30),Red neuronal (MLP),Sin selección,versicolor,no versicolor,477
+iris,Random Subsampling (N=30),Red neuronal (MLP),Sin selección,versicolor,versicolor,123
+iris,K-Fold (K=10),Red neuronal (MLP),Sin selección,no versicolor,no versicolor,96
+iris,K-Fold (K=10),Red neuronal (MLP),Sin selección,no versicolor,versicolor,4
+iris,K-Fold (K=10),Red neuronal (MLP),Sin selección,versicolor,no versicolor,40
+iris,K-Fold (K=10),Red neuronal (MLP),Sin selección,versicolor,versicolor,10
+iris,Leave-One-Out (LOO),Red neuronal (MLP),Sin selección,no versicolor,no versicolor,97
+iris,Leave-One-Out (LOO),Red neuronal (MLP),Sin selección,no versicolor,versicolor,3
+iris,Leave-One-Out (LOO),Red neuronal (MLP),Sin selección,versicolor,no versicolor,44
+iris,Leave-One-Out (LOO),Red neuronal (MLP),Sin selección,versicolor,versicolor,6
+iris,Stratified Cross-Validation (K=10),Red neuronal (MLP),Sin selección,no versicolor,no versicolor,96
+iris,Stratified Cross-Validation (K=10),Red neuronal (MLP),Sin selección,no versicolor,versicolor,4
+iris,Stratified Cross-Validation (K=10),Red neuronal (MLP),Sin selección,versicolor,no versicolor,43
+iris,Stratified Cross-Validation (K=10),Red neuronal (MLP),Sin selección,versicolor,versicolor,7
+iris,Hold-Out 60/40,Red neuronal (MLP),ANOVA F-test,no versicolor,no versicolor,27
+iris,Hold-Out 60/40,Red neuronal (MLP),ANOVA F-test,no versicolor,versicolor,13
+iris,Hold-Out 60/40,Red neuronal (MLP),ANOVA F-test,versicolor,no versicolor,16
+iris,Hold-Out 60/40,Red neuronal (MLP),ANOVA F-test,versicolor,versicolor,4
+iris,Entrenamiento/Prueba,Red neuronal (MLP),ANOVA F-test,no versicolor,no versicolor,37
+iris,Entrenamiento/Prueba,Red neuronal (MLP),ANOVA F-test,no versicolor,versicolor,13
+iris,Entrenamiento/Prueba,Red neuronal (MLP),ANOVA F-test,versicolor,no versicolor,24
+iris,Entrenamiento/Prueba,Red neuronal (MLP),ANOVA F-test,versicolor,versicolor,1
+iris,Random Subsampling (N=30),Red neuronal (MLP),ANOVA F-test,no versicolor,no versicolor,961
+iris,Random Subsampling (N=30),Red neuronal (MLP),ANOVA F-test,no versicolor,versicolor,239
+iris,Random Subsampling (N=30),Red neuronal (MLP),ANOVA F-test,versicolor,no versicolor,497
+iris,Random Subsampling (N=30),Red neuronal (MLP),ANOVA F-test,versicolor,versicolor,103
+iris,K-Fold (K=10),Red neuronal (MLP),ANOVA F-test,no versicolor,no versicolor,87
+iris,K-Fold (K=10),Red neuronal (MLP),ANOVA F-test,no versicolor,versicolor,13
+iris,K-Fold (K=10),Red neuronal (MLP),ANOVA F-test,versicolor,no versicolor,39
+iris,K-Fold (K=10),Red neuronal (MLP),ANOVA F-test,versicolor,versicolor,11
+iris,Leave-One-Out (LOO),Red neuronal (MLP),ANOVA F-test,no versicolor,no versicolor,89
+iris,Leave-One-Out (LOO),Red neuronal (MLP),ANOVA F-test,no versicolor,versicolor,11
+iris,Leave-One-Out (LOO),Red neuronal (MLP),ANOVA F-test,versicolor,no versicolor,40
+iris,Leave-One-Out (LOO),Red neuronal (MLP),ANOVA F-test,versicolor,versicolor,10
+iris,Stratified Cross-Validation (K=10),Red neuronal (MLP),ANOVA F-test,no versicolor,no versicolor,86
+iris,Stratified Cross-Validation (K=10),Red neuronal (MLP),ANOVA F-test,no versicolor,versicolor,14
+iris,Stratified Cross-Validation (K=10),Red neuronal (MLP),ANOVA F-test,versicolor,no versicolor,41
+iris,Stratified Cross-Validation (K=10),Red neuronal (MLP),ANOVA F-test,versicolor,versicolor,9
+iris,Hold-Out 60/40,KNN,Sin selección,no versicolor,no versicolor,39
+iris,Hold-Out 60/40,KNN,Sin selección,no versicolor,versicolor,1
+iris,Hold-Out 60/40,KNN,Sin selección,versicolor,no versicolor,2
+iris,Hold-Out 60/40,KNN,Sin selección,versicolor,versicolor,18
+iris,Entrenamiento/Prueba,KNN,Sin selección,no versicolor,no versicolor,48
+iris,Entrenamiento/Prueba,KNN,Sin selección,no versicolor,versicolor,2
+iris,Entrenamiento/Prueba,KNN,Sin selección,versicolor,no versicolor,1
+iris,Entrenamiento/Prueba,KNN,Sin selección,versicolor,versicolor,24
+iris,Random Subsampling (N=30),KNN,Sin selección,no versicolor,no versicolor,1153
+iris,Random Subsampling (N=30),KNN,Sin selección,no versicolor,versicolor,47
+iris,Random Subsampling (N=30),KNN,Sin selección,versicolor,no versicolor,43
+iris,Random Subsampling (N=30),KNN,Sin selección,versicolor,versicolor,557
+iris,K-Fold (K=10),KNN,Sin selección,no versicolor,no versicolor,97
+iris,K-Fold (K=10),KNN,Sin selección,no versicolor,versicolor,3
+iris,K-Fold (K=10),KNN,Sin selección,versicolor,no versicolor,4
+iris,K-Fold (K=10),KNN,Sin selección,versicolor,versicolor,46
+iris,Leave-One-Out (LOO),KNN,Sin selección,no versicolor,no versicolor,96
+iris,Leave-One-Out (LOO),KNN,Sin selección,no versicolor,versicolor,4
+iris,Leave-One-Out (LOO),KNN,Sin selección,versicolor,no versicolor,4
+iris,Leave-One-Out (LOO),KNN,Sin selección,versicolor,versicolor,46
+iris,Stratified Cross-Validation (K=10),KNN,Sin selección,no versicolor,no versicolor,95
+iris,Stratified Cross-Validation (K=10),KNN,Sin selección,no versicolor,versicolor,5
+iris,Stratified Cross-Validation (K=10),KNN,Sin selección,versicolor,no versicolor,2
+iris,Stratified Cross-Validation (K=10),KNN,Sin selección,versicolor,versicolor,48
+iris,Hold-Out 60/40,KNN,ANOVA F-test,no versicolor,no versicolor,37
+iris,Hold-Out 60/40,KNN,ANOVA F-test,no versicolor,versicolor,3
+iris,Hold-Out 60/40,KNN,ANOVA F-test,versicolor,no versicolor,3
+iris,Hold-Out 60/40,KNN,ANOVA F-test,versicolor,versicolor,17
+iris,Entrenamiento/Prueba,KNN,ANOVA F-test,no versicolor,no versicolor,47
+iris,Entrenamiento/Prueba,KNN,ANOVA F-test,no versicolor,versicolor,3
+iris,Entrenamiento/Prueba,KNN,ANOVA F-test,versicolor,no versicolor,2
+iris,Entrenamiento/Prueba,KNN,ANOVA F-test,versicolor,versicolor,23
+iris,Random Subsampling (N=30),KNN,ANOVA F-test,no versicolor,no versicolor,1116
+iris,Random Subsampling (N=30),KNN,ANOVA F-test,no versicolor,versicolor,84
+iris,Random Subsampling (N=30),KNN,ANOVA F-test,versicolor,no versicolor,77
+iris,Random Subsampling (N=30),KNN,ANOVA F-test,versicolor,versicolor,523
+iris,K-Fold (K=10),KNN,ANOVA F-test,no versicolor,no versicolor,94
+iris,K-Fold (K=10),KNN,ANOVA F-test,no versicolor,versicolor,6
+iris,K-Fold (K=10),KNN,ANOVA F-test,versicolor,no versicolor,5
+iris,K-Fold (K=10),KNN,ANOVA F-test,versicolor,versicolor,45
+iris,Leave-One-Out (LOO),KNN,ANOVA F-test,no versicolor,no versicolor,94
+iris,Leave-One-Out (LOO),KNN,ANOVA F-test,no versicolor,versicolor,6
+iris,Leave-One-Out (LOO),KNN,ANOVA F-test,versicolor,no versicolor,5
+iris,Leave-One-Out (LOO),KNN,ANOVA F-test,versicolor,versicolor,45
+iris,Stratified Cross-Validation (K=10),KNN,ANOVA F-test,no versicolor,no versicolor,94
+iris,Stratified Cross-Validation (K=10),KNN,ANOVA F-test,no versicolor,versicolor,6
+iris,Stratified Cross-Validation (K=10),KNN,ANOVA F-test,versicolor,no versicolor,6
+iris,Stratified Cross-Validation (K=10),KNN,ANOVA F-test,versicolor,versicolor,44
+iris,Hold-Out 60/40,Árbol de decisión,Sin selección,no versicolor,no versicolor,38
+iris,Hold-Out 60/40,Árbol de decisión,Sin selección,no versicolor,versicolor,2
+iris,Hold-Out 60/40,Árbol de decisión,Sin selección,versicolor,no versicolor,4
+iris,Hold-Out 60/40,Árbol de decisión,Sin selección,versicolor,versicolor,16
+iris,Entrenamiento/Prueba,Árbol de decisión,Sin selección,no versicolor,no versicolor,48
+iris,Entrenamiento/Prueba,Árbol de decisión,Sin selección,no versicolor,versicolor,2
+iris,Entrenamiento/Prueba,Árbol de decisión,Sin selección,versicolor,no versicolor,1
+iris,Entrenamiento/Prueba,Árbol de decisión,Sin selección,versicolor,versicolor,24
+iris,Random Subsampling (N=30),Árbol de decisión,Sin selección,no versicolor,no versicolor,1143
+iris,Random Subsampling (N=30),Árbol de decisión,Sin selección,no versicolor,versicolor,57
+iris,Random Subsampling (N=30),Árbol de decisión,Sin selección,versicolor,no versicolor,53
+iris,Random Subsampling (N=30),Árbol de decisión,Sin selección,versicolor,versicolor,547
+iris,K-Fold (K=10),Árbol de decisión,Sin selección,no versicolor,no versicolor,95
+iris,K-Fold (K=10),Árbol de decisión,Sin selección,no versicolor,versicolor,5
+iris,K-Fold (K=10),Árbol de decisión,Sin selección,versicolor,no versicolor,4
+iris,K-Fold (K=10),Árbol de decisión,Sin selección,versicolor,versicolor,46
+iris,Leave-One-Out (LOO),Árbol de decisión,Sin selección,no versicolor,no versicolor,95
+iris,Leave-One-Out (LOO),Árbol de decisión,Sin selección,no versicolor,versicolor,5
+iris,Leave-One-Out (LOO),Árbol de decisión,Sin selección,versicolor,no versicolor,4
+iris,Leave-One-Out (LOO),Árbol de decisión,Sin selección,versicolor,versicolor,46
+iris,Stratified Cross-Validation (K=10),Árbol de decisión,Sin selección,no versicolor,no versicolor,96
+iris,Stratified Cross-Validation (K=10),Árbol de decisión,Sin selección,no versicolor,versicolor,4
+iris,Stratified Cross-Validation (K=10),Árbol de decisión,Sin selección,versicolor,no versicolor,4
+iris,Stratified Cross-Validation (K=10),Árbol de decisión,Sin selección,versicolor,versicolor,46
+iris,Hold-Out 60/40,Árbol de decisión,ANOVA F-test,no versicolor,no versicolor,39
+iris,Hold-Out 60/40,Árbol de decisión,ANOVA F-test,no versicolor,versicolor,1
+iris,Hold-Out 60/40,Árbol de decisión,ANOVA F-test,versicolor,no versicolor,4
+iris,Hold-Out 60/40,Árbol de decisión,ANOVA F-test,versicolor,versicolor,16
+iris,Entrenamiento/Prueba,Árbol de decisión,ANOVA F-test,no versicolor,no versicolor,50
+iris,Entrenamiento/Prueba,Árbol de decisión,ANOVA F-test,no versicolor,versicolor,0
+iris,Entrenamiento/Prueba,Árbol de decisión,ANOVA F-test,versicolor,no versicolor,2
+iris,Entrenamiento/Prueba,Árbol de decisión,ANOVA F-test,versicolor,versicolor,23
+iris,Random Subsampling (N=30),Árbol de decisión,ANOVA F-test,no versicolor,no versicolor,1151
+iris,Random Subsampling (N=30),Árbol de decisión,ANOVA F-test,no versicolor,versicolor,49
+iris,Random Subsampling (N=30),Árbol de decisión,ANOVA F-test,versicolor,no versicolor,91
+iris,Random Subsampling (N=30),Árbol de decisión,ANOVA F-test,versicolor,versicolor,509
+iris,K-Fold (K=10),Árbol de decisión,ANOVA F-test,no versicolor,no versicolor,96
+iris,K-Fold (K=10),Árbol de decisión,ANOVA F-test,no versicolor,versicolor,4
+iris,K-Fold (K=10),Árbol de decisión,ANOVA F-test,versicolor,no versicolor,6
+iris,K-Fold (K=10),Árbol de decisión,ANOVA F-test,versicolor,versicolor,44
+iris,Leave-One-Out (LOO),Árbol de decisión,ANOVA F-test,no versicolor,no versicolor,98
+iris,Leave-One-Out (LOO),Árbol de decisión,ANOVA F-test,no versicolor,versicolor,2
+iris,Leave-One-Out (LOO),Árbol de decisión,ANOVA F-test,versicolor,no versicolor,6
+iris,Leave-One-Out (LOO),Árbol de decisión,ANOVA F-test,versicolor,versicolor,44
+iris,Stratified Cross-Validation (K=10),Árbol de decisión,ANOVA F-test,no versicolor,no versicolor,97
+iris,Stratified Cross-Validation (K=10),Árbol de decisión,ANOVA F-test,no versicolor,versicolor,3
+iris,Stratified Cross-Validation (K=10),Árbol de decisión,ANOVA F-test,versicolor,no versicolor,6
+iris,Stratified Cross-Validation (K=10),Árbol de decisión,ANOVA F-test,versicolor,versicolor,44
+mobile_price,Hold-Out 60/40,Regresión logística,Sin selección,0,0,194
+mobile_price,Hold-Out 60/40,Regresión logística,Sin selección,0,1,6
+mobile_price,Hold-Out 60/40,Regresión logística,Sin selección,0,2,0
+mobile_price,Hold-Out 60/40,Regresión logística,Sin selección,0,3,0
+mobile_price,Hold-Out 60/40,Regresión logística,Sin selección,1,0,1
+mobile_price,Hold-Out 60/40,Regresión logística,Sin selección,1,1,195
+mobile_price,Hold-Out 60/40,Regresión logística,Sin selección,1,2,4
+mobile_price,Hold-Out 60/40,Regresión logística,Sin selección,1,3,0
+mobile_price,Hold-Out 60/40,Regresión logística,Sin selección,2,0,0
+mobile_price,Hold-Out 60/40,Regresión logística,Sin selección,2,1,3
+mobile_price,Hold-Out 60/40,Regresión logística,Sin selección,2,2,191
+mobile_price,Hold-Out 60/40,Regresión logística,Sin selección,2,3,6
+mobile_price,Hold-Out 60/40,Regresión logística,Sin selección,3,0,0
+mobile_price,Hold-Out 60/40,Regresión logística,Sin selección,3,1,0
+mobile_price,Hold-Out 60/40,Regresión logística,Sin selección,3,2,5
+mobile_price,Hold-Out 60/40,Regresión logística,Sin selección,3,3,195
+mobile_price,Entrenamiento/Prueba,Regresión logística,Sin selección,0,0,20
+mobile_price,Entrenamiento/Prueba,Regresión logística,Sin selección,0,1,3
+mobile_price,Entrenamiento/Prueba,Regresión logística,Sin selección,0,2,2
+mobile_price,Entrenamiento/Prueba,Regresión logística,Sin selección,0,3,0
+mobile_price,Entrenamiento/Prueba,Regresión logística,Sin selección,1,0,6
+mobile_price,Entrenamiento/Prueba,Regresión logística,Sin selección,1,1,17
+mobile_price,Entrenamiento/Prueba,Regresión logística,Sin selección,1,2,2
+mobile_price,Entrenamiento/Prueba,Regresión logística,Sin selección,1,3,0
+mobile_price,Entrenamiento/Prueba,Regresión logística,Sin selección,2,0,0
+mobile_price,Entrenamiento/Prueba,Regresión logística,Sin selección,2,1,10
+mobile_price,Entrenamiento/Prueba,Regresión logística,Sin selección,2,2,9
+mobile_price,Entrenamiento/Prueba,Regresión logística,Sin selección,2,3,6
+mobile_price,Entrenamiento/Prueba,Regresión logística,Sin selección,3,0,0
+mobile_price,Entrenamiento/Prueba,Regresión logística,Sin selección,3,1,0
+mobile_price,Entrenamiento/Prueba,Regresión logística,Sin selección,3,2,4
+mobile_price,Entrenamiento/Prueba,Regresión logística,Sin selección,3,3,21
+mobile_price,Random Subsampling (N=30),Regresión logística,Sin selección,0,0,5843
+mobile_price,Random Subsampling (N=30),Regresión logística,Sin selección,0,1,157
+mobile_price,Random Subsampling (N=30),Regresión logística,Sin selección,0,2,0
+mobile_price,Random Subsampling (N=30),Regresión logística,Sin selección,0,3,0
+mobile_price,Random Subsampling (N=30),Regresión logística,Sin selección,1,0,212
+mobile_price,Random Subsampling (N=30),Regresión logística,Sin selección,1,1,5603
+mobile_price,Random Subsampling (N=30),Regresión logística,Sin selección,1,2,185
+mobile_price,Random Subsampling (N=30),Regresión logística,Sin selección,1,3,0
+mobile_price,Random Subsampling (N=30),Regresión logística,Sin selección,2,0,0
+mobile_price,Random Subsampling (N=30),Regresión logística,Sin selección,2,1,230
+mobile_price,Random Subsampling (N=30),Regresión logística,Sin selección,2,2,5576
+mobile_price,Random Subsampling (N=30),Regresión logística,Sin selección,2,3,194
+mobile_price,Random Subsampling (N=30),Regresión logística,Sin selección,3,0,0
+mobile_price,Random Subsampling (N=30),Regresión logística,Sin selección,3,1,0
+mobile_price,Random Subsampling (N=30),Regresión logística,Sin selección,3,2,153
+mobile_price,Random Subsampling (N=30),Regresión logística,Sin selección,3,3,5847
+mobile_price,K-Fold (K=10),Regresión logística,Sin selección,0,0,486
+mobile_price,K-Fold (K=10),Regresión logística,Sin selección,0,1,14
+mobile_price,K-Fold (K=10),Regresión logística,Sin selección,0,2,0
+mobile_price,K-Fold (K=10),Regresión logística,Sin selección,0,3,0
+mobile_price,K-Fold (K=10),Regresión logística,Sin selección,1,0,15
+mobile_price,K-Fold (K=10),Regresión logística,Sin selección,1,1,471
+mobile_price,K-Fold (K=10),Regresión logística,Sin selección,1,2,14
+mobile_price,K-Fold (K=10),Regresión logística,Sin selección,1,3,0
+mobile_price,K-Fold (K=10),Regresión logística,Sin selección,2,0,0
+mobile_price,K-Fold (K=10),Regresión logística,Sin selección,2,1,10
+mobile_price,K-Fold (K=10),Regresión logística,Sin selección,2,2,476
+mobile_price,K-Fold (K=10),Regresión logística,Sin selección,2,3,14
+mobile_price,K-Fold (K=10),Regresión logística,Sin selección,3,0,0
+mobile_price,K-Fold (K=10),Regresión logística,Sin selección,3,1,0
+mobile_price,K-Fold (K=10),Regresión logística,Sin selección,3,2,8
+mobile_price,K-Fold (K=10),Regresión logística,Sin selección,3,3,492
+mobile_price,Leave-One-Out (LOO),Regresión logística,Sin selección,0,0,491
+mobile_price,Leave-One-Out (LOO),Regresión logística,Sin selección,0,1,9
+mobile_price,Leave-One-Out (LOO),Regresión logística,Sin selección,0,2,0
+mobile_price,Leave-One-Out (LOO),Regresión logística,Sin selección,0,3,0
+mobile_price,Leave-One-Out (LOO),Regresión logística,Sin selección,1,0,13
+mobile_price,Leave-One-Out (LOO),Regresión logística,Sin selección,1,1,475
+mobile_price,Leave-One-Out (LOO),Regresión logística,Sin selección,1,2,12
+mobile_price,Leave-One-Out (LOO),Regresión logística,Sin selección,1,3,0
+mobile_price,Leave-One-Out (LOO),Regresión logística,Sin selección,2,0,0
+mobile_price,Leave-One-Out (LOO),Regresión logística,Sin selección,2,1,14
+mobile_price,Leave-One-Out (LOO),Regresión logística,Sin selección,2,2,473
+mobile_price,Leave-One-Out (LOO),Regresión logística,Sin selección,2,3,13
+mobile_price,Leave-One-Out (LOO),Regresión logística,Sin selección,3,0,0
+mobile_price,Leave-One-Out (LOO),Regresión logística,Sin selección,3,1,0
+mobile_price,Leave-One-Out (LOO),Regresión logística,Sin selección,3,2,7
+mobile_price,Leave-One-Out (LOO),Regresión logística,Sin selección,3,3,493
+mobile_price,Stratified Cross-Validation (K=10),Regresión logística,Sin selección,0,0,492
+mobile_price,Stratified Cross-Validation (K=10),Regresión logística,Sin selección,0,1,8
+mobile_price,Stratified Cross-Validation (K=10),Regresión logística,Sin selección,0,2,0
+mobile_price,Stratified Cross-Validation (K=10),Regresión logística,Sin selección,0,3,0
+mobile_price,Stratified Cross-Validation (K=10),Regresión logística,Sin selección,1,0,14
+mobile_price,Stratified Cross-Validation (K=10),Regresión logística,Sin selección,1,1,474
+mobile_price,Stratified Cross-Validation (K=10),Regresión logística,Sin selección,1,2,12
+mobile_price,Stratified Cross-Validation (K=10),Regresión logística,Sin selección,1,3,0
+mobile_price,Stratified Cross-Validation (K=10),Regresión logística,Sin selección,2,0,0
+mobile_price,Stratified Cross-Validation (K=10),Regresión logística,Sin selección,2,1,15
+mobile_price,Stratified Cross-Validation (K=10),Regresión logística,Sin selección,2,2,467
+mobile_price,Stratified Cross-Validation (K=10),Regresión logística,Sin selección,2,3,18
+mobile_price,Stratified Cross-Validation (K=10),Regresión logística,Sin selección,3,0,0
+mobile_price,Stratified Cross-Validation (K=10),Regresión logística,Sin selección,3,1,0
+mobile_price,Stratified Cross-Validation (K=10),Regresión logística,Sin selección,3,2,7
+mobile_price,Stratified Cross-Validation (K=10),Regresión logística,Sin selección,3,3,493
+mobile_price,Hold-Out 60/40,Regresión logística,ANOVA F-test,0,0,193
+mobile_price,Hold-Out 60/40,Regresión logística,ANOVA F-test,0,1,7
+mobile_price,Hold-Out 60/40,Regresión logística,ANOVA F-test,0,2,0
+mobile_price,Hold-Out 60/40,Regresión logística,ANOVA F-test,0,3,0
+mobile_price,Hold-Out 60/40,Regresión logística,ANOVA F-test,1,0,1
+mobile_price,Hold-Out 60/40,Regresión logística,ANOVA F-test,1,1,197
+mobile_price,Hold-Out 60/40,Regresión logística,ANOVA F-test,1,2,2
+mobile_price,Hold-Out 60/40,Regresión logística,ANOVA F-test,1,3,0
+mobile_price,Hold-Out 60/40,Regresión logística,ANOVA F-test,2,0,0
+mobile_price,Hold-Out 60/40,Regresión logística,ANOVA F-test,2,1,8
+mobile_price,Hold-Out 60/40,Regresión logística,ANOVA F-test,2,2,183
+mobile_price,Hold-Out 60/40,Regresión logística,ANOVA F-test,2,3,9
+mobile_price,Hold-Out 60/40,Regresión logística,ANOVA F-test,3,0,0
+mobile_price,Hold-Out 60/40,Regresión logística,ANOVA F-test,3,1,0
+mobile_price,Hold-Out 60/40,Regresión logística,ANOVA F-test,3,2,7
+mobile_price,Hold-Out 60/40,Regresión logística,ANOVA F-test,3,3,193
+mobile_price,Entrenamiento/Prueba,Regresión logística,ANOVA F-test,0,0,22
+mobile_price,Entrenamiento/Prueba,Regresión logística,ANOVA F-test,0,1,3
+mobile_price,Entrenamiento/Prueba,Regresión logística,ANOVA F-test,0,2,0
+mobile_price,Entrenamiento/Prueba,Regresión logística,ANOVA F-test,0,3,0
+mobile_price,Entrenamiento/Prueba,Regresión logística,ANOVA F-test,1,0,1
+mobile_price,Entrenamiento/Prueba,Regresión logística,ANOVA F-test,1,1,18
+mobile_price,Entrenamiento/Prueba,Regresión logística,ANOVA F-test,1,2,6
+mobile_price,Entrenamiento/Prueba,Regresión logística,ANOVA F-test,1,3,0
+mobile_price,Entrenamiento/Prueba,Regresión logística,ANOVA F-test,2,0,0
+mobile_price,Entrenamiento/Prueba,Regresión logística,ANOVA F-test,2,1,6
+mobile_price,Entrenamiento/Prueba,Regresión logística,ANOVA F-test,2,2,12
+mobile_price,Entrenamiento/Prueba,Regresión logística,ANOVA F-test,2,3,7
+mobile_price,Entrenamiento/Prueba,Regresión logística,ANOVA F-test,3,0,0
+mobile_price,Entrenamiento/Prueba,Regresión logística,ANOVA F-test,3,1,0
+mobile_price,Entrenamiento/Prueba,Regresión logística,ANOVA F-test,3,2,4
+mobile_price,Entrenamiento/Prueba,Regresión logística,ANOVA F-test,3,3,21
+mobile_price,Random Subsampling (N=30),Regresión logística,ANOVA F-test,0,0,5870
+mobile_price,Random Subsampling (N=30),Regresión logística,ANOVA F-test,0,1,130
+mobile_price,Random Subsampling (N=30),Regresión logística,ANOVA F-test,0,2,0
+mobile_price,Random Subsampling (N=30),Regresión logística,ANOVA F-test,0,3,0
+mobile_price,Random Subsampling (N=30),Regresión logística,ANOVA F-test,1,0,159
+mobile_price,Random Subsampling (N=30),Regresión logística,ANOVA F-test,1,1,5688
+mobile_price,Random Subsampling (N=30),Regresión logística,ANOVA F-test,1,2,153
+mobile_price,Random Subsampling (N=30),Regresión logística,ANOVA F-test,1,3,0
+mobile_price,Random Subsampling (N=30),Regresión logística,ANOVA F-test,2,0,0
+mobile_price,Random Subsampling (N=30),Regresión logística,ANOVA F-test,2,1,212
+mobile_price,Random Subsampling (N=30),Regresión logística,ANOVA F-test,2,2,5621
+mobile_price,Random Subsampling (N=30),Regresión logística,ANOVA F-test,2,3,167
+mobile_price,Random Subsampling (N=30),Regresión logística,ANOVA F-test,3,0,0
+mobile_price,Random Subsampling (N=30),Regresión logística,ANOVA F-test,3,1,0
+mobile_price,Random Subsampling (N=30),Regresión logística,ANOVA F-test,3,2,126
+mobile_price,Random Subsampling (N=30),Regresión logística,ANOVA F-test,3,3,5874
+mobile_price,K-Fold (K=10),Regresión logística,ANOVA F-test,0,0,491
+mobile_price,K-Fold (K=10),Regresión logística,ANOVA F-test,0,1,9
+mobile_price,K-Fold (K=10),Regresión logística,ANOVA F-test,0,2,0
+mobile_price,K-Fold (K=10),Regresión logística,ANOVA F-test,0,3,0
+mobile_price,K-Fold (K=10),Regresión logística,ANOVA F-test,1,0,9
+mobile_price,K-Fold (K=10),Regresión logística,ANOVA F-test,1,1,478
+mobile_price,K-Fold (K=10),Regresión logística,ANOVA F-test,1,2,13
+mobile_price,K-Fold (K=10),Regresión logística,ANOVA F-test,1,3,0
+mobile_price,K-Fold (K=10),Regresión logística,ANOVA F-test,2,0,0
+mobile_price,K-Fold (K=10),Regresión logística,ANOVA F-test,2,1,14
+mobile_price,K-Fold (K=10),Regresión logística,ANOVA F-test,2,2,471
+mobile_price,K-Fold (K=10),Regresión logística,ANOVA F-test,2,3,15
+mobile_price,K-Fold (K=10),Regresión logística,ANOVA F-test,3,0,0
+mobile_price,K-Fold (K=10),Regresión logística,ANOVA F-test,3,1,0
+mobile_price,K-Fold (K=10),Regresión logística,ANOVA F-test,3,2,7
+mobile_price,K-Fold (K=10),Regresión logística,ANOVA F-test,3,3,493
+mobile_price,Leave-One-Out (LOO),Regresión logística,ANOVA F-test,0,0,493
+mobile_price,Leave-One-Out (LOO),Regresión logística,ANOVA F-test,0,1,7
+mobile_price,Leave-One-Out (LOO),Regresión logística,ANOVA F-test,0,2,0
+mobile_price,Leave-One-Out (LOO),Regresión logística,ANOVA F-test,0,3,0
+mobile_price,Leave-One-Out (LOO),Regresión logística,ANOVA F-test,1,0,9
+mobile_price,Leave-One-Out (LOO),Regresión logística,ANOVA F-test,1,1,480
+mobile_price,Leave-One-Out (LOO),Regresión logística,ANOVA F-test,1,2,11
+mobile_price,Leave-One-Out (LOO),Regresión logística,ANOVA F-test,1,3,0
+mobile_price,Leave-One-Out (LOO),Regresión logística,ANOVA F-test,2,0,0
+mobile_price,Leave-One-Out (LOO),Regresión logística,ANOVA F-test,2,1,13
+mobile_price,Leave-One-Out (LOO),Regresión logística,ANOVA F-test,2,2,476
+mobile_price,Leave-One-Out (LOO),Regresión logística,ANOVA F-test,2,3,11
+mobile_price,Leave-One-Out (LOO),Regresión logística,ANOVA F-test,3,0,0
+mobile_price,Leave-One-Out (LOO),Regresión logística,ANOVA F-test,3,1,0
+mobile_price,Leave-One-Out (LOO),Regresión logística,ANOVA F-test,3,2,5
+mobile_price,Leave-One-Out (LOO),Regresión logística,ANOVA F-test,3,3,495
+mobile_price,Stratified Cross-Validation (K=10),Regresión logística,ANOVA F-test,0,0,492
+mobile_price,Stratified Cross-Validation (K=10),Regresión logística,ANOVA F-test,0,1,8
+mobile_price,Stratified Cross-Validation (K=10),Regresión logística,ANOVA F-test,0,2,0
+mobile_price,Stratified Cross-Validation (K=10),Regresión logística,ANOVA F-test,0,3,0
+mobile_price,Stratified Cross-Validation (K=10),Regresión logística,ANOVA F-test,1,0,12
+mobile_price,Stratified Cross-Validation (K=10),Regresión logística,ANOVA F-test,1,1,480
+mobile_price,Stratified Cross-Validation (K=10),Regresión logística,ANOVA F-test,1,2,8
+mobile_price,Stratified Cross-Validation (K=10),Regresión logística,ANOVA F-test,1,3,0
+mobile_price,Stratified Cross-Validation (K=10),Regresión logística,ANOVA F-test,2,0,0
+mobile_price,Stratified Cross-Validation (K=10),Regresión logística,ANOVA F-test,2,1,15
+mobile_price,Stratified Cross-Validation (K=10),Regresión logística,ANOVA F-test,2,2,472
+mobile_price,Stratified Cross-Validation (K=10),Regresión logística,ANOVA F-test,2,3,13
+mobile_price,Stratified Cross-Validation (K=10),Regresión logística,ANOVA F-test,3,0,0
+mobile_price,Stratified Cross-Validation (K=10),Regresión logística,ANOVA F-test,3,1,0
+mobile_price,Stratified Cross-Validation (K=10),Regresión logística,ANOVA F-test,3,2,6
+mobile_price,Stratified Cross-Validation (K=10),Regresión logística,ANOVA F-test,3,3,494
+mobile_price,Hold-Out 60/40,Red neuronal (MLP),Sin selección,0,0,172
+mobile_price,Hold-Out 60/40,Red neuronal (MLP),Sin selección,0,1,27
+mobile_price,Hold-Out 60/40,Red neuronal (MLP),Sin selección,0,2,1
+mobile_price,Hold-Out 60/40,Red neuronal (MLP),Sin selección,0,3,0
+mobile_price,Hold-Out 60/40,Red neuronal (MLP),Sin selección,1,0,66
+mobile_price,Hold-Out 60/40,Red neuronal (MLP),Sin selección,1,1,84
+mobile_price,Hold-Out 60/40,Red neuronal (MLP),Sin selección,1,2,43
+mobile_price,Hold-Out 60/40,Red neuronal (MLP),Sin selección,1,3,7
+mobile_price,Hold-Out 60/40,Red neuronal (MLP),Sin selección,2,0,10
+mobile_price,Hold-Out 60/40,Red neuronal (MLP),Sin selección,2,1,47
+mobile_price,Hold-Out 60/40,Red neuronal (MLP),Sin selección,2,2,74
+mobile_price,Hold-Out 60/40,Red neuronal (MLP),Sin selección,2,3,69
+mobile_price,Hold-Out 60/40,Red neuronal (MLP),Sin selección,3,0,0
+mobile_price,Hold-Out 60/40,Red neuronal (MLP),Sin selección,3,1,6
+mobile_price,Hold-Out 60/40,Red neuronal (MLP),Sin selección,3,2,13
+mobile_price,Hold-Out 60/40,Red neuronal (MLP),Sin selección,3,3,181
+mobile_price,Entrenamiento/Prueba,Red neuronal (MLP),Sin selección,0,0,3
+mobile_price,Entrenamiento/Prueba,Red neuronal (MLP),Sin selección,0,1,7
+mobile_price,Entrenamiento/Prueba,Red neuronal (MLP),Sin selección,0,2,5
+mobile_price,Entrenamiento/Prueba,Red neuronal (MLP),Sin selección,0,3,10
+mobile_price,Entrenamiento/Prueba,Red neuronal (MLP),Sin selección,1,0,3
+mobile_price,Entrenamiento/Prueba,Red neuronal (MLP),Sin selección,1,1,11
+mobile_price,Entrenamiento/Prueba,Red neuronal (MLP),Sin selección,1,2,3
+mobile_price,Entrenamiento/Prueba,Red neuronal (MLP),Sin selección,1,3,8
+mobile_price,Entrenamiento/Prueba,Red neuronal (MLP),Sin selección,2,0,3
+mobile_price,Entrenamiento/Prueba,Red neuronal (MLP),Sin selección,2,1,8
+mobile_price,Entrenamiento/Prueba,Red neuronal (MLP),Sin selección,2,2,4
+mobile_price,Entrenamiento/Prueba,Red neuronal (MLP),Sin selección,2,3,10
+mobile_price,Entrenamiento/Prueba,Red neuronal (MLP),Sin selección,3,0,2
+mobile_price,Entrenamiento/Prueba,Red neuronal (MLP),Sin selección,3,1,11
+mobile_price,Entrenamiento/Prueba,Red neuronal (MLP),Sin selección,3,2,3
+mobile_price,Entrenamiento/Prueba,Red neuronal (MLP),Sin selección,3,3,9
+mobile_price,Random Subsampling (N=30),Red neuronal (MLP),Sin selección,0,0,5128
+mobile_price,Random Subsampling (N=30),Red neuronal (MLP),Sin selección,0,1,749
+mobile_price,Random Subsampling (N=30),Red neuronal (MLP),Sin selección,0,2,104
+mobile_price,Random Subsampling (N=30),Red neuronal (MLP),Sin selección,0,3,19
+mobile_price,Random Subsampling (N=30),Red neuronal (MLP),Sin selección,1,0,2165
+mobile_price,Random Subsampling (N=30),Red neuronal (MLP),Sin selección,1,1,2444
+mobile_price,Random Subsampling (N=30),Red neuronal (MLP),Sin selección,1,2,1033
+mobile_price,Random Subsampling (N=30),Red neuronal (MLP),Sin selección,1,3,358
+mobile_price,Random Subsampling (N=30),Red neuronal (MLP),Sin selección,2,0,278
+mobile_price,Random Subsampling (N=30),Red neuronal (MLP),Sin selección,2,1,1122
+mobile_price,Random Subsampling (N=30),Red neuronal (MLP),Sin selección,2,2,2205
+mobile_price,Random Subsampling (N=30),Red neuronal (MLP),Sin selección,2,3,2395
+mobile_price,Random Subsampling (N=30),Red neuronal (MLP),Sin selección,3,0,16
+mobile_price,Random Subsampling (N=30),Red neuronal (MLP),Sin selección,3,1,118
+mobile_price,Random Subsampling (N=30),Red neuronal (MLP),Sin selección,3,2,658
+mobile_price,Random Subsampling (N=30),Red neuronal (MLP),Sin selección,3,3,5208
+mobile_price,K-Fold (K=10),Red neuronal (MLP),Sin selección,0,0,477
+mobile_price,K-Fold (K=10),Red neuronal (MLP),Sin selección,0,1,23
+mobile_price,K-Fold (K=10),Red neuronal (MLP),Sin selección,0,2,0
+mobile_price,K-Fold (K=10),Red neuronal (MLP),Sin selección,0,3,0
+mobile_price,K-Fold (K=10),Red neuronal (MLP),Sin selección,1,0,159
+mobile_price,K-Fold (K=10),Red neuronal (MLP),Sin selección,1,1,276
+mobile_price,K-Fold (K=10),Red neuronal (MLP),Sin selección,1,2,61
+mobile_price,K-Fold (K=10),Red neuronal (MLP),Sin selección,1,3,4
+mobile_price,K-Fold (K=10),Red neuronal (MLP),Sin selección,2,0,1
+mobile_price,K-Fold (K=10),Red neuronal (MLP),Sin selección,2,1,58
+mobile_price,K-Fold (K=10),Red neuronal (MLP),Sin selección,2,2,263
+mobile_price,K-Fold (K=10),Red neuronal (MLP),Sin selección,2,3,178
+mobile_price,K-Fold (K=10),Red neuronal (MLP),Sin selección,3,0,0
+mobile_price,K-Fold (K=10),Red neuronal (MLP),Sin selección,3,1,1
+mobile_price,K-Fold (K=10),Red neuronal (MLP),Sin selección,3,2,36
+mobile_price,K-Fold (K=10),Red neuronal (MLP),Sin selección,3,3,463
+mobile_price,Leave-One-Out (LOO),Red neuronal (MLP),Sin selección,0,0,476
+mobile_price,Leave-One-Out (LOO),Red neuronal (MLP),Sin selección,0,1,24
+mobile_price,Leave-One-Out (LOO),Red neuronal (MLP),Sin selección,0,2,0
+mobile_price,Leave-One-Out (LOO),Red neuronal (MLP),Sin selección,0,3,0
+mobile_price,Leave-One-Out (LOO),Red neuronal (MLP),Sin selección,1,0,141
+mobile_price,Leave-One-Out (LOO),Red neuronal (MLP),Sin selección,1,1,301
+mobile_price,Leave-One-Out (LOO),Red neuronal (MLP),Sin selección,1,2,55
+mobile_price,Leave-One-Out (LOO),Red neuronal (MLP),Sin selección,1,3,3
+mobile_price,Leave-One-Out (LOO),Red neuronal (MLP),Sin selección,2,0,0
+mobile_price,Leave-One-Out (LOO),Red neuronal (MLP),Sin selección,2,1,57
+mobile_price,Leave-One-Out (LOO),Red neuronal (MLP),Sin selección,2,2,289
+mobile_price,Leave-One-Out (LOO),Red neuronal (MLP),Sin selección,2,3,154
+mobile_price,Leave-One-Out (LOO),Red neuronal (MLP),Sin selección,3,0,0
+mobile_price,Leave-One-Out (LOO),Red neuronal (MLP),Sin selección,3,1,0
+mobile_price,Leave-One-Out (LOO),Red neuronal (MLP),Sin selección,3,2,34
+mobile_price,Leave-One-Out (LOO),Red neuronal (MLP),Sin selección,3,3,466
+mobile_price,Stratified Cross-Validation (K=10),Red neuronal (MLP),Sin selección,0,0,472
+mobile_price,Stratified Cross-Validation (K=10),Red neuronal (MLP),Sin selección,0,1,28
+mobile_price,Stratified Cross-Validation (K=10),Red neuronal (MLP),Sin selección,0,2,0
+mobile_price,Stratified Cross-Validation (K=10),Red neuronal (MLP),Sin selección,0,3,0
+mobile_price,Stratified Cross-Validation (K=10),Red neuronal (MLP),Sin selección,1,0,153
+mobile_price,Stratified Cross-Validation (K=10),Red neuronal (MLP),Sin selección,1,1,284
+mobile_price,Stratified Cross-Validation (K=10),Red neuronal (MLP),Sin selección,1,2,59
+mobile_price,Stratified Cross-Validation (K=10),Red neuronal (MLP),Sin selección,1,3,4
+mobile_price,Stratified Cross-Validation (K=10),Red neuronal (MLP),Sin selección,2,0,1
+mobile_price,Stratified Cross-Validation (K=10),Red neuronal (MLP),Sin selección,2,1,75
+mobile_price,Stratified Cross-Validation (K=10),Red neuronal (MLP),Sin selección,2,2,251
+mobile_price,Stratified Cross-Validation (K=10),Red neuronal (MLP),Sin selección,2,3,173
+mobile_price,Stratified Cross-Validation (K=10),Red neuronal (MLP),Sin selección,3,0,0
+mobile_price,Stratified Cross-Validation (K=10),Red neuronal (MLP),Sin selección,3,1,0
+mobile_price,Stratified Cross-Validation (K=10),Red neuronal (MLP),Sin selección,3,2,37
+mobile_price,Stratified Cross-Validation (K=10),Red neuronal (MLP),Sin selección,3,3,463
+mobile_price,Hold-Out 60/40,Red neuronal (MLP),ANOVA F-test,0,0,159
+mobile_price,Hold-Out 60/40,Red neuronal (MLP),ANOVA F-test,0,1,40
+mobile_price,Hold-Out 60/40,Red neuronal (MLP),ANOVA F-test,0,2,1
+mobile_price,Hold-Out 60/40,Red neuronal (MLP),ANOVA F-test,0,3,0
+mobile_price,Hold-Out 60/40,Red neuronal (MLP),ANOVA F-test,1,0,83
+mobile_price,Hold-Out 60/40,Red neuronal (MLP),ANOVA F-test,1,1,67
+mobile_price,Hold-Out 60/40,Red neuronal (MLP),ANOVA F-test,1,2,47
+mobile_price,Hold-Out 60/40,Red neuronal (MLP),ANOVA F-test,1,3,3
+mobile_price,Hold-Out 60/40,Red neuronal (MLP),ANOVA F-test,2,0,7
+mobile_price,Hold-Out 60/40,Red neuronal (MLP),ANOVA F-test,2,1,19
+mobile_price,Hold-Out 60/40,Red neuronal (MLP),ANOVA F-test,2,2,108
+mobile_price,Hold-Out 60/40,Red neuronal (MLP),ANOVA F-test,2,3,66
+mobile_price,Hold-Out 60/40,Red neuronal (MLP),ANOVA F-test,3,0,0
+mobile_price,Hold-Out 60/40,Red neuronal (MLP),ANOVA F-test,3,1,0
+mobile_price,Hold-Out 60/40,Red neuronal (MLP),ANOVA F-test,3,2,13
+mobile_price,Hold-Out 60/40,Red neuronal (MLP),ANOVA F-test,3,3,187
+mobile_price,Entrenamiento/Prueba,Red neuronal (MLP),ANOVA F-test,0,0,4
+mobile_price,Entrenamiento/Prueba,Red neuronal (MLP),ANOVA F-test,0,1,1
+mobile_price,Entrenamiento/Prueba,Red neuronal (MLP),ANOVA F-test,0,2,19
+mobile_price,Entrenamiento/Prueba,Red neuronal (MLP),ANOVA F-test,0,3,1
+mobile_price,Entrenamiento/Prueba,Red neuronal (MLP),ANOVA F-test,1,0,10
+mobile_price,Entrenamiento/Prueba,Red neuronal (MLP),ANOVA F-test,1,1,1
+mobile_price,Entrenamiento/Prueba,Red neuronal (MLP),ANOVA F-test,1,2,10
+mobile_price,Entrenamiento/Prueba,Red neuronal (MLP),ANOVA F-test,1,3,4
+mobile_price,Entrenamiento/Prueba,Red neuronal (MLP),ANOVA F-test,2,0,7
+mobile_price,Entrenamiento/Prueba,Red neuronal (MLP),ANOVA F-test,2,1,1
+mobile_price,Entrenamiento/Prueba,Red neuronal (MLP),ANOVA F-test,2,2,12
+mobile_price,Entrenamiento/Prueba,Red neuronal (MLP),ANOVA F-test,2,3,5
+mobile_price,Entrenamiento/Prueba,Red neuronal (MLP),ANOVA F-test,3,0,5
+mobile_price,Entrenamiento/Prueba,Red neuronal (MLP),ANOVA F-test,3,1,0
+mobile_price,Entrenamiento/Prueba,Red neuronal (MLP),ANOVA F-test,3,2,12
+mobile_price,Entrenamiento/Prueba,Red neuronal (MLP),ANOVA F-test,3,3,8
+mobile_price,Random Subsampling (N=30),Red neuronal (MLP),ANOVA F-test,0,0,5225
+mobile_price,Random Subsampling (N=30),Red neuronal (MLP),ANOVA F-test,0,1,717
+mobile_price,Random Subsampling (N=30),Red neuronal (MLP),ANOVA F-test,0,2,56
+mobile_price,Random Subsampling (N=30),Red neuronal (MLP),ANOVA F-test,0,3,2
+mobile_price,Random Subsampling (N=30),Red neuronal (MLP),ANOVA F-test,1,0,2170
+mobile_price,Random Subsampling (N=30),Red neuronal (MLP),ANOVA F-test,1,1,2479
+mobile_price,Random Subsampling (N=30),Red neuronal (MLP),ANOVA F-test,1,2,1199
+mobile_price,Random Subsampling (N=30),Red neuronal (MLP),ANOVA F-test,1,3,152
+mobile_price,Random Subsampling (N=30),Red neuronal (MLP),ANOVA F-test,2,0,143
+mobile_price,Random Subsampling (N=30),Red neuronal (MLP),ANOVA F-test,2,1,787
+mobile_price,Random Subsampling (N=30),Red neuronal (MLP),ANOVA F-test,2,2,3179
+mobile_price,Random Subsampling (N=30),Red neuronal (MLP),ANOVA F-test,2,3,1891
+mobile_price,Random Subsampling (N=30),Red neuronal (MLP),ANOVA F-test,3,0,0
+mobile_price,Random Subsampling (N=30),Red neuronal (MLP),ANOVA F-test,3,1,32
+mobile_price,Random Subsampling (N=30),Red neuronal (MLP),ANOVA F-test,3,2,608
+mobile_price,Random Subsampling (N=30),Red neuronal (MLP),ANOVA F-test,3,3,5360
+mobile_price,K-Fold (K=10),Red neuronal (MLP),ANOVA F-test,0,0,479
+mobile_price,K-Fold (K=10),Red neuronal (MLP),ANOVA F-test,0,1,21
+mobile_price,K-Fold (K=10),Red neuronal (MLP),ANOVA F-test,0,2,0
+mobile_price,K-Fold (K=10),Red neuronal (MLP),ANOVA F-test,0,3,0
+mobile_price,K-Fold (K=10),Red neuronal (MLP),ANOVA F-test,1,0,149
+mobile_price,K-Fold (K=10),Red neuronal (MLP),ANOVA F-test,1,1,274
+mobile_price,K-Fold (K=10),Red neuronal (MLP),ANOVA F-test,1,2,76
+mobile_price,K-Fold (K=10),Red neuronal (MLP),ANOVA F-test,1,3,1
+mobile_price,K-Fold (K=10),Red neuronal (MLP),ANOVA F-test,2,0,1
+mobile_price,K-Fold (K=10),Red neuronal (MLP),ANOVA F-test,2,1,46
+mobile_price,K-Fold (K=10),Red neuronal (MLP),ANOVA F-test,2,2,332
+mobile_price,K-Fold (K=10),Red neuronal (MLP),ANOVA F-test,2,3,121
+mobile_price,K-Fold (K=10),Red neuronal (MLP),ANOVA F-test,3,0,0
+mobile_price,K-Fold (K=10),Red neuronal (MLP),ANOVA F-test,3,1,0
+mobile_price,K-Fold (K=10),Red neuronal (MLP),ANOVA F-test,3,2,36
+mobile_price,K-Fold (K=10),Red neuronal (MLP),ANOVA F-test,3,3,464
+mobile_price,Leave-One-Out (LOO),Red neuronal (MLP),ANOVA F-test,0,0,482
+mobile_price,Leave-One-Out (LOO),Red neuronal (MLP),ANOVA F-test,0,1,18
+mobile_price,Leave-One-Out (LOO),Red neuronal (MLP),ANOVA F-test,0,2,0
+mobile_price,Leave-One-Out (LOO),Red neuronal (MLP),ANOVA F-test,0,3,0
+mobile_price,Leave-One-Out (LOO),Red neuronal (MLP),ANOVA F-test,1,0,105
+mobile_price,Leave-One-Out (LOO),Red neuronal (MLP),ANOVA F-test,1,1,335
+mobile_price,Leave-One-Out (LOO),Red neuronal (MLP),ANOVA F-test,1,2,59
+mobile_price,Leave-One-Out (LOO),Red neuronal (MLP),ANOVA F-test,1,3,1
+mobile_price,Leave-One-Out (LOO),Red neuronal (MLP),ANOVA F-test,2,0,0
+mobile_price,Leave-One-Out (LOO),Red neuronal (MLP),ANOVA F-test,2,1,44
+mobile_price,Leave-One-Out (LOO),Red neuronal (MLP),ANOVA F-test,2,2,338
+mobile_price,Leave-One-Out (LOO),Red neuronal (MLP),ANOVA F-test,2,3,118
+mobile_price,Leave-One-Out (LOO),Red neuronal (MLP),ANOVA F-test,3,0,0
+mobile_price,Leave-One-Out (LOO),Red neuronal (MLP),ANOVA F-test,3,1,0
+mobile_price,Leave-One-Out (LOO),Red neuronal (MLP),ANOVA F-test,3,2,33
+mobile_price,Leave-One-Out (LOO),Red neuronal (MLP),ANOVA F-test,3,3,467
+mobile_price,Stratified Cross-Validation (K=10),Red neuronal (MLP),ANOVA F-test,0,0,477
+mobile_price,Stratified Cross-Validation (K=10),Red neuronal (MLP),ANOVA F-test,0,1,23
+mobile_price,Stratified Cross-Validation (K=10),Red neuronal (MLP),ANOVA F-test,0,2,0
+mobile_price,Stratified Cross-Validation (K=10),Red neuronal (MLP),ANOVA F-test,0,3,0
+mobile_price,Stratified Cross-Validation (K=10),Red neuronal (MLP),ANOVA F-test,1,0,154
+mobile_price,Stratified Cross-Validation (K=10),Red neuronal (MLP),ANOVA F-test,1,1,260
+mobile_price,Stratified Cross-Validation (K=10),Red neuronal (MLP),ANOVA F-test,1,2,84
+mobile_price,Stratified Cross-Validation (K=10),Red neuronal (MLP),ANOVA F-test,1,3,2
+mobile_price,Stratified Cross-Validation (K=10),Red neuronal (MLP),ANOVA F-test,2,0,2
+mobile_price,Stratified Cross-Validation (K=10),Red neuronal (MLP),ANOVA F-test,2,1,40
+mobile_price,Stratified Cross-Validation (K=10),Red neuronal (MLP),ANOVA F-test,2,2,341
+mobile_price,Stratified Cross-Validation (K=10),Red neuronal (MLP),ANOVA F-test,2,3,117
+mobile_price,Stratified Cross-Validation (K=10),Red neuronal (MLP),ANOVA F-test,3,0,0
+mobile_price,Stratified Cross-Validation (K=10),Red neuronal (MLP),ANOVA F-test,3,1,0
+mobile_price,Stratified Cross-Validation (K=10),Red neuronal (MLP),ANOVA F-test,3,2,30
+mobile_price,Stratified Cross-Validation (K=10),Red neuronal (MLP),ANOVA F-test,3,3,470
+mobile_price,Hold-Out 60/40,KNN,Sin selección,0,0,113
+mobile_price,Hold-Out 60/40,KNN,Sin selección,0,1,63
+mobile_price,Hold-Out 60/40,KNN,Sin selección,0,2,24
+mobile_price,Hold-Out 60/40,KNN,Sin selección,0,3,0
+mobile_price,Hold-Out 60/40,KNN,Sin selección,1,0,53
+mobile_price,Hold-Out 60/40,KNN,Sin selección,1,1,71
+mobile_price,Hold-Out 60/40,KNN,Sin selección,1,2,63
+mobile_price,Hold-Out 60/40,KNN,Sin selección,1,3,13
+mobile_price,Hold-Out 60/40,KNN,Sin selección,2,0,8
+mobile_price,Hold-Out 60/40,KNN,Sin selección,2,1,61
+mobile_price,Hold-Out 60/40,KNN,Sin selección,2,2,82
+mobile_price,Hold-Out 60/40,KNN,Sin selección,2,3,49
+mobile_price,Hold-Out 60/40,KNN,Sin selección,3,0,1
+mobile_price,Hold-Out 60/40,KNN,Sin selección,3,1,20
+mobile_price,Hold-Out 60/40,KNN,Sin selección,3,2,53
+mobile_price,Hold-Out 60/40,KNN,Sin selección,3,3,126
+mobile_price,Entrenamiento/Prueba,KNN,Sin selección,0,0,14
+mobile_price,Entrenamiento/Prueba,KNN,Sin selección,0,1,7
+mobile_price,Entrenamiento/Prueba,KNN,Sin selección,0,2,4
+mobile_price,Entrenamiento/Prueba,KNN,Sin selección,0,3,0
+mobile_price,Entrenamiento/Prueba,KNN,Sin selección,1,0,6
+mobile_price,Entrenamiento/Prueba,KNN,Sin selección,1,1,12
+mobile_price,Entrenamiento/Prueba,KNN,Sin selección,1,2,4
+mobile_price,Entrenamiento/Prueba,KNN,Sin selección,1,3,3
+mobile_price,Entrenamiento/Prueba,KNN,Sin selección,2,0,1
+mobile_price,Entrenamiento/Prueba,KNN,Sin selección,2,1,7
+mobile_price,Entrenamiento/Prueba,KNN,Sin selección,2,2,10
+mobile_price,Entrenamiento/Prueba,KNN,Sin selección,2,3,7
+mobile_price,Entrenamiento/Prueba,KNN,Sin selección,3,0,0
+mobile_price,Entrenamiento/Prueba,KNN,Sin selección,3,1,6
+mobile_price,Entrenamiento/Prueba,KNN,Sin selección,3,2,7
+mobile_price,Entrenamiento/Prueba,KNN,Sin selección,3,3,12
+mobile_price,Random Subsampling (N=30),KNN,Sin selección,0,0,3686
+mobile_price,Random Subsampling (N=30),KNN,Sin selección,0,1,1760
+mobile_price,Random Subsampling (N=30),KNN,Sin selección,0,2,517
+mobile_price,Random Subsampling (N=30),KNN,Sin selección,0,3,37
+mobile_price,Random Subsampling (N=30),KNN,Sin selección,1,0,1577
+mobile_price,Random Subsampling (N=30),KNN,Sin selección,1,1,2358
+mobile_price,Random Subsampling (N=30),KNN,Sin selección,1,2,1699
+mobile_price,Random Subsampling (N=30),KNN,Sin selección,1,3,366
+mobile_price,Random Subsampling (N=30),KNN,Sin selección,2,0,416
+mobile_price,Random Subsampling (N=30),KNN,Sin selección,2,1,1693
+mobile_price,Random Subsampling (N=30),KNN,Sin selección,2,2,2526
+mobile_price,Random Subsampling (N=30),KNN,Sin selección,2,3,1365
+mobile_price,Random Subsampling (N=30),KNN,Sin selección,3,0,48
+mobile_price,Random Subsampling (N=30),KNN,Sin selección,3,1,503
+mobile_price,Random Subsampling (N=30),KNN,Sin selección,3,2,1842
+mobile_price,Random Subsampling (N=30),KNN,Sin selección,3,3,3607
+mobile_price,K-Fold (K=10),KNN,Sin selección,0,0,318
+mobile_price,K-Fold (K=10),KNN,Sin selección,0,1,142
+mobile_price,K-Fold (K=10),KNN,Sin selección,0,2,40
+mobile_price,K-Fold (K=10),KNN,Sin selección,0,3,0
+mobile_price,K-Fold (K=10),KNN,Sin selección,1,0,127
+mobile_price,K-Fold (K=10),KNN,Sin selección,1,1,198
+mobile_price,K-Fold (K=10),KNN,Sin selección,1,2,150
+mobile_price,K-Fold (K=10),KNN,Sin selección,1,3,25
+mobile_price,K-Fold (K=10),KNN,Sin selección,2,0,30
+mobile_price,K-Fold (K=10),KNN,Sin selección,2,1,144
+mobile_price,K-Fold (K=10),KNN,Sin selección,2,2,215
+mobile_price,K-Fold (K=10),KNN,Sin selección,2,3,111
+mobile_price,K-Fold (K=10),KNN,Sin selección,3,0,1
+mobile_price,K-Fold (K=10),KNN,Sin selección,3,1,35
+mobile_price,K-Fold (K=10),KNN,Sin selección,3,2,166
+mobile_price,K-Fold (K=10),KNN,Sin selección,3,3,298
+mobile_price,Leave-One-Out (LOO),KNN,Sin selección,0,0,319
+mobile_price,Leave-One-Out (LOO),KNN,Sin selección,0,1,142
+mobile_price,Leave-One-Out (LOO),KNN,Sin selección,0,2,38
+mobile_price,Leave-One-Out (LOO),KNN,Sin selección,0,3,1
+mobile_price,Leave-One-Out (LOO),KNN,Sin selección,1,0,131
+mobile_price,Leave-One-Out (LOO),KNN,Sin selección,1,1,196
+mobile_price,Leave-One-Out (LOO),KNN,Sin selección,1,2,144
+mobile_price,Leave-One-Out (LOO),KNN,Sin selección,1,3,29
+mobile_price,Leave-One-Out (LOO),KNN,Sin selección,2,0,30
+mobile_price,Leave-One-Out (LOO),KNN,Sin selección,2,1,147
+mobile_price,Leave-One-Out (LOO),KNN,Sin selección,2,2,217
+mobile_price,Leave-One-Out (LOO),KNN,Sin selección,2,3,106
+mobile_price,Leave-One-Out (LOO),KNN,Sin selección,3,0,3
+mobile_price,Leave-One-Out (LOO),KNN,Sin selección,3,1,42
+mobile_price,Leave-One-Out (LOO),KNN,Sin selección,3,2,150
+mobile_price,Leave-One-Out (LOO),KNN,Sin selección,3,3,305
+mobile_price,Stratified Cross-Validation (K=10),KNN,Sin selección,0,0,311
+mobile_price,Stratified Cross-Validation (K=10),KNN,Sin selección,0,1,148
+mobile_price,Stratified Cross-Validation (K=10),KNN,Sin selección,0,2,40
+mobile_price,Stratified Cross-Validation (K=10),KNN,Sin selección,0,3,1
+mobile_price,Stratified Cross-Validation (K=10),KNN,Sin selección,1,0,128
+mobile_price,Stratified Cross-Validation (K=10),KNN,Sin selección,1,1,202
+mobile_price,Stratified Cross-Validation (K=10),KNN,Sin selección,1,2,146
+mobile_price,Stratified Cross-Validation (K=10),KNN,Sin selección,1,3,24
+mobile_price,Stratified Cross-Validation (K=10),KNN,Sin selección,2,0,28
+mobile_price,Stratified Cross-Validation (K=10),KNN,Sin selección,2,1,142
+mobile_price,Stratified Cross-Validation (K=10),KNN,Sin selección,2,2,224
+mobile_price,Stratified Cross-Validation (K=10),KNN,Sin selección,2,3,106
+mobile_price,Stratified Cross-Validation (K=10),KNN,Sin selección,3,0,4
+mobile_price,Stratified Cross-Validation (K=10),KNN,Sin selección,3,1,45
+mobile_price,Stratified Cross-Validation (K=10),KNN,Sin selección,3,2,154
+mobile_price,Stratified Cross-Validation (K=10),KNN,Sin selección,3,3,297
+mobile_price,Hold-Out 60/40,KNN,ANOVA F-test,0,0,139
+mobile_price,Hold-Out 60/40,KNN,ANOVA F-test,0,1,57
+mobile_price,Hold-Out 60/40,KNN,ANOVA F-test,0,2,4
+mobile_price,Hold-Out 60/40,KNN,ANOVA F-test,0,3,0
+mobile_price,Hold-Out 60/40,KNN,ANOVA F-test,1,0,37
+mobile_price,Hold-Out 60/40,KNN,ANOVA F-test,1,1,112
+mobile_price,Hold-Out 60/40,KNN,ANOVA F-test,1,2,48
+mobile_price,Hold-Out 60/40,KNN,ANOVA F-test,1,3,3
+mobile_price,Hold-Out 60/40,KNN,ANOVA F-test,2,0,2
+mobile_price,Hold-Out 60/40,KNN,ANOVA F-test,2,1,45
+mobile_price,Hold-Out 60/40,KNN,ANOVA F-test,2,2,112
+mobile_price,Hold-Out 60/40,KNN,ANOVA F-test,2,3,41
+mobile_price,Hold-Out 60/40,KNN,ANOVA F-test,3,0,0
+mobile_price,Hold-Out 60/40,KNN,ANOVA F-test,3,1,6
+mobile_price,Hold-Out 60/40,KNN,ANOVA F-test,3,2,48
+mobile_price,Hold-Out 60/40,KNN,ANOVA F-test,3,3,146
+mobile_price,Entrenamiento/Prueba,KNN,ANOVA F-test,0,0,13
+mobile_price,Entrenamiento/Prueba,KNN,ANOVA F-test,0,1,8
+mobile_price,Entrenamiento/Prueba,KNN,ANOVA F-test,0,2,3
+mobile_price,Entrenamiento/Prueba,KNN,ANOVA F-test,0,3,1
+mobile_price,Entrenamiento/Prueba,KNN,ANOVA F-test,1,0,5
+mobile_price,Entrenamiento/Prueba,KNN,ANOVA F-test,1,1,8
+mobile_price,Entrenamiento/Prueba,KNN,ANOVA F-test,1,2,10
+mobile_price,Entrenamiento/Prueba,KNN,ANOVA F-test,1,3,2
+mobile_price,Entrenamiento/Prueba,KNN,ANOVA F-test,2,0,2
+mobile_price,Entrenamiento/Prueba,KNN,ANOVA F-test,2,1,8
+mobile_price,Entrenamiento/Prueba,KNN,ANOVA F-test,2,2,11
+mobile_price,Entrenamiento/Prueba,KNN,ANOVA F-test,2,3,4
+mobile_price,Entrenamiento/Prueba,KNN,ANOVA F-test,3,0,0
+mobile_price,Entrenamiento/Prueba,KNN,ANOVA F-test,3,1,1
+mobile_price,Entrenamiento/Prueba,KNN,ANOVA F-test,3,2,6
+mobile_price,Entrenamiento/Prueba,KNN,ANOVA F-test,3,3,18
+mobile_price,Random Subsampling (N=30),KNN,ANOVA F-test,0,0,4482
+mobile_price,Random Subsampling (N=30),KNN,ANOVA F-test,0,1,1418
+mobile_price,Random Subsampling (N=30),KNN,ANOVA F-test,0,2,100
+mobile_price,Random Subsampling (N=30),KNN,ANOVA F-test,0,3,0
+mobile_price,Random Subsampling (N=30),KNN,ANOVA F-test,1,0,1226
+mobile_price,Random Subsampling (N=30),KNN,ANOVA F-test,1,1,3216
+mobile_price,Random Subsampling (N=30),KNN,ANOVA F-test,1,2,1478
+mobile_price,Random Subsampling (N=30),KNN,ANOVA F-test,1,3,80
+mobile_price,Random Subsampling (N=30),KNN,ANOVA F-test,2,0,77
+mobile_price,Random Subsampling (N=30),KNN,ANOVA F-test,2,1,1508
+mobile_price,Random Subsampling (N=30),KNN,ANOVA F-test,2,2,3249
+mobile_price,Random Subsampling (N=30),KNN,ANOVA F-test,2,3,1166
+mobile_price,Random Subsampling (N=30),KNN,ANOVA F-test,3,0,0
+mobile_price,Random Subsampling (N=30),KNN,ANOVA F-test,3,1,101
+mobile_price,Random Subsampling (N=30),KNN,ANOVA F-test,3,2,1485
+mobile_price,Random Subsampling (N=30),KNN,ANOVA F-test,3,3,4414
+mobile_price,K-Fold (K=10),KNN,ANOVA F-test,0,0,390
+mobile_price,K-Fold (K=10),KNN,ANOVA F-test,0,1,103
+mobile_price,K-Fold (K=10),KNN,ANOVA F-test,0,2,7
+mobile_price,K-Fold (K=10),KNN,ANOVA F-test,0,3,0
+mobile_price,K-Fold (K=10),KNN,ANOVA F-test,1,0,104
+mobile_price,K-Fold (K=10),KNN,ANOVA F-test,1,1,267
+mobile_price,K-Fold (K=10),KNN,ANOVA F-test,1,2,126
+mobile_price,K-Fold (K=10),KNN,ANOVA F-test,1,3,3
+mobile_price,K-Fold (K=10),KNN,ANOVA F-test,2,0,5
+mobile_price,K-Fold (K=10),KNN,ANOVA F-test,2,1,116
+mobile_price,K-Fold (K=10),KNN,ANOVA F-test,2,2,280
+mobile_price,K-Fold (K=10),KNN,ANOVA F-test,2,3,99
+mobile_price,K-Fold (K=10),KNN,ANOVA F-test,3,0,0
+mobile_price,K-Fold (K=10),KNN,ANOVA F-test,3,1,7
+mobile_price,K-Fold (K=10),KNN,ANOVA F-test,3,2,110
+mobile_price,K-Fold (K=10),KNN,ANOVA F-test,3,3,383
+mobile_price,Leave-One-Out (LOO),KNN,ANOVA F-test,0,0,382
+mobile_price,Leave-One-Out (LOO),KNN,ANOVA F-test,0,1,115
+mobile_price,Leave-One-Out (LOO),KNN,ANOVA F-test,0,2,3
+mobile_price,Leave-One-Out (LOO),KNN,ANOVA F-test,0,3,0
+mobile_price,Leave-One-Out (LOO),KNN,ANOVA F-test,1,0,89
+mobile_price,Leave-One-Out (LOO),KNN,ANOVA F-test,1,1,281
+mobile_price,Leave-One-Out (LOO),KNN,ANOVA F-test,1,2,127
+mobile_price,Leave-One-Out (LOO),KNN,ANOVA F-test,1,3,3
+mobile_price,Leave-One-Out (LOO),KNN,ANOVA F-test,2,0,2
+mobile_price,Leave-One-Out (LOO),KNN,ANOVA F-test,2,1,112
+mobile_price,Leave-One-Out (LOO),KNN,ANOVA F-test,2,2,298
+mobile_price,Leave-One-Out (LOO),KNN,ANOVA F-test,2,3,88
+mobile_price,Leave-One-Out (LOO),KNN,ANOVA F-test,3,0,0
+mobile_price,Leave-One-Out (LOO),KNN,ANOVA F-test,3,1,7
+mobile_price,Leave-One-Out (LOO),KNN,ANOVA F-test,3,2,101
+mobile_price,Leave-One-Out (LOO),KNN,ANOVA F-test,3,3,392
+mobile_price,Stratified Cross-Validation (K=10),KNN,ANOVA F-test,0,0,390
+mobile_price,Stratified Cross-Validation (K=10),KNN,ANOVA F-test,0,1,104
+mobile_price,Stratified Cross-Validation (K=10),KNN,ANOVA F-test,0,2,6
+mobile_price,Stratified Cross-Validation (K=10),KNN,ANOVA F-test,0,3,0
+mobile_price,Stratified Cross-Validation (K=10),KNN,ANOVA F-test,1,0,90
+mobile_price,Stratified Cross-Validation (K=10),KNN,ANOVA F-test,1,1,295
+mobile_price,Stratified Cross-Validation (K=10),KNN,ANOVA F-test,1,2,114
+mobile_price,Stratified Cross-Validation (K=10),KNN,ANOVA F-test,1,3,1
+mobile_price,Stratified Cross-Validation (K=10),KNN,ANOVA F-test,2,0,4
+mobile_price,Stratified Cross-Validation (K=10),KNN,ANOVA F-test,2,1,107
+mobile_price,Stratified Cross-Validation (K=10),KNN,ANOVA F-test,2,2,305
+mobile_price,Stratified Cross-Validation (K=10),KNN,ANOVA F-test,2,3,84
+mobile_price,Stratified Cross-Validation (K=10),KNN,ANOVA F-test,3,0,0
+mobile_price,Stratified Cross-Validation (K=10),KNN,ANOVA F-test,3,1,5
+mobile_price,Stratified Cross-Validation (K=10),KNN,ANOVA F-test,3,2,112
+mobile_price,Stratified Cross-Validation (K=10),KNN,ANOVA F-test,3,3,383
+iris,Hold-Out 60/40,SVM lineal,Sin selección,no versicolor,no versicolor,31
+iris,Hold-Out 60/40,SVM lineal,Sin selección,no versicolor,versicolor,9
+iris,Hold-Out 60/40,SVM lineal,Sin selección,versicolor,no versicolor,10
+iris,Hold-Out 60/40,SVM lineal,Sin selección,versicolor,versicolor,10
+iris,Entrenamiento/Prueba,SVM lineal,Sin selección,no versicolor,no versicolor,46
+iris,Entrenamiento/Prueba,SVM lineal,Sin selección,no versicolor,versicolor,4
+iris,Entrenamiento/Prueba,SVM lineal,Sin selección,versicolor,no versicolor,15
+iris,Entrenamiento/Prueba,SVM lineal,Sin selección,versicolor,versicolor,10
+iris,Random Subsampling (N=30),SVM lineal,Sin selección,no versicolor,no versicolor,1038
+iris,Random Subsampling (N=30),SVM lineal,Sin selección,no versicolor,versicolor,162
+iris,Random Subsampling (N=30),SVM lineal,Sin selección,versicolor,no versicolor,326
+iris,Random Subsampling (N=30),SVM lineal,Sin selección,versicolor,versicolor,274
+iris,K-Fold (K=10),SVM lineal,Sin selección,no versicolor,no versicolor,84
+iris,K-Fold (K=10),SVM lineal,Sin selección,no versicolor,versicolor,16
+iris,K-Fold (K=10),SVM lineal,Sin selección,versicolor,no versicolor,25
+iris,K-Fold (K=10),SVM lineal,Sin selección,versicolor,versicolor,25
+iris,Leave-One-Out (LOO),SVM lineal,Sin selección,no versicolor,no versicolor,86
+iris,Leave-One-Out (LOO),SVM lineal,Sin selección,no versicolor,versicolor,14
+iris,Leave-One-Out (LOO),SVM lineal,Sin selección,versicolor,no versicolor,29
+iris,Leave-One-Out (LOO),SVM lineal,Sin selección,versicolor,versicolor,21
+iris,Stratified Cross-Validation (K=10),SVM lineal,Sin selección,no versicolor,no versicolor,85
+iris,Stratified Cross-Validation (K=10),SVM lineal,Sin selección,no versicolor,versicolor,15
+iris,Stratified Cross-Validation (K=10),SVM lineal,Sin selección,versicolor,no versicolor,26
+iris,Stratified Cross-Validation (K=10),SVM lineal,Sin selección,versicolor,versicolor,24
+iris,Hold-Out 60/40,SVM lineal,ANOVA F-test,no versicolor,no versicolor,32
+iris,Hold-Out 60/40,SVM lineal,ANOVA F-test,no versicolor,versicolor,8
+iris,Hold-Out 60/40,SVM lineal,ANOVA F-test,versicolor,no versicolor,13
+iris,Hold-Out 60/40,SVM lineal,ANOVA F-test,versicolor,versicolor,7
+iris,Entrenamiento/Prueba,SVM lineal,ANOVA F-test,no versicolor,no versicolor,47
+iris,Entrenamiento/Prueba,SVM lineal,ANOVA F-test,no versicolor,versicolor,3
+iris,Entrenamiento/Prueba,SVM lineal,ANOVA F-test,versicolor,no versicolor,17
+iris,Entrenamiento/Prueba,SVM lineal,ANOVA F-test,versicolor,versicolor,8
+iris,Random Subsampling (N=30),SVM lineal,ANOVA F-test,no versicolor,no versicolor,1077
+iris,Random Subsampling (N=30),SVM lineal,ANOVA F-test,no versicolor,versicolor,123
+iris,Random Subsampling (N=30),SVM lineal,ANOVA F-test,versicolor,no versicolor,375
+iris,Random Subsampling (N=30),SVM lineal,ANOVA F-test,versicolor,versicolor,225
+iris,K-Fold (K=10),SVM lineal,ANOVA F-test,no versicolor,no versicolor,91
+iris,K-Fold (K=10),SVM lineal,ANOVA F-test,no versicolor,versicolor,9
+iris,K-Fold (K=10),SVM lineal,ANOVA F-test,versicolor,no versicolor,33
+iris,K-Fold (K=10),SVM lineal,ANOVA F-test,versicolor,versicolor,17
+iris,Leave-One-Out (LOO),SVM lineal,ANOVA F-test,no versicolor,no versicolor,92
+iris,Leave-One-Out (LOO),SVM lineal,ANOVA F-test,no versicolor,versicolor,8
+iris,Leave-One-Out (LOO),SVM lineal,ANOVA F-test,versicolor,no versicolor,34
+iris,Leave-One-Out (LOO),SVM lineal,ANOVA F-test,versicolor,versicolor,16
+iris,Stratified Cross-Validation (K=10),SVM lineal,ANOVA F-test,no versicolor,no versicolor,92
+iris,Stratified Cross-Validation (K=10),SVM lineal,ANOVA F-test,no versicolor,versicolor,8
+iris,Stratified Cross-Validation (K=10),SVM lineal,ANOVA F-test,versicolor,no versicolor,32
+iris,Stratified Cross-Validation (K=10),SVM lineal,ANOVA F-test,versicolor,versicolor,18
+mobile_price,Hold-Out 60/40,SVM lineal,Sin selección,0,0,192
+mobile_price,Hold-Out 60/40,SVM lineal,Sin selección,0,1,8
+mobile_price,Hold-Out 60/40,SVM lineal,Sin selección,0,2,0
+mobile_price,Hold-Out 60/40,SVM lineal,Sin selección,0,3,0
+mobile_price,Hold-Out 60/40,SVM lineal,Sin selección,1,0,4
+mobile_price,Hold-Out 60/40,SVM lineal,Sin selección,1,1,190
+mobile_price,Hold-Out 60/40,SVM lineal,Sin selección,1,2,6
+mobile_price,Hold-Out 60/40,SVM lineal,Sin selección,1,3,0
+mobile_price,Hold-Out 60/40,SVM lineal,Sin selección,2,0,0
+mobile_price,Hold-Out 60/40,SVM lineal,Sin selección,2,1,5
+mobile_price,Hold-Out 60/40,SVM lineal,Sin selección,2,2,189
+mobile_price,Hold-Out 60/40,SVM lineal,Sin selección,2,3,6
+mobile_price,Hold-Out 60/40,SVM lineal,Sin selección,3,0,0
+mobile_price,Hold-Out 60/40,SVM lineal,Sin selección,3,1,0
+mobile_price,Hold-Out 60/40,SVM lineal,Sin selección,3,2,5
+mobile_price,Hold-Out 60/40,SVM lineal,Sin selección,3,3,195
+mobile_price,Entrenamiento/Prueba,SVM lineal,Sin selección,0,0,22
+mobile_price,Entrenamiento/Prueba,SVM lineal,Sin selección,0,1,3
+mobile_price,Entrenamiento/Prueba,SVM lineal,Sin selección,0,2,0
+mobile_price,Entrenamiento/Prueba,SVM lineal,Sin selección,0,3,0
+mobile_price,Entrenamiento/Prueba,SVM lineal,Sin selección,1,0,2
+mobile_price,Entrenamiento/Prueba,SVM lineal,Sin selección,1,1,23
+mobile_price,Entrenamiento/Prueba,SVM lineal,Sin selección,1,2,0
+mobile_price,Entrenamiento/Prueba,SVM lineal,Sin selección,1,3,0
+mobile_price,Entrenamiento/Prueba,SVM lineal,Sin selección,2,0,0
+mobile_price,Entrenamiento/Prueba,SVM lineal,Sin selección,2,1,9
+mobile_price,Entrenamiento/Prueba,SVM lineal,Sin selección,2,2,12
+mobile_price,Entrenamiento/Prueba,SVM lineal,Sin selección,2,3,4
+mobile_price,Entrenamiento/Prueba,SVM lineal,Sin selección,3,0,0
+mobile_price,Entrenamiento/Prueba,SVM lineal,Sin selección,3,1,0
+mobile_price,Entrenamiento/Prueba,SVM lineal,Sin selección,3,2,2
+mobile_price,Entrenamiento/Prueba,SVM lineal,Sin selección,3,3,23
+mobile_price,Random Subsampling (N=30),SVM lineal,Sin selección,0,0,5835
+mobile_price,Random Subsampling (N=30),SVM lineal,Sin selección,0,1,165
+mobile_price,Random Subsampling (N=30),SVM lineal,Sin selección,0,2,0
+mobile_price,Random Subsampling (N=30),SVM lineal,Sin selección,0,3,0
+mobile_price,Random Subsampling (N=30),SVM lineal,Sin selección,1,0,227
+mobile_price,Random Subsampling (N=30),SVM lineal,Sin selección,1,1,5561
+mobile_price,Random Subsampling (N=30),SVM lineal,Sin selección,1,2,212
+mobile_price,Random Subsampling (N=30),SVM lineal,Sin selección,1,3,0
+mobile_price,Random Subsampling (N=30),SVM lineal,Sin selección,2,0,0
+mobile_price,Random Subsampling (N=30),SVM lineal,Sin selección,2,1,211
+mobile_price,Random Subsampling (N=30),SVM lineal,Sin selección,2,2,5597
+mobile_price,Random Subsampling (N=30),SVM lineal,Sin selección,2,3,192
+mobile_price,Random Subsampling (N=30),SVM lineal,Sin selección,3,0,0
+mobile_price,Random Subsampling (N=30),SVM lineal,Sin selección,3,1,0
+mobile_price,Random Subsampling (N=30),SVM lineal,Sin selección,3,2,135
+mobile_price,Random Subsampling (N=30),SVM lineal,Sin selección,3,3,5865
+mobile_price,K-Fold (K=10),SVM lineal,Sin selección,0,0,485
+mobile_price,K-Fold (K=10),SVM lineal,Sin selección,0,1,15
+mobile_price,K-Fold (K=10),SVM lineal,Sin selección,0,2,0
+mobile_price,K-Fold (K=10),SVM lineal,Sin selección,0,3,0
+mobile_price,K-Fold (K=10),SVM lineal,Sin selección,1,0,15
+mobile_price,K-Fold (K=10),SVM lineal,Sin selección,1,1,466
+mobile_price,K-Fold (K=10),SVM lineal,Sin selección,1,2,19
+mobile_price,K-Fold (K=10),SVM lineal,Sin selección,1,3,0
+mobile_price,K-Fold (K=10),SVM lineal,Sin selección,2,0,0
+mobile_price,K-Fold (K=10),SVM lineal,Sin selección,2,1,13
+mobile_price,K-Fold (K=10),SVM lineal,Sin selección,2,2,472
+mobile_price,K-Fold (K=10),SVM lineal,Sin selección,2,3,15
+mobile_price,K-Fold (K=10),SVM lineal,Sin selección,3,0,0
+mobile_price,K-Fold (K=10),SVM lineal,Sin selección,3,1,0
+mobile_price,K-Fold (K=10),SVM lineal,Sin selección,3,2,9
+mobile_price,K-Fold (K=10),SVM lineal,Sin selección,3,3,491
+mobile_price,Leave-One-Out (LOO),SVM lineal,Sin selección,0,0,490
+mobile_price,Leave-One-Out (LOO),SVM lineal,Sin selección,0,1,10
+mobile_price,Leave-One-Out (LOO),SVM lineal,Sin selección,0,2,0
+mobile_price,Leave-One-Out (LOO),SVM lineal,Sin selección,0,3,0
+mobile_price,Leave-One-Out (LOO),SVM lineal,Sin selección,1,0,14
+mobile_price,Leave-One-Out (LOO),SVM lineal,Sin selección,1,1,468
+mobile_price,Leave-One-Out (LOO),SVM lineal,Sin selección,1,2,18
+mobile_price,Leave-One-Out (LOO),SVM lineal,Sin selección,1,3,0
+mobile_price,Leave-One-Out (LOO),SVM lineal,Sin selección,2,0,0
+mobile_price,Leave-One-Out (LOO),SVM lineal,Sin selección,2,1,18
+mobile_price,Leave-One-Out (LOO),SVM lineal,Sin selección,2,2,465
+mobile_price,Leave-One-Out (LOO),SVM lineal,Sin selección,2,3,17
+mobile_price,Leave-One-Out (LOO),SVM lineal,Sin selección,3,0,0
+mobile_price,Leave-One-Out (LOO),SVM lineal,Sin selección,3,1,0
+mobile_price,Leave-One-Out (LOO),SVM lineal,Sin selección,3,2,8
+mobile_price,Leave-One-Out (LOO),SVM lineal,Sin selección,3,3,492
+mobile_price,Stratified Cross-Validation (K=10),SVM lineal,Sin selección,0,0,487
+mobile_price,Stratified Cross-Validation (K=10),SVM lineal,Sin selección,0,1,13
+mobile_price,Stratified Cross-Validation (K=10),SVM lineal,Sin selección,0,2,0
+mobile_price,Stratified Cross-Validation (K=10),SVM lineal,Sin selección,0,3,0
+mobile_price,Stratified Cross-Validation (K=10),SVM lineal,Sin selección,1,0,14
+mobile_price,Stratified Cross-Validation (K=10),SVM lineal,Sin selección,1,1,471
+mobile_price,Stratified Cross-Validation (K=10),SVM lineal,Sin selección,1,2,15
+mobile_price,Stratified Cross-Validation (K=10),SVM lineal,Sin selección,1,3,0
+mobile_price,Stratified Cross-Validation (K=10),SVM lineal,Sin selección,2,0,0
+mobile_price,Stratified Cross-Validation (K=10),SVM lineal,Sin selección,2,1,13
+mobile_price,Stratified Cross-Validation (K=10),SVM lineal,Sin selección,2,2,471
+mobile_price,Stratified Cross-Validation (K=10),SVM lineal,Sin selección,2,3,16
+mobile_price,Stratified Cross-Validation (K=10),SVM lineal,Sin selección,3,0,0
+mobile_price,Stratified Cross-Validation (K=10),SVM lineal,Sin selección,3,1,0
+mobile_price,Stratified Cross-Validation (K=10),SVM lineal,Sin selección,3,2,8
+mobile_price,Stratified Cross-Validation (K=10),SVM lineal,Sin selección,3,3,492
+mobile_price,Hold-Out 60/40,SVM lineal,ANOVA F-test,0,0,192
+mobile_price,Hold-Out 60/40,SVM lineal,ANOVA F-test,0,1,8
+mobile_price,Hold-Out 60/40,SVM lineal,ANOVA F-test,0,2,0
+mobile_price,Hold-Out 60/40,SVM lineal,ANOVA F-test,0,3,0
+mobile_price,Hold-Out 60/40,SVM lineal,ANOVA F-test,1,0,0
+mobile_price,Hold-Out 60/40,SVM lineal,ANOVA F-test,1,1,196
+mobile_price,Hold-Out 60/40,SVM lineal,ANOVA F-test,1,2,4
+mobile_price,Hold-Out 60/40,SVM lineal,ANOVA F-test,1,3,0
+mobile_price,Hold-Out 60/40,SVM lineal,ANOVA F-test,2,0,0
+mobile_price,Hold-Out 60/40,SVM lineal,ANOVA F-test,2,1,9
+mobile_price,Hold-Out 60/40,SVM lineal,ANOVA F-test,2,2,182
+mobile_price,Hold-Out 60/40,SVM lineal,ANOVA F-test,2,3,9
+mobile_price,Hold-Out 60/40,SVM lineal,ANOVA F-test,3,0,0
+mobile_price,Hold-Out 60/40,SVM lineal,ANOVA F-test,3,1,0
+mobile_price,Hold-Out 60/40,SVM lineal,ANOVA F-test,3,2,4
+mobile_price,Hold-Out 60/40,SVM lineal,ANOVA F-test,3,3,196
+mobile_price,Entrenamiento/Prueba,SVM lineal,ANOVA F-test,0,0,20
+mobile_price,Entrenamiento/Prueba,SVM lineal,ANOVA F-test,0,1,5
+mobile_price,Entrenamiento/Prueba,SVM lineal,ANOVA F-test,0,2,0
+mobile_price,Entrenamiento/Prueba,SVM lineal,ANOVA F-test,0,3,0
+mobile_price,Entrenamiento/Prueba,SVM lineal,ANOVA F-test,1,0,1
+mobile_price,Entrenamiento/Prueba,SVM lineal,ANOVA F-test,1,1,22
+mobile_price,Entrenamiento/Prueba,SVM lineal,ANOVA F-test,1,2,2
+mobile_price,Entrenamiento/Prueba,SVM lineal,ANOVA F-test,1,3,0
+mobile_price,Entrenamiento/Prueba,SVM lineal,ANOVA F-test,2,0,0
+mobile_price,Entrenamiento/Prueba,SVM lineal,ANOVA F-test,2,1,7
+mobile_price,Entrenamiento/Prueba,SVM lineal,ANOVA F-test,2,2,14
+mobile_price,Entrenamiento/Prueba,SVM lineal,ANOVA F-test,2,3,4
+mobile_price,Entrenamiento/Prueba,SVM lineal,ANOVA F-test,3,0,0
+mobile_price,Entrenamiento/Prueba,SVM lineal,ANOVA F-test,3,1,0
+mobile_price,Entrenamiento/Prueba,SVM lineal,ANOVA F-test,3,2,3
+mobile_price,Entrenamiento/Prueba,SVM lineal,ANOVA F-test,3,3,22
+mobile_price,Random Subsampling (N=30),SVM lineal,ANOVA F-test,0,0,5861
+mobile_price,Random Subsampling (N=30),SVM lineal,ANOVA F-test,0,1,139
+mobile_price,Random Subsampling (N=30),SVM lineal,ANOVA F-test,0,2,0
+mobile_price,Random Subsampling (N=30),SVM lineal,ANOVA F-test,0,3,0
+mobile_price,Random Subsampling (N=30),SVM lineal,ANOVA F-test,1,0,160
+mobile_price,Random Subsampling (N=30),SVM lineal,ANOVA F-test,1,1,5664
+mobile_price,Random Subsampling (N=30),SVM lineal,ANOVA F-test,1,2,176
+mobile_price,Random Subsampling (N=30),SVM lineal,ANOVA F-test,1,3,0
+mobile_price,Random Subsampling (N=30),SVM lineal,ANOVA F-test,2,0,0
+mobile_price,Random Subsampling (N=30),SVM lineal,ANOVA F-test,2,1,187
+mobile_price,Random Subsampling (N=30),SVM lineal,ANOVA F-test,2,2,5623
+mobile_price,Random Subsampling (N=30),SVM lineal,ANOVA F-test,2,3,190
+mobile_price,Random Subsampling (N=30),SVM lineal,ANOVA F-test,3,0,0
+mobile_price,Random Subsampling (N=30),SVM lineal,ANOVA F-test,3,1,0
+mobile_price,Random Subsampling (N=30),SVM lineal,ANOVA F-test,3,2,103
+mobile_price,Random Subsampling (N=30),SVM lineal,ANOVA F-test,3,3,5897
+mobile_price,K-Fold (K=10),SVM lineal,ANOVA F-test,0,0,487
+mobile_price,K-Fold (K=10),SVM lineal,ANOVA F-test,0,1,13
+mobile_price,K-Fold (K=10),SVM lineal,ANOVA F-test,0,2,0
+mobile_price,K-Fold (K=10),SVM lineal,ANOVA F-test,0,3,0
+mobile_price,K-Fold (K=10),SVM lineal,ANOVA F-test,1,0,12
+mobile_price,K-Fold (K=10),SVM lineal,ANOVA F-test,1,1,479
+mobile_price,K-Fold (K=10),SVM lineal,ANOVA F-test,1,2,9
+mobile_price,K-Fold (K=10),SVM lineal,ANOVA F-test,1,3,0
+mobile_price,K-Fold (K=10),SVM lineal,ANOVA F-test,2,0,0
+mobile_price,K-Fold (K=10),SVM lineal,ANOVA F-test,2,1,13
+mobile_price,K-Fold (K=10),SVM lineal,ANOVA F-test,2,2,472
+mobile_price,K-Fold (K=10),SVM lineal,ANOVA F-test,2,3,15
+mobile_price,K-Fold (K=10),SVM lineal,ANOVA F-test,3,0,0
+mobile_price,K-Fold (K=10),SVM lineal,ANOVA F-test,3,1,0
+mobile_price,K-Fold (K=10),SVM lineal,ANOVA F-test,3,2,6
+mobile_price,K-Fold (K=10),SVM lineal,ANOVA F-test,3,3,494
+mobile_price,Leave-One-Out (LOO),SVM lineal,ANOVA F-test,0,0,492
+mobile_price,Leave-One-Out (LOO),SVM lineal,ANOVA F-test,0,1,8
+mobile_price,Leave-One-Out (LOO),SVM lineal,ANOVA F-test,0,2,0
+mobile_price,Leave-One-Out (LOO),SVM lineal,ANOVA F-test,0,3,0
+mobile_price,Leave-One-Out (LOO),SVM lineal,ANOVA F-test,1,0,9
+mobile_price,Leave-One-Out (LOO),SVM lineal,ANOVA F-test,1,1,482
+mobile_price,Leave-One-Out (LOO),SVM lineal,ANOVA F-test,1,2,9
+mobile_price,Leave-One-Out (LOO),SVM lineal,ANOVA F-test,1,3,0
+mobile_price,Leave-One-Out (LOO),SVM lineal,ANOVA F-test,2,0,0
+mobile_price,Leave-One-Out (LOO),SVM lineal,ANOVA F-test,2,1,16
+mobile_price,Leave-One-Out (LOO),SVM lineal,ANOVA F-test,2,2,474
+mobile_price,Leave-One-Out (LOO),SVM lineal,ANOVA F-test,2,3,10
+mobile_price,Leave-One-Out (LOO),SVM lineal,ANOVA F-test,3,0,0
+mobile_price,Leave-One-Out (LOO),SVM lineal,ANOVA F-test,3,1,0
+mobile_price,Leave-One-Out (LOO),SVM lineal,ANOVA F-test,3,2,5
+mobile_price,Leave-One-Out (LOO),SVM lineal,ANOVA F-test,3,3,495
+mobile_price,Stratified Cross-Validation (K=10),SVM lineal,ANOVA F-test,0,0,491
+mobile_price,Stratified Cross-Validation (K=10),SVM lineal,ANOVA F-test,0,1,9
+mobile_price,Stratified Cross-Validation (K=10),SVM lineal,ANOVA F-test,0,2,0
+mobile_price,Stratified Cross-Validation (K=10),SVM lineal,ANOVA F-test,0,3,0
+mobile_price,Stratified Cross-Validation (K=10),SVM lineal,ANOVA F-test,1,0,9
+mobile_price,Stratified Cross-Validation (K=10),SVM lineal,ANOVA F-test,1,1,484
+mobile_price,Stratified Cross-Validation (K=10),SVM lineal,ANOVA F-test,1,2,7
+mobile_price,Stratified Cross-Validation (K=10),SVM lineal,ANOVA F-test,1,3,0
+mobile_price,Stratified Cross-Validation (K=10),SVM lineal,ANOVA F-test,2,0,0
+mobile_price,Stratified Cross-Validation (K=10),SVM lineal,ANOVA F-test,2,1,14
+mobile_price,Stratified Cross-Validation (K=10),SVM lineal,ANOVA F-test,2,2,473
+mobile_price,Stratified Cross-Validation (K=10),SVM lineal,ANOVA F-test,2,3,13
+mobile_price,Stratified Cross-Validation (K=10),SVM lineal,ANOVA F-test,3,0,0
+mobile_price,Stratified Cross-Validation (K=10),SVM lineal,ANOVA F-test,3,1,0
+mobile_price,Stratified Cross-Validation (K=10),SVM lineal,ANOVA F-test,3,2,5
+mobile_price,Stratified Cross-Validation (K=10),SVM lineal,ANOVA F-test,3,3,495
+mobile_price,Hold-Out 60/40,Árbol de decisión,Sin selección,0,0,171
+mobile_price,Hold-Out 60/40,Árbol de decisión,Sin selección,0,1,29
+mobile_price,Hold-Out 60/40,Árbol de decisión,Sin selección,0,2,0
+mobile_price,Hold-Out 60/40,Árbol de decisión,Sin selección,0,3,0
+mobile_price,Hold-Out 60/40,Árbol de decisión,Sin selección,1,0,19
+mobile_price,Hold-Out 60/40,Árbol de decisión,Sin selección,1,1,154
+mobile_price,Hold-Out 60/40,Árbol de decisión,Sin selección,1,2,27
+mobile_price,Hold-Out 60/40,Árbol de decisión,Sin selección,1,3,0
+mobile_price,Hold-Out 60/40,Árbol de decisión,Sin selección,2,0,0
+mobile_price,Hold-Out 60/40,Árbol de decisión,Sin selección,2,1,25
+mobile_price,Hold-Out 60/40,Árbol de decisión,Sin selección,2,2,149
+mobile_price,Hold-Out 60/40,Árbol de decisión,Sin selección,2,3,26
+mobile_price,Hold-Out 60/40,Árbol de decisión,Sin selección,3,0,0
+mobile_price,Hold-Out 60/40,Árbol de decisión,Sin selección,3,1,0
+mobile_price,Hold-Out 60/40,Árbol de decisión,Sin selección,3,2,24
+mobile_price,Hold-Out 60/40,Árbol de decisión,Sin selección,3,3,176
+mobile_price,Entrenamiento/Prueba,Árbol de decisión,Sin selección,0,0,22
+mobile_price,Entrenamiento/Prueba,Árbol de decisión,Sin selección,0,1,3
+mobile_price,Entrenamiento/Prueba,Árbol de decisión,Sin selección,0,2,0
+mobile_price,Entrenamiento/Prueba,Árbol de decisión,Sin selección,0,3,0
+mobile_price,Entrenamiento/Prueba,Árbol de decisión,Sin selección,1,0,4
+mobile_price,Entrenamiento/Prueba,Árbol de decisión,Sin selección,1,1,16
+mobile_price,Entrenamiento/Prueba,Árbol de decisión,Sin selección,1,2,5
+mobile_price,Entrenamiento/Prueba,Árbol de decisión,Sin selección,1,3,0
+mobile_price,Entrenamiento/Prueba,Árbol de decisión,Sin selección,2,0,1
+mobile_price,Entrenamiento/Prueba,Árbol de decisión,Sin selección,2,1,5
+mobile_price,Entrenamiento/Prueba,Árbol de decisión,Sin selección,2,2,9
+mobile_price,Entrenamiento/Prueba,Árbol de decisión,Sin selección,2,3,10
+mobile_price,Entrenamiento/Prueba,Árbol de decisión,Sin selección,3,0,0
+mobile_price,Entrenamiento/Prueba,Árbol de decisión,Sin selección,3,1,0
+mobile_price,Entrenamiento/Prueba,Árbol de decisión,Sin selección,3,2,4
+mobile_price,Entrenamiento/Prueba,Árbol de decisión,Sin selección,3,3,21
+mobile_price,Random Subsampling (N=30),Árbol de decisión,Sin selección,0,0,5395
+mobile_price,Random Subsampling (N=30),Árbol de decisión,Sin selección,0,1,602
+mobile_price,Random Subsampling (N=30),Árbol de decisión,Sin selección,0,2,3
+mobile_price,Random Subsampling (N=30),Árbol de decisión,Sin selección,0,3,0
+mobile_price,Random Subsampling (N=30),Árbol de decisión,Sin selección,1,0,665
+mobile_price,Random Subsampling (N=30),Árbol de decisión,Sin selección,1,1,4600
+mobile_price,Random Subsampling (N=30),Árbol de decisión,Sin selección,1,2,732
+mobile_price,Random Subsampling (N=30),Árbol de decisión,Sin selección,1,3,3
+mobile_price,Random Subsampling (N=30),Árbol de decisión,Sin selección,2,0,3
+mobile_price,Random Subsampling (N=30),Árbol de decisión,Sin selección,2,1,713
+mobile_price,Random Subsampling (N=30),Árbol de decisión,Sin selección,2,2,4522
+mobile_price,Random Subsampling (N=30),Árbol de decisión,Sin selección,2,3,762
+mobile_price,Random Subsampling (N=30),Árbol de decisión,Sin selección,3,0,0
+mobile_price,Random Subsampling (N=30),Árbol de decisión,Sin selección,3,1,3
+mobile_price,Random Subsampling (N=30),Árbol de decisión,Sin selección,3,2,764
+mobile_price,Random Subsampling (N=30),Árbol de decisión,Sin selección,3,3,5233
+mobile_price,K-Fold (K=10),Árbol de decisión,Sin selección,0,0,446
+mobile_price,K-Fold (K=10),Árbol de decisión,Sin selección,0,1,54
+mobile_price,K-Fold (K=10),Árbol de decisión,Sin selección,0,2,0
+mobile_price,K-Fold (K=10),Árbol de decisión,Sin selección,0,3,0
+mobile_price,K-Fold (K=10),Árbol de decisión,Sin selección,1,0,50
+mobile_price,K-Fold (K=10),Árbol de decisión,Sin selección,1,1,400
+mobile_price,K-Fold (K=10),Árbol de decisión,Sin selección,1,2,49
+mobile_price,K-Fold (K=10),Árbol de decisión,Sin selección,1,3,1
+mobile_price,K-Fold (K=10),Árbol de decisión,Sin selección,2,0,0
+mobile_price,K-Fold (K=10),Árbol de decisión,Sin selección,2,1,55
+mobile_price,K-Fold (K=10),Árbol de decisión,Sin selección,2,2,376
+mobile_price,K-Fold (K=10),Árbol de decisión,Sin selección,2,3,69
+mobile_price,K-Fold (K=10),Árbol de decisión,Sin selección,3,0,0
+mobile_price,K-Fold (K=10),Árbol de decisión,Sin selección,3,1,0
+mobile_price,K-Fold (K=10),Árbol de decisión,Sin selección,3,2,63
+mobile_price,K-Fold (K=10),Árbol de decisión,Sin selección,3,3,437
+mobile_price,Leave-One-Out (LOO),Árbol de decisión,Sin selección,0,0,446
+mobile_price,Leave-One-Out (LOO),Árbol de decisión,Sin selección,0,1,53
+mobile_price,Leave-One-Out (LOO),Árbol de decisión,Sin selección,0,2,1
+mobile_price,Leave-One-Out (LOO),Árbol de decisión,Sin selección,0,3,0
+mobile_price,Leave-One-Out (LOO),Árbol de decisión,Sin selección,1,0,50
+mobile_price,Leave-One-Out (LOO),Árbol de decisión,Sin selección,1,1,391
+mobile_price,Leave-One-Out (LOO),Árbol de decisión,Sin selección,1,2,59
+mobile_price,Leave-One-Out (LOO),Árbol de decisión,Sin selección,1,3,0
+mobile_price,Leave-One-Out (LOO),Árbol de decisión,Sin selección,2,0,0
+mobile_price,Leave-One-Out (LOO),Árbol de decisión,Sin selección,2,1,49
+mobile_price,Leave-One-Out (LOO),Árbol de decisión,Sin selección,2,2,378
+mobile_price,Leave-One-Out (LOO),Árbol de decisión,Sin selección,2,3,73
+mobile_price,Leave-One-Out (LOO),Árbol de decisión,Sin selección,3,0,0
+mobile_price,Leave-One-Out (LOO),Árbol de decisión,Sin selección,3,1,1
+mobile_price,Leave-One-Out (LOO),Árbol de decisión,Sin selección,3,2,62
+mobile_price,Leave-One-Out (LOO),Árbol de decisión,Sin selección,3,3,437
+mobile_price,Stratified Cross-Validation (K=10),Árbol de decisión,Sin selección,0,0,443
+mobile_price,Stratified Cross-Validation (K=10),Árbol de decisión,Sin selección,0,1,56
+mobile_price,Stratified Cross-Validation (K=10),Árbol de decisión,Sin selección,0,2,1
+mobile_price,Stratified Cross-Validation (K=10),Árbol de decisión,Sin selección,0,3,0
+mobile_price,Stratified Cross-Validation (K=10),Árbol de decisión,Sin selección,1,0,38
+mobile_price,Stratified Cross-Validation (K=10),Árbol de decisión,Sin selección,1,1,401
+mobile_price,Stratified Cross-Validation (K=10),Árbol de decisión,Sin selección,1,2,61
+mobile_price,Stratified Cross-Validation (K=10),Árbol de decisión,Sin selección,1,3,0
+mobile_price,Stratified Cross-Validation (K=10),Árbol de decisión,Sin selección,2,0,0
+mobile_price,Stratified Cross-Validation (K=10),Árbol de decisión,Sin selección,2,1,61
+mobile_price,Stratified Cross-Validation (K=10),Árbol de decisión,Sin selección,2,2,378
+mobile_price,Stratified Cross-Validation (K=10),Árbol de decisión,Sin selección,2,3,61
+mobile_price,Stratified Cross-Validation (K=10),Árbol de decisión,Sin selección,3,0,0
+mobile_price,Stratified Cross-Validation (K=10),Árbol de decisión,Sin selección,3,1,1
+mobile_price,Stratified Cross-Validation (K=10),Árbol de decisión,Sin selección,3,2,53
+mobile_price,Stratified Cross-Validation (K=10),Árbol de decisión,Sin selección,3,3,446
+mobile_price,Hold-Out 60/40,Árbol de decisión,ANOVA F-test,0,0,180
+mobile_price,Hold-Out 60/40,Árbol de decisión,ANOVA F-test,0,1,20
+mobile_price,Hold-Out 60/40,Árbol de decisión,ANOVA F-test,0,2,0
+mobile_price,Hold-Out 60/40,Árbol de decisión,ANOVA F-test,0,3,0
+mobile_price,Hold-Out 60/40,Árbol de decisión,ANOVA F-test,1,0,17
+mobile_price,Hold-Out 60/40,Árbol de decisión,ANOVA F-test,1,1,150
+mobile_price,Hold-Out 60/40,Árbol de decisión,ANOVA F-test,1,2,33
+mobile_price,Hold-Out 60/40,Árbol de decisión,ANOVA F-test,1,3,0
+mobile_price,Hold-Out 60/40,Árbol de decisión,ANOVA F-test,2,0,0
+mobile_price,Hold-Out 60/40,Árbol de decisión,ANOVA F-test,2,1,27
+mobile_price,Hold-Out 60/40,Árbol de decisión,ANOVA F-test,2,2,148
+mobile_price,Hold-Out 60/40,Árbol de decisión,ANOVA F-test,2,3,25
+mobile_price,Hold-Out 60/40,Árbol de decisión,ANOVA F-test,3,0,0
+mobile_price,Hold-Out 60/40,Árbol de decisión,ANOVA F-test,3,1,0
+mobile_price,Hold-Out 60/40,Árbol de decisión,ANOVA F-test,3,2,26
+mobile_price,Hold-Out 60/40,Árbol de decisión,ANOVA F-test,3,3,174
+mobile_price,Entrenamiento/Prueba,Árbol de decisión,ANOVA F-test,0,0,22
+mobile_price,Entrenamiento/Prueba,Árbol de decisión,ANOVA F-test,0,1,3
+mobile_price,Entrenamiento/Prueba,Árbol de decisión,ANOVA F-test,0,2,0
+mobile_price,Entrenamiento/Prueba,Árbol de decisión,ANOVA F-test,0,3,0
+mobile_price,Entrenamiento/Prueba,Árbol de decisión,ANOVA F-test,1,0,4
+mobile_price,Entrenamiento/Prueba,Árbol de decisión,ANOVA F-test,1,1,15
+mobile_price,Entrenamiento/Prueba,Árbol de decisión,ANOVA F-test,1,2,5
+mobile_price,Entrenamiento/Prueba,Árbol de decisión,ANOVA F-test,1,3,1
+mobile_price,Entrenamiento/Prueba,Árbol de decisión,ANOVA F-test,2,0,1
+mobile_price,Entrenamiento/Prueba,Árbol de decisión,ANOVA F-test,2,1,4
+mobile_price,Entrenamiento/Prueba,Árbol de decisión,ANOVA F-test,2,2,10
+mobile_price,Entrenamiento/Prueba,Árbol de decisión,ANOVA F-test,2,3,10
+mobile_price,Entrenamiento/Prueba,Árbol de decisión,ANOVA F-test,3,0,0
+mobile_price,Entrenamiento/Prueba,Árbol de decisión,ANOVA F-test,3,1,0
+mobile_price,Entrenamiento/Prueba,Árbol de decisión,ANOVA F-test,3,2,4
+mobile_price,Entrenamiento/Prueba,Árbol de decisión,ANOVA F-test,3,3,21
+mobile_price,Random Subsampling (N=30),Árbol de decisión,ANOVA F-test,0,0,5419
+mobile_price,Random Subsampling (N=30),Árbol de decisión,ANOVA F-test,0,1,581
+mobile_price,Random Subsampling (N=30),Árbol de decisión,ANOVA F-test,0,2,0
+mobile_price,Random Subsampling (N=30),Árbol de decisión,ANOVA F-test,0,3,0
+mobile_price,Random Subsampling (N=30),Árbol de decisión,ANOVA F-test,1,0,617
+mobile_price,Random Subsampling (N=30),Árbol de decisión,ANOVA F-test,1,1,4669
+mobile_price,Random Subsampling (N=30),Árbol de decisión,ANOVA F-test,1,2,711
+mobile_price,Random Subsampling (N=30),Árbol de decisión,ANOVA F-test,1,3,3
+mobile_price,Random Subsampling (N=30),Árbol de decisión,ANOVA F-test,2,0,1
+mobile_price,Random Subsampling (N=30),Árbol de decisión,ANOVA F-test,2,1,682
+mobile_price,Random Subsampling (N=30),Árbol de decisión,ANOVA F-test,2,2,4605
+mobile_price,Random Subsampling (N=30),Árbol de decisión,ANOVA F-test,2,3,712
+mobile_price,Random Subsampling (N=30),Árbol de decisión,ANOVA F-test,3,0,0
+mobile_price,Random Subsampling (N=30),Árbol de decisión,ANOVA F-test,3,1,2
+mobile_price,Random Subsampling (N=30),Árbol de decisión,ANOVA F-test,3,2,747
+mobile_price,Random Subsampling (N=30),Árbol de decisión,ANOVA F-test,3,3,5251
+mobile_price,K-Fold (K=10),Árbol de decisión,ANOVA F-test,0,0,456
+mobile_price,K-Fold (K=10),Árbol de decisión,ANOVA F-test,0,1,44
+mobile_price,K-Fold (K=10),Árbol de decisión,ANOVA F-test,0,2,0
+mobile_price,K-Fold (K=10),Árbol de decisión,ANOVA F-test,0,3,0
+mobile_price,K-Fold (K=10),Árbol de decisión,ANOVA F-test,1,0,53
+mobile_price,K-Fold (K=10),Árbol de decisión,ANOVA F-test,1,1,395
+mobile_price,K-Fold (K=10),Árbol de decisión,ANOVA F-test,1,2,52
+mobile_price,K-Fold (K=10),Árbol de decisión,ANOVA F-test,1,3,0
+mobile_price,K-Fold (K=10),Árbol de decisión,ANOVA F-test,2,0,0
+mobile_price,K-Fold (K=10),Árbol de decisión,ANOVA F-test,2,1,49
+mobile_price,K-Fold (K=10),Árbol de decisión,ANOVA F-test,2,2,395
+mobile_price,K-Fold (K=10),Árbol de decisión,ANOVA F-test,2,3,56
+mobile_price,K-Fold (K=10),Árbol de decisión,ANOVA F-test,3,0,0
+mobile_price,K-Fold (K=10),Árbol de decisión,ANOVA F-test,3,1,0
+mobile_price,K-Fold (K=10),Árbol de decisión,ANOVA F-test,3,2,59
+mobile_price,K-Fold (K=10),Árbol de decisión,ANOVA F-test,3,3,441
+mobile_price,Leave-One-Out (LOO),Árbol de decisión,ANOVA F-test,0,0,457
+mobile_price,Leave-One-Out (LOO),Árbol de decisión,ANOVA F-test,0,1,43
+mobile_price,Leave-One-Out (LOO),Árbol de decisión,ANOVA F-test,0,2,0
+mobile_price,Leave-One-Out (LOO),Árbol de decisión,ANOVA F-test,0,3,0
+mobile_price,Leave-One-Out (LOO),Árbol de decisión,ANOVA F-test,1,0,50
+mobile_price,Leave-One-Out (LOO),Árbol de decisión,ANOVA F-test,1,1,393
+mobile_price,Leave-One-Out (LOO),Árbol de decisión,ANOVA F-test,1,2,57
+mobile_price,Leave-One-Out (LOO),Árbol de decisión,ANOVA F-test,1,3,0
+mobile_price,Leave-One-Out (LOO),Árbol de decisión,ANOVA F-test,2,0,0
+mobile_price,Leave-One-Out (LOO),Árbol de decisión,ANOVA F-test,2,1,44
+mobile_price,Leave-One-Out (LOO),Árbol de decisión,ANOVA F-test,2,2,386
+mobile_price,Leave-One-Out (LOO),Árbol de decisión,ANOVA F-test,2,3,70
+mobile_price,Leave-One-Out (LOO),Árbol de decisión,ANOVA F-test,3,0,0
+mobile_price,Leave-One-Out (LOO),Árbol de decisión,ANOVA F-test,3,1,0
+mobile_price,Leave-One-Out (LOO),Árbol de decisión,ANOVA F-test,3,2,60
+mobile_price,Leave-One-Out (LOO),Árbol de decisión,ANOVA F-test,3,3,440
+mobile_price,Stratified Cross-Validation (K=10),Árbol de decisión,ANOVA F-test,0,0,446
+mobile_price,Stratified Cross-Validation (K=10),Árbol de decisión,ANOVA F-test,0,1,54
+mobile_price,Stratified Cross-Validation (K=10),Árbol de decisión,ANOVA F-test,0,2,0
+mobile_price,Stratified Cross-Validation (K=10),Árbol de decisión,ANOVA F-test,0,3,0
+mobile_price,Stratified Cross-Validation (K=10),Árbol de decisión,ANOVA F-test,1,0,46
+mobile_price,Stratified Cross-Validation (K=10),Árbol de decisión,ANOVA F-test,1,1,399
+mobile_price,Stratified Cross-Validation (K=10),Árbol de decisión,ANOVA F-test,1,2,55
+mobile_price,Stratified Cross-Validation (K=10),Árbol de decisión,ANOVA F-test,1,3,0
+mobile_price,Stratified Cross-Validation (K=10),Árbol de decisión,ANOVA F-test,2,0,0
+mobile_price,Stratified Cross-Validation (K=10),Árbol de decisión,ANOVA F-test,2,1,53
+mobile_price,Stratified Cross-Validation (K=10),Árbol de decisión,ANOVA F-test,2,2,391
+mobile_price,Stratified Cross-Validation (K=10),Árbol de decisión,ANOVA F-test,2,3,56
+mobile_price,Stratified Cross-Validation (K=10),Árbol de decisión,ANOVA F-test,3,0,0
+mobile_price,Stratified Cross-Validation (K=10),Árbol de decisión,ANOVA F-test,3,1,0
+mobile_price,Stratified Cross-Validation (K=10),Árbol de decisión,ANOVA F-test,3,2,53
+mobile_price,Stratified Cross-Validation (K=10),Árbol de decisión,ANOVA F-test,3,3,447
